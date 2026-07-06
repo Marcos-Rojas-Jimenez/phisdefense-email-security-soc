@@ -13,3 +13,4 @@ secrets/
 *.db
 *.sqlite
 .DS_Store
+assets/dashboard-demo-original.mp4

@@ -9,12 +9,11 @@
     :root {
       --bg: #050914;
       --bg2: #071426;
-      --panel: rgba(10, 25, 45, 0.82);
-      --panel2: rgba(13, 35, 60, 0.92);
+      --panel: rgba(10, 25, 45, 0.86);
+      --panel2: rgba(13, 35, 60, 0.94);
       --border: rgba(56, 248, 255, 0.18);
       --border2: rgba(255, 255, 255, 0.09);
       --cyan: #38f8ff;
-      --blue: #4f8cff;
       --green: #46e28b;
       --orange: #ffb347;
       --purple: #a78bfa;
@@ -49,7 +48,7 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: 0.28;
+      opacity: 0.24;
       background-image:
         linear-gradient(rgba(56,248,255,0.08) 1px, transparent 1px),
         linear-gradient(90deg, rgba(56,248,255,0.08) 1px, transparent 1px);
@@ -134,7 +133,6 @@
       gap: 14px;
       flex-wrap: wrap;
       font-size: 0.92rem;
-      color: var(--muted);
     }
 
     .nav-links a {
@@ -325,8 +323,6 @@
       border-radius: 23px;
       padding: 21px;
       box-shadow: 0 18px 50px rgba(0,0,0,0.18);
-      position: relative;
-      overflow: hidden;
       transition: transform .18s ease, border-color .18s ease;
     }
 
@@ -406,7 +402,8 @@
       margin-top: 0;
     }
 
-    .explain p, .explain li {
+    .explain p,
+    .explain li {
       color: var(--muted);
     }
 
@@ -490,6 +487,26 @@
       color: #ffe0b0;
     }
 
+    .video-card {
+      margin-top: 28px;
+      padding: 18px;
+      border-radius: 28px;
+      border: 1px solid rgba(56,248,255,0.22);
+      background:
+        radial-gradient(circle at top left, rgba(56,248,255,0.12), transparent 32%),
+        rgba(10, 25, 45, 0.82);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.34);
+    }
+
+    .demo-video {
+      width: 100%;
+      display: block;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: #000;
+      outline: none;
+    }
+
     .footer {
       padding: 36px 0 60px;
       color: var(--muted);
@@ -555,7 +572,7 @@
           #docsVer documentacion</a>
           data-samples/bateria_pruebas_soc_sample.csvDataset SOC</a>
           PROJECT_STATUS.mdEstado del proyecto</a>
-          <span class="btn disabled">Dashboard demo proximamente</span>
+          #demoVer video demo</a>
         </div>
       </div>
 
@@ -770,11 +787,25 @@
 
     <section id="demo">
       <div class="container">
-        <h2>Video y dashboard demo</h2>
+        <h2>Video demo del dashboard</h2>
         <p class="section-subtitle">
-          El dashboard original fue grabado en video para mostrar su funcionamiento:
-          metricas SOC, tabla de eventos, pruebas SMTP, validaciones TLS y evidencias de seguridad.
+          Demo en video del dashboard SOC mostrando metricas principales, eventos SMTP,
+          pruebas SOC, validaciones TLS, evidencias defensivas y resultados del laboratorio.
         </p>
+
+        <div class="video-card">
+          <video class="demo-video" controls preload="metadata">
+            assets/dashboard-demo.mp4
+            Tu navegador no soporta la reproduccion de video HTML5.
+          </video>
+        </div>
+
+        <div class="hero-actions" style="margin-top:24px;">
+          assets/dashboard-demo.mp4Abrir video en nueva pestana</a>
+          data-samples/bateria_pruebas_soc_sample.csvVer dataset SOC</a>
+          <a class="btn" href="README.md">Ver README</a>
+          PROJECT_STATUS.mdEstado del proyecto</a>
+        </div>
 
         <div class="timeline">
           <div class="timeline-item">
@@ -783,18 +814,12 @@
           </div>
           <div class="timeline-item">
             <div class="timeline-step">Fase 2</div>
-            <div class="timeline-text">Incorporacion de capturas y enlace al video demo.</div>
+            <div class="timeline-text">Incorporacion del video demo dentro de la propia web.</div>
           </div>
           <div class="timeline-item">
             <div class="timeline-step">Fase 3</div>
-            <div class="timeline-text">Despliegue de una demo interactiva del dashboard con datos estaticos y sanitizados.</div>
+            <div class="timeline-text">Despliegue futuro de una demo interactiva del dashboard con datos estaticos y sanitizados.</div>
           </div>
-        </div>
-
-        <div class="hero-actions" style="margin-top:24px;">
-          data-samples/bateria_pruebas_soc_sample.csvVer dataset SOC</a>
-          <a class="btn" href="README.md">Ver README</a>
-          PROJECT_STATUS.mdEstado del proyecto</a>
         </div>
       </div>
     </section>
