@@ -1,0 +1,15 @@
+.env
+*.key
+*.pem
+*.p12
+*.pfx
+__pycache__/
+*.pyc
+*.tar.gz
+*.zip
+tfm-evidencias.tar.gz
+private/
+secrets/
+*.db
+*.sqlite
+.DS_Store
