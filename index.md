@@ -1,12 +1,12 @@
-\# PhisDefense SOC \& Email Security Lab
+﻿\# PhisDefense SOC \& Email Security Lab
 
 
 
-Portfolio técnico de ciberseguridad orientado a Blue Team, SOC y seguridad de correo electrónico.
+Portfolio tecnico de ciberseguridad orientado a Blue Team, SOC y seguridad de correo electronico.
 
 
 
-Este proyecto fue desarrollado como TFM y convertido en una pieza de portfolio profesional para mostrar capacidades prácticas en análisis de logs, validación de controles defensivos, automatización y desarrollo de dashboards SOC.
+Este proyecto fue desarrollado como TFM y convertido en una pieza de portfolio profesional para mostrar capacidades practicas en analisis de logs, validacion de controles defensivos, automatizacion y desarrollo de dashboards SOC.
 
 
 
@@ -14,7 +14,7 @@ Este proyecto fue desarrollado como TFM y convertido en una pieza de portfolio p
 
 
 
-PhisDefense es un laboratorio defensivo centrado en seguridad de correo electrónico.
+PhisDefense es un laboratorio defensivo centrado en seguridad de correo electronico.
 
 
 
@@ -22,19 +22,19 @@ El proyecto incluye:
 
 
 
-\- configuración y validación de SPF, DKIM y DMARC;
+\- configuracion y validacion de SPF, DKIM y DMARC;
 
-\- política DMARC progresiva hasta p=reject;
+\- politica DMARC progresiva hasta p=reject;
 
 \- pruebas reales de STARTTLS SMTP e IMAPS TLS;
 
-\- detección de SMTP AUTH fallido;
+\- deteccion de SMTP AUTH fallido;
 
 \- pruebas de destinatarios inexistentes;
 
-\- validación de DKIM roto, DKIM ausente y rotación DKIM;
+\- validacion de DKIM roto, DKIM ausente y rotacion DKIM;
 
-\- análisis de dominios lookalike;
+\- analisis de dominios lookalike;
 
 \- pruebas externas de spoofing rechazadas por DMARC;
 
@@ -56,7 +56,7 @@ El proyecto incluye:
 
 \- Evidencias reales conservadas y sanitizadas para portfolio.
 
-\- Dataset público anonimizado.
+\- Dataset publico anonimizado.
 
 
 
@@ -94,7 +94,7 @@ El proyecto incluye:
 
 
 
-\## Documentación
+\## Documentacion
 
 
 
@@ -112,7 +112,7 @@ El proyecto incluye:
 
 
 
-\## Dataset público
+\## Dataset publico
 
 
 
@@ -120,27 +120,27 @@ El proyecto incluye:
 
 
 
-\## Vídeo demo
+\## Video demo
 
 
 
-He preparado una demo en vídeo mostrando el funcionamiento del dashboard SOC, las métricas principales, las pruebas SMTP, los eventos SOC y las evidencias de seguridad de correo.
+He preparado una demo en video mostrando el funcionamiento del dashboard SOC, las metricas principales, las pruebas SMTP, los eventos SOC y las evidencias de seguridad de correo.
 
 
 
-Próximamente añadiré aquí el enlace al vídeo publicado.
+Proximamente anadire aqui el enlace al video publicado.
 
 
 
-\## Evidencias públicas
+\## Evidencias publicas
 
 
 
-Las evidencias incluidas en este repositorio están anonimizadas.
+Las evidencias incluidas en este repositorio estan anonimizadas.
 
 
 
-El objetivo es demostrar metodología, validación técnica y resultados sin exponer información sensible del servidor original.
+El objetivo es demostrar metodologia, validacion tecnica y resultados sin exponer informacion sensible del servidor original.
 
 
 
@@ -152,7 +152,7 @@ El servidor original del TFM puede no estar activo en el futuro.
 
 
 
-La siguiente fase del portfolio será publicar una demo interactiva del dashboard usando datos estáticos y sanitizados.
+La siguiente fase del portfolio sera publicar una demo interactiva del dashboard usando datos estaticos y sanitizados.
 
 
 
@@ -164,19 +164,19 @@ Este repositorio forma parte de mi portfolio profesional en ciberseguridad.
 
 
 
-El objetivo es mostrar experiencia práctica en tareas cercanas a un entorno SOC real:
+El objetivo es mostrar experiencia practica en tareas cercanas a un entorno SOC real:
 
 
 
-\- análisis de eventos;
+\- analisis de eventos;
 
-\- detección de anomalías;
+\- deteccion de anomalias;
 
-\- validación de controles;
+\- validacion de controles;
 
-\- documentación de evidencias;
+\- documentacion de evidencias;
 
-\- automatización;
+\- automatizacion;
 
-\- visualización de métricas defensivas.
+\- visualizacion de metricas defensivas.
 
