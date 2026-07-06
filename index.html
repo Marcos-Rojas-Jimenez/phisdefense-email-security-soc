@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PhisDefense SOC & Email Security Lab</title>
+
+  <style>
+    :root {
+      --bg: #050b14;
+      --bg2: #071426;
+      --panel: rgba(12, 28, 48, 0.88);
+      --panel2: rgba(15, 38, 64, 0.92);
+      --border: rgba(56, 248, 255, 0.18);
+      --cyan: #38f8ff;
+      --blue: #4f8cff;
+      --green: #44e28b;
+      --orange: #ffb347;
+      --purple: #a78bfa;
+      --red: #ff5d73;
+      --text: #eaf6ff;
+      --muted: #9db5c9;
+      --white: #ffffff;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Segoe UI, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56, 248, 255, 0.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(167, 139, 250, 0.16), transparent 32%),
+        linear-gradient(180deg, #050b14 0%, #071426 42%, #050b14 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(5, 11, 20, 0.74);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #06111f;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      box-shadow: 0 0 30px rgba(56,248,255,0.24);
+      font-weight: 950;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .hero {
+      padding: 86px 0 50px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(56,248,255,0.07);
+      color: var(--cyan);
+      font-weight: 800;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      margin: 20px 0 16px;
+      font-size: clamp(2.45rem, 5vw, 4.9rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--white), var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-text {
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .hero-actions {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(56,248,255,0.28);
+      background: rgba(56,248,255,0.10);
+      color: var(--text);
+      font-weight: 850;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, rgba(56,248,255,0.92), rgba(68,226,139,0.92));
+      color: #03111f;
+      border: 0;
+    }
+
+    .btn.disabled {
+      opacity: 0.68;
+      cursor: not-allowed;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(15,38,64,0.94), rgba(8,21,38,0.94));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -80px -80px auto auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 999px;
+      background: rgba(56,248,255,0.18);
+      filter: blur(16px);
+    }
+
+    .status-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+    }
+
+    .status-item:last-child {
+      border-bottom: 0;
+    }
+
+    .status-label {
+      color: var(--muted);
+    }
+
+    .status-value {
+      font-weight: 900;
+      color: var(--cyan);
+      text-align: right;
+    }
+
+    section {
+      padding: 54px 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.45rem);
+      letter-spacing: -0.035em;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 720px;
+      margin-top: 10px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .metric-card {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+    }
+
+    .metric-value {
+      font-size: 2.15rem;
+      font-weight: 950;
+      color: var(--cyan);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .metric-label {
+      color: var(--text);
+      font-weight: 850;
+    }
+
+    .metric-desc {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-top: 6px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 22px;
+      min-height: 190px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #c8d8e8;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .doc-link {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(56,248,255,0.18);
+      background: rgba(56,248,255,0.06);
+      font-weight: 850;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 18px;
+      padding: 18px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+    }
+
+    .timeline-step {
+      color: var(--cyan);
+      font-weight: 950;
+    }
+
+    .timeline-text {
+      color: var(--muted);
+    }
+
+    .footer {
+      padding: 36px 0 60px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .metrics,
+      .cards,
+      .doc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-badge">PD</div>
+        <div>PhisDefense SOC Lab</div>
+      </div>
+      <div class="nav-links">
+        #resumenResumen</a>
+        #metricasMetricas</a>
+        #skillsSkills</a>
+        #docsDocs</a>
+        #demoDemo</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Blue Team · SOC · Email Security</div>
+        <h1>
+          <span class="gradient-text">PhisDefense</span><br />
+          SOC & Email Security Lab
+        </h1>
+        <p class="hero-text">
+          Proyecto de ciberseguridad orientado a defensa de correo electronico,
+          validacion de SPF, DKIM, DMARC, TLS, deteccion de spoofing y visualizacion
+          de eventos SOC mediante un dashboard en Python/Dash.
+        </p>
+
+        <div class="hero-actions">
+          #docsVer documentacion</a>
+          data-samples/bateria_pruebas_soc_sample.csvDataset SOC</a>
+          PROJECT_STATUS.mdEstado del proyecto</a>
+          <span class="btn disabled">Dashboard demo proximamente</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="status-item">
+          <div class="status-label">Pruebas totales</div>
+          <div class="status-value">270</div>
+        </div>
+        <div class="status-item">
+          <div class="status-label">Eventos SOC</div>
+          <div class="status-value">190</div>
+        </div>
+        <div class="status-item">
+          <div class="status-label">Spoofing reject</div>
+          <div class="status-value">3</div>
+        </div>
+        <div class="status-item">
+          <div class="status-label">Politica DMARC</div>
+          <div class="status-value">p=reject</div>
+        </div>
+        <div class="status-item">
+          <div class="status-label">Estado</div>
+          <div class="status-value">Portfolio publico</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="resumen">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>Resumen del proyecto</h2>
+            <p class="section-subtitle">
+              Laboratorio defensivo creado para validar controles de seguridad de correo,
+              registrar evidencias reales y construir una vision SOC del comportamiento del sistema.
+            </p>
+          </div>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Seguridad de correo</h3>
+            <p>Validacion de SPF, DKIM, DMARC, STARTTLS SMTP, IMAPS TLS y escenarios de abuso SMTP.</p>
+          </div>
+          <div class="card">
+            <h3>Monitorizacion SOC</h3>
+            <p>Procesamiento de eventos reales desde syslog y generacion de CSV SOC para analisis defensivo.</p>
+          </div>
+          <div class="card">
+            <h3>Dashboard Python/Dash</h3>
+            <p>Visualizacion de metricas, categorias, evidencias y resultados tecnicos del laboratorio.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="metricas">
+      <div class="container">
+        <h2>Metricas principales</h2>
+        <p class="section-subtitle">
+          El proyecto distingue entre pruebas totales agregadas y eventos SOC procesados.
+        </p>
+
+        <div class="metrics">
+          <div class="metric-card">
+            <div class="metric-value">270</div>
+            <div class="metric-label">Pruebas totales</div>
+            <div class="metric-desc">Agregadas en el dashboard.</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">190</div>
+            <div class="metric-label">Eventos SOC</div>
+            <div class="metric-desc">Procesados y categorizados.</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">58</div>
+            <div class="metric-label">Recipient unknown</div>
+            <div class="metric-desc">Destinatarios inexistentes.</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">55</div>
+            <div class="metric-label">Auth fail</div>
+            <div class="metric-desc">Fallos SMTP AUTH detectados.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2>Skills demostradas</h2>
+        <p class="section-subtitle">
+          El proyecto combina administracion Linux, seguridad de correo, analisis de logs,
+          automatizacion y visualizacion SOC.
+        </p>
+
+        <div class="tag-list">
+          <span class="tag">Linux</span>
+          <span class="tag">Postfix</span>
+          <span class="tag">OpenDMARC</span>
+          <span class="tag">OpenDKIM</span>
+          <span class="tag">SPF</span>
+          <span class="tag">DKIM</span>
+          <span class="tag">DMARC</span>
+          <span class="tag">Python</span>
+          <span class="tag">Dash</span>
+          <span class="tag">Plotly</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Log Analysis</span>
+          <span class="tag">SOC Monitoring</span>
+          <span class="tag">Blue Team</span>
+          <span class="tag">Evidence Handling</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="docs">
+      <div class="container">
+        <h2>Documentacion tecnica</h2>
+        <p class="section-subtitle">
+          Documentacion preparada para portfolio profesional, con arquitectura,
+          metodologia, pruebas SOC, privacidad y metricas.
+        </p>
+
+        <div class="doc-grid">
+          docs/arquitectura.mdArquitectura</a>
+          docs/metodologia.mdMetodologia</a>
+          docs/pruebas-soc.mdPruebas SOC</a>
+          docs/spoofing-dmarc.mdSpoofing DMARC</a>
+          docs/metricas-soc.mdMetricas SOC</a>
+          docs/privacidad.mdPrivacidad</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo">
+      <div class="container">
+        <h2>Video y dashboard demo</h2>
+        <p class="section-subtitle">
+          Se ha preparado un video mostrando el funcionamiento del dashboard SOC,
+          las metricas principales, las pruebas SMTP y las evidencias defensivas.
+        </p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-step">Fase 1</div>
+            <div class="timeline-text">Publicacion del proyecto documentado en GitHub Pages.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-step">Fase 2</div>
+            <div class="timeline-text">Incorporacion de capturas y enlace al video demo.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-step">Fase 3</div>
+            <div class="timeline-text">Despliegue de una demo interactiva del dashboard con datos estaticos y sanitizados.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <strong>Marcos Rojas Jimenez</strong><br />
+      Cybersecurity Portfolio · Blue Team · SOC · Email Security
+    </div>
+  </footer>
+</body>
+</html>
