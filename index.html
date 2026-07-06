@@ -7,36 +7,80 @@
 
   <style>
     :root {
-      --bg: #050b14;
+      --bg: #050914;
       --bg2: #071426;
-      --panel: rgba(12, 28, 48, 0.88);
-      --panel2: rgba(15, 38, 64, 0.92);
+      --panel: rgba(10, 25, 45, 0.82);
+      --panel2: rgba(13, 35, 60, 0.92);
       --border: rgba(56, 248, 255, 0.18);
+      --border2: rgba(255, 255, 255, 0.09);
       --cyan: #38f8ff;
       --blue: #4f8cff;
-      --green: #44e28b;
+      --green: #46e28b;
       --orange: #ffb347;
       --purple: #a78bfa;
       --red: #ff5d73;
       --text: #eaf6ff;
       --muted: #9db5c9;
-      --white: #ffffff;
-      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      --muted2: #70879d;
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+      --radius: 24px;
     }
 
     * {
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
       font-family: Inter, Segoe UI, Arial, sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(56, 248, 255, 0.18), transparent 34%),
-        radial-gradient(circle at top right, rgba(167, 139, 250, 0.16), transparent 32%),
-        linear-gradient(180deg, #050b14 0%, #071426 42%, #050b14 100%);
+        radial-gradient(circle at top left, rgba(56, 248, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(167, 139, 250, 0.14), transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(70, 226, 139, 0.08), transparent 35%),
+        linear-gradient(180deg, #040813 0%, #071426 42%, #040813 100%);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.28;
+      background-image:
+        linear-gradient(rgba(56,248,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,248,255,0.08) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(to bottom, black, transparent 72%);
+      z-index: -1;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      right: -160px;
+      top: 110px;
+      background: rgba(56, 248, 255, 0.12);
+      filter: blur(70px);
+      border-radius: 999px;
+      pointer-events: none;
+      animation: floatGlow 9s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+
+    @keyframes floatGlow {
+      from { transform: translateY(0) scale(1); }
+      to { transform: translateY(80px) scale(1.15); }
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 36px));
+      margin: 0 auto;
     }
 
     a {
@@ -48,22 +92,17 @@
       text-decoration: underline;
     }
 
-    .container {
-      width: min(1120px, calc(100% - 36px));
-      margin: 0 auto;
-    }
-
     .nav {
       position: sticky;
       top: 0;
       z-index: 50;
       backdrop-filter: blur(18px);
-      background: rgba(5, 11, 20, 0.74);
+      background: rgba(5, 10, 20, 0.76);
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .nav-inner {
-      min-height: 72px;
+      min-height: 74px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -74,19 +113,19 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      font-weight: 900;
+      font-weight: 950;
       letter-spacing: 0.02em;
     }
 
     .brand-badge {
-      width: 38px;
-      height: 38px;
-      border-radius: 14px;
+      width: 40px;
+      height: 40px;
+      border-radius: 15px;
       display: grid;
       place-items: center;
-      color: #06111f;
+      color: #04111f;
       background: linear-gradient(135deg, var(--cyan), var(--green));
-      box-shadow: 0 0 30px rgba(56,248,255,0.24);
+      box-shadow: 0 0 34px rgba(56,248,255,0.28);
       font-weight: 950;
     }
 
@@ -98,14 +137,24 @@
       color: var(--muted);
     }
 
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
     .hero {
-      padding: 86px 0 50px;
+      padding: 92px 0 58px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 30px;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 34px;
       align-items: center;
     }
 
@@ -116,23 +165,23 @@
       padding: 8px 12px;
       border: 1px solid var(--border);
       border-radius: 999px;
-      background: rgba(56,248,255,0.07);
+      background: rgba(56,248,255,0.08);
       color: var(--cyan);
-      font-weight: 800;
-      font-size: 0.82rem;
+      font-weight: 900;
+      font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.09em;
     }
 
     h1 {
-      margin: 20px 0 16px;
-      font-size: clamp(2.45rem, 5vw, 4.9rem);
-      line-height: 0.98;
-      letter-spacing: -0.05em;
+      margin: 22px 0 16px;
+      font-size: clamp(2.65rem, 5vw, 5.15rem);
+      line-height: 0.96;
+      letter-spacing: -0.055em;
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, var(--white), var(--cyan), var(--purple));
+      background: linear-gradient(135deg, #ffffff, var(--cyan), var(--purple));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -145,7 +194,7 @@
     }
 
     .hero-actions {
-      margin-top: 28px;
+      margin-top: 30px;
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
@@ -158,52 +207,79 @@
       gap: 8px;
       padding: 13px 18px;
       border-radius: 14px;
-      border: 1px solid rgba(56,248,255,0.28);
+      border: 1px solid rgba(56,248,255,0.30);
       background: rgba(56,248,255,0.10);
       color: var(--text);
       font-weight: 850;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.20);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      text-decoration: none;
+      border-color: rgba(56,248,255,0.65);
+      background: rgba(56,248,255,0.15);
     }
 
     .btn.primary {
-      background: linear-gradient(135deg, rgba(56,248,255,0.92), rgba(68,226,139,0.92));
+      background: linear-gradient(135deg, rgba(56,248,255,0.95), rgba(70,226,139,0.92));
       color: #03111f;
       border: 0;
     }
 
     .btn.disabled {
-      opacity: 0.68;
+      opacity: 0.62;
       cursor: not-allowed;
     }
 
+    .btn.disabled:hover {
+      transform: none;
+      text-decoration: none;
+    }
+
     .hero-card {
-      background: linear-gradient(180deg, rgba(15,38,64,0.94), rgba(8,21,38,0.94));
+      background: linear-gradient(180deg, rgba(16,40,68,0.98), rgba(8,20,36,0.94));
       border: 1px solid var(--border);
-      border-radius: 28px;
+      border-radius: 30px;
       padding: 24px;
       box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
+      animation: cardIn .9s ease both;
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .hero-card::before {
       content: "";
       position: absolute;
-      inset: -80px -80px auto auto;
-      width: 180px;
-      height: 180px;
+      inset: -90px -90px auto auto;
+      width: 200px;
+      height: 200px;
       border-radius: 999px;
-      background: rgba(56,248,255,0.18);
-      filter: blur(16px);
+      background: rgba(56,248,255,0.20);
+      filter: blur(18px);
+    }
+
+    .hero-card-title {
+      position: relative;
+      margin: 0 0 10px;
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 950;
     }
 
     .status-item {
+      position: relative;
       display: flex;
       justify-content: space-between;
       gap: 16px;
-      padding: 16px 0;
+      padding: 15px 0;
       border-bottom: 1px solid rgba(255,255,255,0.08);
-      position: relative;
     }
 
     .status-item:last-child {
@@ -215,32 +291,24 @@
     }
 
     .status-value {
-      font-weight: 900;
+      font-weight: 950;
       color: var(--cyan);
       text-align: right;
     }
 
     section {
-      padding: 54px 0;
-    }
-
-    .section-title {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 24px;
+      padding: 58px 0;
     }
 
     h2 {
       margin: 0;
-      font-size: clamp(1.7rem, 3vw, 2.45rem);
-      letter-spacing: -0.035em;
+      font-size: clamp(1.75rem, 3vw, 2.55rem);
+      letter-spacing: -0.04em;
     }
 
     .section-subtitle {
       color: var(--muted);
-      max-width: 720px;
+      max-width: 790px;
       margin-top: 10px;
     }
 
@@ -248,14 +316,23 @@
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
+      margin-top: 24px;
     }
 
     .metric-card {
       background: var(--panel);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 22px;
-      padding: 20px;
+      border: 1px solid var(--border2);
+      border-radius: 23px;
+      padding: 21px;
       box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+      position: relative;
+      overflow: hidden;
+      transition: transform .18s ease, border-color .18s ease;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(56,248,255,0.38);
     }
 
     .metric-value {
@@ -281,19 +358,28 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
+      margin-top: 24px;
     }
 
     .card {
       background: var(--panel);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 24px;
-      padding: 22px;
-      min-height: 190px;
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      padding: 23px;
+      min-height: 205px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(56,248,255,0.35);
+      background: rgba(13, 35, 60, 0.95);
     }
 
     .card h3 {
       margin: 0 0 10px;
       font-size: 1.15rem;
+      color: #ffffff;
     }
 
     .card p {
@@ -301,11 +387,34 @@
       margin: 0;
     }
 
+    .split {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 22px;
+      align-items: start;
+      margin-top: 24px;
+    }
+
+    .explain {
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .explain h3 {
+      margin-top: 0;
+    }
+
+    .explain p, .explain li {
+      color: var(--muted);
+    }
+
     .tag-list {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 18px;
+      margin-top: 22px;
     }
 
     .tag {
@@ -315,26 +424,36 @@
       border: 1px solid rgba(255,255,255,0.08);
       color: #c8d8e8;
       font-size: 0.86rem;
-      font-weight: 700;
+      font-weight: 750;
     }
 
     .doc-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
+      margin-top: 24px;
     }
 
     .doc-link {
-      padding: 16px;
+      padding: 17px;
       border-radius: 18px;
       border: 1px solid rgba(56,248,255,0.18);
       background: rgba(56,248,255,0.06);
       font-weight: 850;
+      transition: all .18s ease;
+    }
+
+    .doc-link:hover {
+      transform: translateY(-4px);
+      background: rgba(56,248,255,0.12);
+      border-color: rgba(56,248,255,0.50);
+      text-decoration: none;
     }
 
     .timeline {
       display: grid;
       gap: 14px;
+      margin-top: 24px;
     }
 
     .timeline-item {
@@ -345,6 +464,12 @@
       background: rgba(255,255,255,0.045);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 18px;
+      transition: transform .18s ease, border-color .18s ease;
+    }
+
+    .timeline-item:hover {
+      transform: translateX(4px);
+      border-color: rgba(56,248,255,0.30);
     }
 
     .timeline-step {
@@ -356,6 +481,15 @@
       color: var(--muted);
     }
 
+    .notice {
+      margin-top: 24px;
+      background: rgba(255, 179, 71, 0.075);
+      border: 1px solid rgba(255, 179, 71, 0.22);
+      border-radius: var(--radius);
+      padding: 20px;
+      color: #ffe0b0;
+    }
+
     .footer {
       padding: 36px 0 60px;
       color: var(--muted);
@@ -363,11 +497,12 @@
       margin-top: 40px;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 940px) {
       .hero-grid,
       .metrics,
       .cards,
-      .doc-grid {
+      .doc-grid,
+      .split {
         grid-template-columns: 1fr;
       }
 
@@ -394,6 +529,7 @@
       <div class="nav-links">
         #resumenResumen</a>
         #metricasMetricas</a>
+        #arquitecturaArquitectura</a>
         #skillsSkills</a>
         #docsDocs</a>
         #demoDemo</a>
@@ -410,9 +546,9 @@
           SOC & Email Security Lab
         </h1>
         <p class="hero-text">
-          Proyecto de ciberseguridad orientado a defensa de correo electronico,
-          validacion de SPF, DKIM, DMARC, TLS, deteccion de spoofing y visualizacion
-          de eventos SOC mediante un dashboard en Python/Dash.
+          Laboratorio defensivo desarrollado como TFM y convertido en proyecto de portfolio.
+          El objetivo fue validar controles reales de seguridad de correo, procesar evidencias
+          desde logs y construir un dashboard SOC para visualizar resultados tecnicos.
         </p>
 
         <div class="hero-actions">
@@ -424,25 +560,26 @@
       </div>
 
       <div class="hero-card">
+        <h3 class="hero-card-title">Estado del laboratorio</h3>
         <div class="status-item">
-          <div class="status-label">Pruebas totales</div>
+          <div class="status-label">Pruebas totales agregadas</div>
           <div class="status-value">270</div>
         </div>
         <div class="status-item">
-          <div class="status-label">Eventos SOC</div>
+          <div class="status-label">Eventos SOC procesados</div>
           <div class="status-value">190</div>
         </div>
         <div class="status-item">
-          <div class="status-label">Spoofing reject</div>
-          <div class="status-value">3</div>
+          <div class="status-label">Fallos SMTP AUTH</div>
+          <div class="status-value">55</div>
         </div>
         <div class="status-item">
-          <div class="status-label">Politica DMARC</div>
+          <div class="status-label">Recipient unknown</div>
+          <div class="status-value">58</div>
+        </div>
+        <div class="status-item">
+          <div class="status-label">Politica DMARC final</div>
           <div class="status-value">p=reject</div>
-        </div>
-        <div class="status-item">
-          <div class="status-label">Estado</div>
-          <div class="status-value">Portfolio publico</div>
         </div>
       </div>
     </div>
@@ -451,28 +588,34 @@
   <main>
     <section id="resumen">
       <div class="container">
-        <div class="section-title">
-          <div>
-            <h2>Resumen del proyecto</h2>
-            <p class="section-subtitle">
-              Laboratorio defensivo creado para validar controles de seguridad de correo,
-              registrar evidencias reales y construir una vision SOC del comportamiento del sistema.
-            </p>
-          </div>
-        </div>
+        <h2>Que problema resuelve</h2>
+        <p class="section-subtitle">
+          En muchos entornos, la seguridad de correo se configura pero no se valida con evidencias.
+          Este proyecto convierte controles como SPF, DKIM, DMARC y TLS en eventos medibles,
+          documentados y visibles desde una perspectiva SOC.
+        </p>
 
         <div class="cards">
           <div class="card">
-            <h3>Seguridad de correo</h3>
-            <p>Validacion de SPF, DKIM, DMARC, STARTTLS SMTP, IMAPS TLS y escenarios de abuso SMTP.</p>
+            <h3>Validacion defensiva</h3>
+            <p>
+              Se ejecutaron pruebas controladas para comprobar autenticacion de correo,
+              rechazo de abuso SMTP, transporte seguro y proteccion ante suplantacion.
+            </p>
           </div>
           <div class="card">
-            <h3>Monitorizacion SOC</h3>
-            <p>Procesamiento de eventos reales desde syslog y generacion de CSV SOC para analisis defensivo.</p>
+            <h3>Evidencias reales</h3>
+            <p>
+              Las pruebas se apoyaron en logs, respuestas SMTP, consultas tecnicas,
+              milter-reject, validaciones TLS y eventos detectados por Postfix/OpenDMARC.
+            </p>
           </div>
           <div class="card">
-            <h3>Dashboard Python/Dash</h3>
-            <p>Visualizacion de metricas, categorias, evidencias y resultados tecnicos del laboratorio.</p>
+            <h3>Visualizacion SOC</h3>
+            <p>
+              Los eventos se transformaron en un dataset SOC para alimentar un dashboard
+              en Python/Dash con metricas, categorias, tablas y evidencias.
+            </p>
           </div>
         </div>
       </div>
@@ -482,14 +625,15 @@
       <div class="container">
         <h2>Metricas principales</h2>
         <p class="section-subtitle">
-          El proyecto distingue entre pruebas totales agregadas y eventos SOC procesados.
+          El dashboard distingue entre pruebas totales agregadas y eventos SOC procesados.
+          El dataset publico conserva la estructura y categorias, pero esta sanitizado.
         </p>
 
         <div class="metrics">
           <div class="metric-card">
             <div class="metric-value">270</div>
             <div class="metric-label">Pruebas totales</div>
-            <div class="metric-desc">Agregadas en el dashboard.</div>
+            <div class="metric-desc">Agregadas en el dashboard principal.</div>
           </div>
           <div class="metric-card">
             <div class="metric-value">190</div>
@@ -499,13 +643,77 @@
           <div class="metric-card">
             <div class="metric-value">58</div>
             <div class="metric-label">Recipient unknown</div>
-            <div class="metric-desc">Destinatarios inexistentes.</div>
+            <div class="metric-desc">Rechazos de destinatarios inexistentes.</div>
           </div>
           <div class="metric-card">
             <div class="metric-value">55</div>
             <div class="metric-label">Auth fail</div>
             <div class="metric-desc">Fallos SMTP AUTH detectados.</div>
           </div>
+        </div>
+
+        <div class="metrics" style="margin-top:16px;">
+          <div class="metric-card">
+            <div class="metric-value">19</div>
+            <div class="metric-label">STARTTLS SMTP</div>
+            <div class="metric-desc">Validaciones de transporte seguro.</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">14</div>
+            <div class="metric-label">TLS IMAPS</div>
+            <div class="metric-desc">Validaciones TLS sobre IMAPS.</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">8</div>
+            <div class="metric-label">SPF fail</div>
+            <div class="metric-desc">Escenarios de origen no autorizado.</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">3</div>
+            <div class="metric-label">Spoofing reject</div>
+            <div class="metric-desc">Rechazos DMARC p=reject.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="arquitectura">
+      <div class="container">
+        <h2>Arquitectura del proyecto</h2>
+        <p class="section-subtitle">
+          El laboratorio conecta servicios reales de correo, logs del sistema,
+          procesamiento automatizado y visualizacion ejecutiva.
+        </p>
+
+        <div class="split">
+          <div class="explain">
+            <h3>Flujo de datos</h3>
+            <ul>
+              <li>Internet envia trafico SMTP al servidor.</li>
+              <li>Postfix, OpenDMARC, OpenDKIM y Dovecot generan eventos.</li>
+              <li>Syslog conserva evidencias tecnicas.</li>
+              <li>Scripts SOC procesan los eventos relevantes.</li>
+              <li>El CSV SOC alimenta el dashboard.</li>
+              <li>El dashboard muestra KPIs, tablas, categorias y evidencias.</li>
+            </ul>
+          </div>
+
+          <div class="explain">
+            <h3>Controles validados</h3>
+            <ul>
+              <li>SPF para autorizacion de origen.</li>
+              <li>DKIM para integridad y firma.</li>
+              <li>DMARC p=reject para rechazo de spoofing.</li>
+              <li>STARTTLS SMTP e IMAPS TLS para transporte seguro.</li>
+              <li>Rechazo de relay no autorizado.</li>
+              <li>Deteccion de auth_fail y recipient_unknown.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="notice">
+          Nota: el servidor original puede no estar activo en el futuro. Este repositorio conserva
+          una version documentada y sanitizada del proyecto para portfolio profesional.
         </div>
       </div>
     </section>
@@ -514,18 +722,20 @@
       <div class="container">
         <h2>Skills demostradas</h2>
         <p class="section-subtitle">
-          El proyecto combina administracion Linux, seguridad de correo, analisis de logs,
-          automatizacion y visualizacion SOC.
+          El proyecto demuestra competencias practicas cercanas a tareas reales de SOC,
+          Blue Team y seguridad de correo.
         </p>
 
         <div class="tag-list">
-          <span class="tag">Linux</span>
+          <span class="tag">Linux Administration</span>
           <span class="tag">Postfix</span>
           <span class="tag">OpenDMARC</span>
           <span class="tag">OpenDKIM</span>
           <span class="tag">SPF</span>
           <span class="tag">DKIM</span>
           <span class="tag">DMARC</span>
+          <span class="tag">MTA-STS</span>
+          <span class="tag">TLS-RPT</span>
           <span class="tag">Python</span>
           <span class="tag">Dash</span>
           <span class="tag">Plotly</span>
@@ -534,6 +744,7 @@
           <span class="tag">SOC Monitoring</span>
           <span class="tag">Blue Team</span>
           <span class="tag">Evidence Handling</span>
+          <span class="tag">Security Documentation</span>
         </div>
       </div>
     </section>
@@ -542,8 +753,8 @@
       <div class="container">
         <h2>Documentacion tecnica</h2>
         <p class="section-subtitle">
-          Documentacion preparada para portfolio profesional, con arquitectura,
-          metodologia, pruebas SOC, privacidad y metricas.
+          Documentacion preparada para explicar arquitectura, metodologia,
+          pruebas SOC, privacidad y resultados del laboratorio.
         </p>
 
         <div class="doc-grid">
@@ -561,8 +772,8 @@
       <div class="container">
         <h2>Video y dashboard demo</h2>
         <p class="section-subtitle">
-          Se ha preparado un video mostrando el funcionamiento del dashboard SOC,
-          las metricas principales, las pruebas SMTP y las evidencias defensivas.
+          El dashboard original fue grabado en video para mostrar su funcionamiento:
+          metricas SOC, tabla de eventos, pruebas SMTP, validaciones TLS y evidencias de seguridad.
         </p>
 
         <div class="timeline">
@@ -578,6 +789,12 @@
             <div class="timeline-step">Fase 3</div>
             <div class="timeline-text">Despliegue de una demo interactiva del dashboard con datos estaticos y sanitizados.</div>
           </div>
+        </div>
+
+        <div class="hero-actions" style="margin-top:24px;">
+          data-samples/bateria_pruebas_soc_sample.csvVer dataset SOC</a>
+          <a class="btn" href="README.md">Ver README</a>
+          PROJECT_STATUS.mdEstado del proyecto</a>
         </div>
       </div>
     </section>
