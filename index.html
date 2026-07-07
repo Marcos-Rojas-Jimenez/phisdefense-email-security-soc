@@ -640,100 +640,166 @@
     <h2>3. Configuracion defensiva del servidor</h2>
 
     <p class="section-subtitle">
-      Esta seccion resume la configuracion real aplicada sobre el servidor y el dominio.
-      El objetivo fue construir una infraestructura defensiva de correo electronico que no solo estuviera configurada,
-      sino tambien probada, evidenciada y monitorizada desde una perspectiva SOC.
+      Esta seccion resume la parte mas tecnica del proyecto: la configuracion real aplicada
+      sobre el servidor y el dominio para construir una infraestructura defensiva de correo
+      electronico. El objetivo no fue solo instalar servicios, sino validar cada control con
+      pruebas, logs y evidencias reutilizables dentro del dashboard SOC.
     </p>
 
     <div class="config-grid">
 
       <div class="config-card">
-        <h3>1. DNS y confianza del dominio</h3>
+        <h3>1. DNS y base de confianza del dominio</h3>
         <p>
-          La capa DNS fue la base de confianza del proyecto. Los controles modernos de email security
-          dependen de registros DNS correctamente publicados y verificables.
+          La seguridad de correo depende fuertemente de DNS. Por eso el proyecto no trato
+          DNS como una configuracion secundaria, sino como la base de confianza para publicar
+          politicas, claves y mecanismos de reporting.
         </p>
         <ul>
-          <li><strong>DNSSEC:</strong> refuerzo de autenticidad e integridad de respuestas DNS.</li>
-          <li><strong>SPF:</strong> declaracion de servidores autorizados para enviar correo.</li>
-          <li><strong>DKIM:</strong> publicacion de clave publica asociada al selector DKIM.</li>
-          <li><strong>DMARC:</strong> politica del dominio hasta llegar a p=reject.</li>
-          <li><strong>MTA-STS y TLS-RPT:</strong> politicas relacionadas con transporte seguro y reporting TLS.</li>
+          <li><strong>DNSSEC:</strong> refuerzo de autenticidad e integridad de las respuestas DNS del dominio.</li>
+          <li><strong>SPF:</strong> publicacion de origenes autorizados para enviar correo.</li>
+          <li><strong>DKIM:</strong> publicacion de clave publica asociada a selector DKIM.</li>
+          <li><strong>DMARC:</strong> publicacion de politica de dominio y alineacion.</li>
+          <li><strong>MTA-STS:</strong> publicacion de politica de transporte seguro.</li>
+          <li><strong>TLS-RPT:</strong> registro para reporting de problemas TLS.</li>
         </ul>
+        <p>
+          <strong>Valor defensivo:</strong> esta capa permite que controles como SPF, DKIM,
+          DMARC y MTA-STS sean verificables por terceros y formen parte de una postura de correo
+          defensiva basada en politicas publicas.
+        </p>
       </div>
 
       <div class="config-card">
-        <h3>2. Autenticacion de correo</h3>
+        <h3>2. Autenticacion de correo: SPF, DKIM y DMARC</h3>
         <p>
-          Se validaron SPF, DKIM y DMARC no solo como registros publicados, sino como controles defensivos
-          sometidos a pruebas positivas y negativas.
+          Se desplego autenticacion de correo para reducir la posibilidad de suplantacion del
+          dominio y para comprobar si los mensajes estaban autorizados, firmados y alineados.
         </p>
         <ul>
-          <li><strong>SPF fail:</strong> validacion de origenes no autorizados.</li>
-          <li><strong>DKIM correcto:</strong> firma valida con selector publicado.</li>
-          <li><strong>DKIM broken:</strong> deteccion de firma invalida o alterada.</li>
-          <li><strong>DKIM absent:</strong> diferenciacion de mensajes sin firma.</li>
+          <li><strong>SPF:</strong> validacion de servidores autorizados y escenarios SPF fail.</li>
+          <li><strong>DKIM correcto:</strong> mensajes firmados con selector valido.</li>
+          <li><strong>DKIM broken:</strong> pruebas con firma alterada o invalida.</li>
+          <li><strong>DKIM absent:</strong> escenarios sin firma DKIM.</li>
           <li><strong>Rotacion DKIM:</strong> cambio controlado de selector hacia s2026.</li>
-          <li><strong>DMARC p=reject:</strong> rechazo de mensajes no alineados o no autenticados.</li>
+          <li><strong>DMARC p=reject:</strong> politica final para rechazar mensajes no autenticados o no alineados.</li>
         </ul>
+        <p>
+          <strong>Evidencias generadas:</strong> eventos SPF fail, DKIM broken,
+          DKIM absent, DKIM rotation y spoofing_reject incorporados al dataset SOC.
+        </p>
       </div>
 
       <div class="config-card">
-        <h3>3. Postfix y milters defensivos</h3>
+        <h3>3. Postfix como nucleo SMTP</h3>
         <p>
-          Postfix fue el nucleo del flujo SMTP. Sobre Postfix se integraron milters defensivos para firmar,
-          validar, rechazar y registrar resultados de autenticacion.
+          Postfix fue el componente central del flujo SMTP. Sobre este servicio se observaron
+          rechazos, intentos de autenticacion, destinatarios inexistentes, pruebas de relay y
+          resultados de milters.
         </p>
         <ul>
-          <li><strong>Postfix:</strong> servidor SMTP principal del laboratorio.</li>
+          <li><strong>Recepcion SMTP:</strong> procesamiento de conexiones y sesiones entrantes.</li>
+          <li><strong>Rechazos controlados:</strong> recipient unknown, relay no autorizado y DMARC reject.</li>
+          <li><strong>Integracion con milters:</strong> conexion con OpenDKIM, OpenDMARC y OpenARC.</li>
+          <li><strong>Syslog:</strong> salida principal para evidencias tecnicas.</li>
+        </ul>
+        <p>
+          <strong>Valor defensivo:</strong> Postfix permitio observar el comportamiento real
+          del servidor ante trafico SMTP y convertirlo en eventos analizables.
+        </p>
+      </div>
+
+      <div class="config-card">
+        <h3>4. Milters defensivos: OpenDKIM, OpenDMARC y OpenARC</h3>
+        <p>
+          Los milters permitieron extender Postfix con logica de autenticacion, validacion y
+          evaluacion de politicas. Esta capa fue clave para que los controles DNS tuvieran
+          impacto real durante el flujo SMTP.
+        </p>
+        <ul>
           <li><strong>OpenDKIM:</strong> firma y validacion DKIM.</li>
-          <li><strong>OpenDMARC:</strong> evaluacion DMARC y rechazo por politica.</li>
+          <li><strong>OpenDMARC:</strong> evaluacion DMARC y aplicacion de rechazo.</li>
           <li><strong>OpenARC:</strong> soporte ARC para escenarios con intermediarios o forwarding.</li>
-          <li><strong>Syslog:</strong> fuente principal para conservar evidencias tecnicas.</li>
+          <li><strong>Milter-reject:</strong> evidencias de rechazo registradas durante el flujo SMTP.</li>
         </ul>
+        <p>
+          <strong>Evidencia destacada:</strong> eventos como
+          <code>5.7.1 rejected by DMARC policy</code> permitieron documentar
+          rechazos reales frente a spoofing.
+        </p>
       </div>
 
       <div class="config-card">
-        <h3>4. Transporte seguro</h3>
+        <h3>5. Transporte seguro y politicas TLS</h3>
         <p>
-          El proyecto tambien valido la seguridad del transporte, separando las pruebas de autenticacion
-          de correo de las pruebas de cifrado y negociacion TLS.
+          La seguridad del correo no se limito a autenticacion. Tambien se validaron controles
+          de transporte para comprobar negociacion TLS y politicas de entrega segura.
         </p>
         <ul>
-          <li><strong>STARTTLS SMTP:</strong> validacion de negociacion TLS en SMTP.</li>
-          <li><strong>IMAPS TLS:</strong> validacion de canal seguro sobre Dovecot.</li>
-          <li><strong>MTA-STS enforce:</strong> politica publicada para exigir TLS valido a emisores compatibles.</li>
-          <li><strong>TLS-RPT:</strong> reporting documentado para problemas de entrega TLS.</li>
+          <li><strong>STARTTLS SMTP:</strong> validacion de negociacion TLS sobre SMTP.</li>
+          <li><strong>IMAPS TLS:</strong> validacion de canal seguro en Dovecot.</li>
+          <li><strong>MTA-STS enforce:</strong> politica para exigir TLS valido a emisores compatibles.</li>
+          <li><strong>TLS-RPT:</strong> reporting documentado para problemas TLS.</li>
         </ul>
+        <p>
+          <strong>Eventos SOC asociados:</strong> categorias como
+          <code>tls_starttls_smtp</code> y <code>tls_imaps</code>.
+        </p>
       </div>
 
       <div class="config-card">
-        <h3>5. Pruebas defensivas controladas</h3>
+        <h3>6. Validaciones frente a abuso SMTP</h3>
         <p>
-          La configuracion se valido mediante pruebas controladas orientadas a detectar abuso,
-          errores de autenticacion, suplantacion y configuraciones inseguras.
+          La configuracion defensiva se valido con escenarios controlados de abuso SMTP,
+          errores de autenticacion y suplantacion.
         </p>
         <ul>
-          <li><strong>Open relay test:</strong> comprobacion de rechazo de relay no autorizado.</li>
-          <li><strong>SMTP AUTH fail:</strong> registro de autenticaciones fallidas.</li>
+          <li><strong>Open relay test:</strong> comprobacion de que el servidor no reenviaba correo no autorizado.</li>
+          <li><strong>SMTP AUTH fail:</strong> deteccion y registro de autenticaciones fallidas.</li>
           <li><strong>Recipient unknown:</strong> rechazo de destinatarios inexistentes.</li>
           <li><strong>Lookalike domains:</strong> analisis de dominios visualmente similares.</li>
           <li><strong>External spoofing:</strong> intentos externos rechazados por DMARC.</li>
         </ul>
+        <p>
+          <strong>Valor SOC:</strong> estas pruebas generaron eventos clasificables,
+          comparables y reutilizables para el dashboard.
+        </p>
       </div>
 
       <div class="config-card">
-        <h3>6. Evidencias SOC y dashboard</h3>
+        <h3>7. Evidencias, syslog y dataset SOC</h3>
         <p>
-          Los eventos generados por el servidor se procesaron y transformaron en datos SOC estructurados.
-          Esta capa conecta la configuracion defensiva con el dashboard.
+          Cada prueba relevante se vinculo a una evidencia tecnica. Syslog actuo como fuente
+          principal y los scripts propios transformaron eventos en un dataset estructurado.
         </p>
         <ul>
-          <li><strong>Syslog:</strong> origen de eventos reales.</li>
-          <li><strong>Parser SOC:</strong> scripts propios para clasificar eventos.</li>
+          <li><strong>Syslog:</strong> fuente de eventos reales.</li>
+          <li><strong>Parser SOC:</strong> extraccion y clasificacion automatizada.</li>
           <li><strong>CSV SOC:</strong> dataset con 190 eventos procesados.</li>
-          <li><strong>Python/Dash:</strong> dashboard con metricas, categorias, tablas y evidencias.</li>
+          <li><strong>Sanitizacion:</strong> version publica sin datos sensibles.</li>
         </ul>
+        <p>
+          <strong>Criterio defensivo:</strong> no se registraron pruebas sin evidencia
+          tecnica verificable.
+        </p>
+      </div>
+
+      <div class="config-card">
+        <h3>8. Dashboard SOC en Python/Dash</h3>
+        <p>
+          El dashboard fue la capa de visualizacion del laboratorio. Su objetivo fue convertir
+          pruebas tecnicas y eventos de servidor en una vista comprensible para analisis SOC.
+        </p>
+        <ul>
+          <li><strong>KPIs:</strong> pruebas totales, eventos SOC y categorias principales.</li>
+          <li><strong>Tablas:</strong> detalle de eventos y evidencias.</li>
+          <li><strong>Categorias:</strong> auth_fail, recipient_unknown, SPF fail, DKIM broken, TLS, spoofing_reject.</li>
+          <li><strong>Video demo:</strong> grabacion del funcionamiento del dashboard.</li>
+        </ul>
+        <p>
+          <strong>Resultado:</strong> una pieza de portfolio que muestra no solo configuracion,
+          sino validacion, evidencias, automatizacion y comunicacion visual.
+        </p>
       </div>
 
     </div>
@@ -1392,6 +1458,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
