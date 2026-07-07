@@ -1115,40 +1115,112 @@
 </details>
 
         <details class="doc-panel">
-          <summary>Pruebas SOC</summary>
-          <div class="doc-panel-content">
-            <ul>
-              <li>auth_fail</li>
-              <li>recipient_unknown</li>
-              <li>open_relay_test</li>
-              <li>tls_starttls_smtp</li>
-              <li>tls_imaps</li>
-              <li>spf_fail</li>
-              <li>dkim_broken</li>
-              <li>dkim_absent</li>
-              <li>spoofing_reject</li>
-            </ul>
-          </div>
-        </details>
+  <summary>Pruebas SOC</summary>
+  <div class="doc-panel-content">
+    <p>
+      Las pruebas SOC fueron disenadas para validar el comportamiento defensivo del servidor
+      de correo ante situaciones reales o controladas. La idea no fue generar volumen artificial,
+      sino registrar eventos que pudieran justificarse mediante evidencias tecnicas.
+    </p>
+
+    <p>
+      Cada prueba incorporada al dataset debia contar con al menos una evidencia verificable:
+      respuesta SMTP, registro syslog, transcript TLS, consulta DNS, validacion de milter,
+      rechazo de Postfix/OpenDMARC/OpenDKIM o resultado tecnico reproducible.
+    </p>
+
+    <ul>
+      <li><strong>auth_fail:</strong> intentos de autenticacion SMTP fallida registrados desde Postfix/SASL.</li>
+      <li><strong>recipient_unknown:</strong> pruebas contra destinatarios inexistentes y rechazos SMTP asociados.</li>
+      <li><strong>open_relay_test:</strong> validacion de que el servidor no actuaba como relay abierto.</li>
+      <li><strong>tls_starttls_smtp:</strong> validaciones STARTTLS SMTP para comprobar transporte seguro.</li>
+      <li><strong>tls_imaps:</strong> validaciones TLS sobre IMAPS/Dovecot.</li>
+      <li><strong>spf_fail:</strong> escenarios de origen no autorizado segun SPF.</li>
+      <li><strong>dkim_broken:</strong> pruebas con firma DKIM alterada o invalida.</li>
+      <li><strong>dkim_absent:</strong> escenarios sin firma DKIM.</li>
+      <li><strong>dkim_rotation:</strong> validacion de cambio de selector DKIM.</li>
+      <li><strong>lookalike_domain:</strong> analisis de dominios visualmente similares al dominio legitimo.</li>
+      <li><strong>spoofing_reject:</strong> intentos externos rechazados por politica DMARC.</li>
+    </ul>
+
+    <p>
+      Estas pruebas permitieron transformar actividad tecnica del servidor en eventos SOC
+      categorizados. El resultado final fue un dataset con 190 eventos SOC procesados,
+      que alimenta el dashboard y permite explicar la postura defensiva del laboratorio.
+    </p>
+  </div>
+</details>
 
         <details class="doc-panel">
-          <summary>Spoofing y DMARC</summary>
-          <div class="doc-panel-content">
-            <p>Se valido una politica DMARC progresiva hasta p=reject.</p>
-            <pre><code>milter-reject: END-OF-MESSAGE
+  <summary>Spoofing y DMARC</summary>
+  <div class="doc-panel-content">
+    <p>
+      Una parte clave del proyecto fue comprobar la proteccion del dominio frente a intentos
+      de suplantacion. Para ello se aplico una politica DMARC progresiva hasta llegar a
+      <strong>p=reject</strong>, validando que el servidor rechazaba mensajes que no superaban
+      autenticacion y alineacion.
+    </p>
+
+    <p>
+      Las pruebas externas de spoofing no buscaban entregar mensajes, sino comprobar que
+      Postfix y OpenDMARC aplicaban correctamente la politica del dominio. Los rechazos se
+      registraron como evidencias tecnicas en syslog y fueron incorporados al dataset SOC
+      bajo la categoria <strong>spoofing_reject</strong>.
+    </p>
+
+    <pre><code>milter-reject: END-OF-MESSAGE
 5.7.1 rejected by DMARC policy for phisdefense.com</code></pre>
-          </div>
-        </details>
+
+    <ul>
+      <li><strong>DMARC p=reject:</strong> politica final aplicada para rechazar mensajes no alineados o no autenticados.</li>
+      <li><strong>OpenDMARC:</strong> componente encargado de evaluar la politica DMARC durante el flujo SMTP.</li>
+      <li><strong>Postfix:</strong> servidor encargado de aplicar el rechazo final y registrar el evento.</li>
+      <li><strong>Syslog:</strong> fuente de evidencia donde se conservaron los rechazos DMARC.</li>
+      <li><strong>Dataset SOC:</strong> clasificacion de estos eventos como spoofing_reject.</li>
+    </ul>
+
+    <p>
+      Esta validacion es importante porque demuestra que el dominio no solo tenia una politica
+      DMARC publicada, sino que dicha politica fue probada con intentos de suplantacion y produjo
+      rechazos observables.
+    </p>
+  </div>
+</details>
 
         <details class="doc-panel">
-          <summary>Privacidad</summary>
-          <div class="doc-panel-content">
-            <p>
-              La version publica esta sanitizada: sin claves, credenciales, ficheros .env,
-              IPs sensibles ni backups completos del servidor.
-            </p>
-          </div>
-        </details>
+  <summary>Privacidad</summary>
+  <div class="doc-panel-content">
+    <p>
+      Para publicar el proyecto como portfolio se preparo una version publica sanitizada.
+      El objetivo fue conservar el valor tecnico del trabajo sin exponer informacion sensible
+      del servidor original, del dominio, de usuarios, IPs o configuraciones privadas.
+    </p>
+
+    <p>
+      La version publica mantiene arquitectura, metodologia, categorias de pruebas, metricas,
+      documentacion y dataset SOC anonimizados, pero elimina cualquier elemento que pudiera
+      comprometer la seguridad del entorno real.
+    </p>
+
+    <ul>
+      <li>IPs anonimizadas o sustituidas por marcadores genericos.</li>
+      <li>Rutas internas del servidor eliminadas o redactadas.</li>
+      <li>Correos externos anonimizados.</li>
+      <li>Sin claves privadas DKIM.</li>
+      <li>Sin contrasenas ni credenciales.</li>
+      <li>Sin ficheros .env.</li>
+      <li>Sin tokens ni sesiones sensibles.</li>
+      <li>Sin backups completos del servidor.</li>
+      <li>Dataset SOC publico con observaciones sanitizadas.</li>
+    </ul>
+
+    <p>
+      Este enfoque permite mostrar capacidades reales de Blue Team, SOC, email security,
+      documentacion y automatizacion, manteniendo una separacion clara entre evidencias
+      publicables y material sensible que debe permanecer fuera del repositorio.
+    </p>
+  </div>
+</details>
 
       </div>
     </div>
@@ -1232,6 +1304,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
