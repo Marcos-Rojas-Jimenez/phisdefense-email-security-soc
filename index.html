@@ -806,43 +806,91 @@
   </div>
 </section>
 <section id="dashboard">
-    <div class="container">
-      <h2>4. Automatizacion y dashboard SOC</h2>
+  <div class="container">
+    <h2>4. Automatizacion y dashboard SOC</h2>
 
-      <p class="section-subtitle">
-        Tras configurar el servidor, se desarrollo una capa de automatizacion para convertir
-        logs y pruebas tecnicas en informacion SOC visual y reutilizable.
-      </p>
+    <p class="section-subtitle">
+      Tras configurar y validar el servidor, se desarrollo una capa de automatizacion para
+      transformar logs tecnicos en informacion SOC. Esta parte conecta el trabajo de servidor
+      con una vision operativa: eventos, categorias, metricas, evidencias y dashboard.
+    </p>
 
-      <div class="cards">
-        <div class="card">
-          <h3>Procesamiento de logs</h3>
-          <p>
-            Scripts propios procesan syslog y extraen eventos relacionados con SMTP, DMARC,
-            DKIM, TLS, autenticacion y rechazos.
-          </p>
-        </div>
+    <div class="cards">
 
-        <div class="card">
-          <h3>Dataset SOC</h3>
-          <p>
-            Los eventos se normalizan en CSV con identificador de prueba, tipo, clasificacion,
-            resultado esperado, ubicacion final y observaciones sanitizadas.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Visualizacion</h3>
-          <p>
-            El dashboard en Python/Dash muestra KPIs, tablas, categorias de eventos,
-            evidencias y vision general del estado defensivo.
-          </p>
-        </div>
+      <div class="card">
+        <h3>1. Recoleccion desde syslog</h3>
+        <p>
+          Syslog fue la fuente principal de evidencias tecnicas. Desde ahi se recogieron
+          eventos generados por Postfix, OpenDMARC, OpenDKIM, Dovecot, autenticacion SMTP,
+          rechazos, pruebas TLS y validaciones de seguridad de correo.
+        </p>
       </div>
-    </div>
-  </section>
 
-  <section id="metricas">
+      <div class="card">
+        <h3>2. Procesamiento automatizado</h3>
+        <p>
+          Se utilizaron scripts propios para detectar eventos relevantes, clasificarlos y
+          convertir entradas de log en registros estructurados. El objetivo fue reducir trabajo
+          manual y mantener consistencia en la clasificacion SOC.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>3. Dataset SOC</h3>
+        <p>
+          Los eventos procesados se normalizaron en un CSV SOC con identificador de prueba,
+          tipo de evento, clasificacion, resultado esperado, ubicacion final y observaciones
+          sanitizadas para version publica.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="cards" style="margin-top:18px;">
+
+      <div class="card">
+        <h3>4. Criterio de inclusion</h3>
+        <p>
+          Una prueba solo se incorporaba al dataset si existia evidencia tecnica verificable:
+          respuesta SMTP, registro syslog, validacion TLS, consulta DNS, milter-reject o
+          resultado tecnico reproducible.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>5. Dashboard Python/Dash</h3>
+        <p>
+          El dashboard desarrollado en Python/Dash visualiza KPIs, categorias, tablas de eventos,
+          evidencias y resultados defensivos. Esto permite explicar el laboratorio desde una
+          perspectiva SOC y no solo desde configuracion de servidor.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>6. Version publica sanitizada</h3>
+        <p>
+          Para GitHub se publico una version segura del dataset, eliminando IPs sensibles,
+          rutas internas, correos externos, credenciales, claves privadas y cualquier informacion
+          no necesaria para portfolio.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="notice">
+      La automatizacion convierte el proyecto en un flujo defensivo completo:
+      configuracion del servidor, generacion de logs, extraccion de evidencias,
+      normalizacion de datos, metricas y visualizacion SOC.
+    </div>
+
+    <div class="hero-actions" style="margin-top:28px;">
+      <a class="btn primary" href="#video">Ver video demo</a>
+      <a class="btn" href="#metricas">Ver metricas</a>
+      <a class="btn" href="#docs">Ver documentacion interna</a>
+    </div>
+  </div>
+</section>
+<section id="metricas">
     <div class="container">
       <h2>5. Resultados y metricas</h2>
 
@@ -1458,6 +1506,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
