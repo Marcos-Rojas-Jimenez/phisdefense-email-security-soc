@@ -889,6 +889,66 @@
     </p>
   </div>
 </details>
+<details class="doc-panel">
+  <summary>SPF, DKIM y DMARC</summary>
+  <div class="doc-panel-content">
+    <p>
+      La autenticacion de correo fue uno de los bloques principales del proyecto.
+      Se trabajo con SPF, DKIM y DMARC para validar si los mensajes estaban autorizados,
+      firmados correctamente y alineados con el dominio visible del remitente.
+    </p>
+
+    <p>
+      El objetivo no fue solo publicar registros DNS, sino comprobar su comportamiento
+      mediante pruebas reales y negativas. Por eso el proyecto incluye eventos como
+      SPF fail, DKIM broken, DKIM absent, DKIM rotation y spoofing_reject.
+    </p>
+
+    <ul>
+      <li>
+        <strong>SPF:</strong> se utilizo para declarar que origenes estaban autorizados
+        a enviar correo en nombre del dominio. Tambien se validaron escenarios de SPF fail.
+      </li>
+
+      <li>
+        <strong>DKIM:</strong> se utilizo para firmar mensajes y permitir validacion
+        criptografica mediante selector y clave publica publicada en DNS.
+      </li>
+
+      <li>
+        <strong>Rotacion DKIM:</strong> se documento el cambio controlado de selector
+        hacia s2026, manteniendo evidencias de validacion.
+      </li>
+
+      <li>
+        <strong>DKIM broken:</strong> se probaron escenarios donde la firma DKIM no era valida,
+        permitiendo comprobar la deteccion de alteraciones o fallos de firma.
+      </li>
+
+      <li>
+        <strong>DKIM absent:</strong> se contemplaron escenarios donde el mensaje no incluia
+        firma DKIM, diferenciandolos de firmas rotas.
+      </li>
+
+      <li>
+        <strong>DMARC:</strong> se aplico una politica progresiva hasta llegar a
+        <strong>p=reject</strong>, con el objetivo de rechazar mensajes que no superaran
+        autenticacion y alineacion de dominio.
+      </li>
+
+      <li>
+        <strong>Spoofing reject:</strong> se realizaron pruebas externas de suplantacion
+        que terminaron rechazadas por politica DMARC.
+      </li>
+    </ul>
+
+    <p>
+      Esta parte del proyecto conecta configuracion DNS, comportamiento SMTP, validacion por
+      milters y evidencias SOC. Los resultados no se quedaron solo en configuracion teorica:
+      se tradujeron en registros, pruebas documentadas y metricas visibles en el dashboard.
+    </p>
+  </div>
+</details>
 
         <details class="doc-panel">
           <summary>Pruebas SOC</summary>
@@ -958,6 +1018,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
