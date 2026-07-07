@@ -1092,55 +1092,37 @@
   <summary>Automatizacion, syslog y dashboard SOC</summary>
   <div class="doc-panel-content">
     <p>
-      Una de las partes mas importantes del proyecto fue convertir eventos tecnicos del servidor
-      en informacion util para un enfoque SOC. El objetivo no fue solo configurar servicios,
-      sino capturar evidencias, clasificarlas, procesarlas y visualizarlas.
+      La capa SOC del proyecto convierte eventos tecnicos del servidor en informacion
+      estructurada, revisable y visual. El objetivo fue que la configuracion defensiva no
+      quedara solo como una instalacion tecnica, sino como un flujo completo de deteccion,
+      procesamiento, evidencia y visualizacion.
     </p>
 
     <p>
-      Para ello se trabajo con syslog como fuente principal de eventos. Los logs del sistema
-      contenian evidencias de Postfix, OpenDMARC, OpenDKIM, Dovecot, autenticacion SMTP,
-      rechazos, pruebas TLS y eventos relacionados con intentos de suplantacion o abuso SMTP.
+      La fuente principal de evidencias fue syslog. Desde ahi se extrajeron eventos generados
+      por Postfix, OpenDMARC, OpenDKIM, Dovecot, autenticacion SMTP, rechazos, pruebas TLS,
+      DKIM, SPF, DMARC y escenarios de abuso SMTP.
     </p>
 
     <ul>
-      <li>
-        <strong>Syslog como fuente de evidencias:</strong> se utilizaron registros reales
-        del servidor para justificar las pruebas incluidas en el dataset SOC.
-      </li>
-
-      <li>
-        <strong>Procesamiento automatizado:</strong> se desarrollaron scripts para detectar
-        eventos relevantes y transformar entradas de log en registros estructurados.
-      </li>
-
-      <li>
-        <strong>CSV SOC:</strong> las pruebas se normalizaron en un dataset con campos como
-        identificador de prueba, tipo, clasificacion, resultado esperado, ubicacion final,
-        origen, destino y observaciones.
-      </li>
-
-      <li>
-        <strong>Criterio de inclusion:</strong> una prueba solo se incorporaba si existia
-        evidencia tecnica: respuesta SMTP, registro syslog, validacion TLS, consulta DNS,
-        milter-reject o resultado verificable.
-      </li>
-
-      <li>
-        <strong>Dashboard Python/Dash:</strong> el dataset se cargo en un dashboard propio
-        para visualizar KPIs, tablas, categorias, evidencias y resultados defensivos.
-      </li>
-
-      <li>
-        <strong>Version publica:</strong> para GitHub se publico un dataset sanitizado,
-        eliminando IPs sensibles, rutas internas, sesiones y correos externos.
-      </li>
+      <li><strong>Syslog:</strong> fuente principal de eventos reales del servidor.</li>
+      <li><strong>Procesamiento automatizado:</strong> scripts propios para detectar eventos relevantes y transformarlos en registros estructurados.</li>
+      <li><strong>Dataset SOC:</strong> CSV con pruebas, categorias, resultados, ubicacion final y observaciones sanitizadas.</li>
+      <li><strong>Criterio de inclusion:</strong> una prueba solo se registraba si existia evidencia tecnica verificable.</li>
+      <li><strong>Dashboard Python/Dash:</strong> visualizacion de KPIs, tablas, categorias, evidencias y resultados defensivos.</li>
+      <li><strong>Version publica:</strong> datos sanitizados para portfolio, sin exponer IPs sensibles, credenciales ni rutas internas.</li>
     </ul>
 
     <p>
-      Esta capa de automatizacion es la que convierte el proyecto en algo mas cercano a un
-      flujo real de Blue Team: configuracion defensiva, generacion de eventos, recogida de
-      evidencias, normalizacion de datos y visualizacion SOC.
+      Este flujo permite explicar el proyecto como una cadena defensiva completa:
+      configuracion del servidor, generacion de logs, clasificacion SOC, normalizacion de datos,
+      metricas y visualizacion final.
+    </p>
+
+    <p>
+      En terminos de portfolio, esta parte demuestra capacidades practicas de Blue Team:
+      analisis de logs, tratamiento de evidencias, automatizacion, scripting, modelado de eventos
+      y comunicacion visual de resultados mediante dashboard.
     </p>
   </div>
 </details>
@@ -1408,6 +1390,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
