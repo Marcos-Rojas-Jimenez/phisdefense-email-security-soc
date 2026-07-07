@@ -1007,6 +1007,56 @@
     </p>
   </div>
 </details>
+<details class="doc-panel">
+  <summary>Transporte seguro: STARTTLS, IMAPS, MTA-STS y TLS-RPT</summary>
+  <div class="doc-panel-content">
+    <p>
+      Ademas de autenticar el correo, el proyecto valido la seguridad del transporte.
+      El objetivo fue comprobar que las conexiones SMTP e IMAPS podian negociarse de forma
+      segura y que el dominio publicaba politicas relacionadas con transporte TLS.
+    </p>
+
+    <p>
+      Esta parte es importante porque SMTP historicamente permite conexiones oportunistas:
+      si no se valida correctamente, puede haber riesgo de degradacion de seguridad o de
+      entregas sin las garantias esperadas. Por eso se documentaron pruebas STARTTLS,
+      validaciones IMAPS TLS, MTA-STS y TLS-RPT.
+    </p>
+
+    <ul>
+      <li>
+        <strong>STARTTLS SMTP:</strong> se realizaron pruebas de negociacion TLS sobre SMTP
+        para comprobar que el servidor anunciaba y aceptaba transporte seguro cuando correspondia.
+      </li>
+
+      <li>
+        <strong>IMAPS TLS:</strong> se validaron conexiones seguras contra Dovecot para
+        comprobar el canal cifrado en servicios IMAP seguros.
+      </li>
+
+      <li>
+        <strong>MTA-STS enforce:</strong> se configuro una politica orientada a exigir TLS
+        valido a emisores compatibles cuando entregan correo al dominio.
+      </li>
+
+      <li>
+        <strong>TLS-RPT:</strong> se documento como mecanismo para recibir reportes sobre
+        problemas de entrega TLS, aunque en el proyecto no se dispuso de reportes JSON parseables.
+      </li>
+
+      <li>
+        <strong>Evidencias SOC:</strong> las validaciones STARTTLS SMTP e IMAPS TLS se
+        incorporaron como eventos SOC cuando existia evidencia tecnica verificable.
+      </li>
+    </ul>
+
+    <p>
+      En el dashboard, estas pruebas aparecen en categorias como
+      <strong>tls_starttls_smtp</strong> y <strong>tls_imaps</strong>, permitiendo
+      separar los controles de autenticacion de correo de los controles de transporte seguro.
+    </p>
+  </div>
+</details>
 
         <details class="doc-panel">
           <summary>Pruebas SOC</summary>
@@ -1076,6 +1126,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
