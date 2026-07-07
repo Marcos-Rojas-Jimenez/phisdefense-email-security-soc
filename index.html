@@ -804,14 +804,39 @@
       <div class="doc-panels">
 
         <details class="doc-panel" open>
-          <summary>Resumen tecnico</summary>
-          <div class="doc-panel-content">
-            <p>
-              PhisDefense combina DNS, autenticacion de correo, milters, transporte seguro,
-              pruebas controladas, tratamiento de logs y dashboard SOC.
-            </p>
-          </div>
-        </details>
+  <summary>Resumen tecnico del proyecto</summary>
+  <div class="doc-panel-content">
+    <p>
+      PhisDefense SOC & Email Security Lab es un laboratorio defensivo de seguridad de correo
+      desarrollado sobre una infraestructura real. El proyecto no se limita a mostrar un dashboard:
+      incluye configuracion DNS, autenticacion de correo, milters integrados con Postfix,
+      transporte seguro, pruebas controladas, procesamiento de logs y visualizacion SOC.
+    </p>
+
+    <p>
+      El objetivo principal fue demostrar que los controles defensivos estaban correctamente
+      configurados y que existian evidencias tecnicas de su funcionamiento. Para ello se validaron
+      escenarios reales y negativos relacionados con SPF, DKIM, DMARC, DNSSEC, MTA-STS, TLS-RPT,
+      OpenDKIM, OpenDMARC, OpenARC, STARTTLS SMTP, IMAPS TLS y abuso SMTP.
+    </p>
+
+    <ul>
+      <li><strong>Infraestructura base:</strong> servidor Linux con Postfix, Dovecot y syslog.</li>
+      <li><strong>DNS y dominio:</strong> DNSSEC, SPF, DKIM, DMARC, MTA-STS y TLS-RPT.</li>
+      <li><strong>Autenticacion de correo:</strong> SPF, DKIM y DMARC con politica final p=reject.</li>
+      <li><strong>Milters defensivos:</strong> OpenDKIM, OpenDMARC y OpenARC integrados con Postfix.</li>
+      <li><strong>Transporte seguro:</strong> pruebas STARTTLS SMTP e IMAPS TLS.</li>
+      <li><strong>Pruebas SOC:</strong> auth_fail, recipient_unknown, open_relay_test, SPF fail, DKIM broken, DKIM absent y spoofing_reject.</li>
+      <li><strong>Automatizacion:</strong> procesamiento de syslog mediante scripts propios.</li>
+      <li><strong>Dashboard:</strong> visualizacion en Python/Dash con metricas, categorias, evidencias y tabla SOC.</li>
+    </ul>
+
+    <p>
+      Como resultado, el dashboard agrega 270 pruebas totales y 190 eventos SOC procesados.
+      Esta pagina conserva una version publica, explicativa y sanitizada del proyecto para portfolio.
+    </p>
+  </div>
+</details>
 
         <details class="doc-panel">
           <summary>Arquitectura del servidor</summary>
@@ -891,5 +916,6 @@
   </footer>
 </body>
 </html>
+
 
 
