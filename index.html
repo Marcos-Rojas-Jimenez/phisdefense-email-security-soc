@@ -1057,6 +1057,62 @@
     </p>
   </div>
 </details>
+<details class="doc-panel">
+  <summary>Automatizacion, syslog y dashboard SOC</summary>
+  <div class="doc-panel-content">
+    <p>
+      Una de las partes mas importantes del proyecto fue convertir eventos tecnicos del servidor
+      en informacion util para un enfoque SOC. El objetivo no fue solo configurar servicios,
+      sino capturar evidencias, clasificarlas, procesarlas y visualizarlas.
+    </p>
+
+    <p>
+      Para ello se trabajo con syslog como fuente principal de eventos. Los logs del sistema
+      contenian evidencias de Postfix, OpenDMARC, OpenDKIM, Dovecot, autenticacion SMTP,
+      rechazos, pruebas TLS y eventos relacionados con intentos de suplantacion o abuso SMTP.
+    </p>
+
+    <ul>
+      <li>
+        <strong>Syslog como fuente de evidencias:</strong> se utilizaron registros reales
+        del servidor para justificar las pruebas incluidas en el dataset SOC.
+      </li>
+
+      <li>
+        <strong>Procesamiento automatizado:</strong> se desarrollaron scripts para detectar
+        eventos relevantes y transformar entradas de log en registros estructurados.
+      </li>
+
+      <li>
+        <strong>CSV SOC:</strong> las pruebas se normalizaron en un dataset con campos como
+        identificador de prueba, tipo, clasificacion, resultado esperado, ubicacion final,
+        origen, destino y observaciones.
+      </li>
+
+      <li>
+        <strong>Criterio de inclusion:</strong> una prueba solo se incorporaba si existia
+        evidencia tecnica: respuesta SMTP, registro syslog, validacion TLS, consulta DNS,
+        milter-reject o resultado verificable.
+      </li>
+
+      <li>
+        <strong>Dashboard Python/Dash:</strong> el dataset se cargo en un dashboard propio
+        para visualizar KPIs, tablas, categorias, evidencias y resultados defensivos.
+      </li>
+
+      <li>
+        <strong>Version publica:</strong> para GitHub se publico un dataset sanitizado,
+        eliminando IPs sensibles, rutas internas, sesiones y correos externos.
+      </li>
+    </ul>
+
+    <p>
+      Esta capa de automatizacion es la que convierte el proyecto en algo mas cercano a un
+      flujo real de Blue Team: configuracion defensiva, generacion de eventos, recogida de
+      evidencias, normalizacion de datos y visualizacion SOC.
+    </p>
+  </div>
+</details>
 
         <details class="doc-panel">
           <summary>Pruebas SOC</summary>
@@ -1126,6 +1182,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
