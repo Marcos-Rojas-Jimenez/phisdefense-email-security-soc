@@ -475,7 +475,17 @@
         <div>PhisDefense SOC Lab</div>
       </div>
 
-      <div class="nav-links"> <a href="#contexto">Problema</a> <a href="#solucion">Solucion</a> <a href="#configuracion">Configuracion</a> <a href="#dashboard">Dashboard SOC</a> <a href="#metricas">Metricas</a> <a href="#video">Video</a> <a href="#valor-profesional">Valor profesional</a> <a href="#docs">Docs</a> </div>
+      <div class="nav-links">
+<a href="#contexto">Problema</a>
+<a href="#solucion">Solucion</a>
+<a href="#configuracion">Configuracion</a>
+<a href="#dashboard">Dashboard SOC</a>
+<a href="#metricas">Metricas</a>
+<a href="#video">Video</a>
+<a href="#valor-profesional">Valor profesional</a>
+<a href="#skills">Skills</a>
+<a href="#docs">Docs</a>
+</div>
     </div>
   </nav>
 
@@ -1360,37 +1370,110 @@
     <h2>8. Valor profesional del proyecto</h2>
 
     <p class="section-subtitle">
-      Este caso de estudio demuestra competencias aplicables a roles de SOC Analyst,
-      Blue Team, Cybersecurity Analyst, Email Security y administracion defensiva de sistemas.
-      El valor principal del proyecto es que combina configuracion real, pruebas verificables,
-      evidencias tecnicas y comunicacion visual de resultados.
+      Este caso de estudio demuestra que el proyecto no fue solo una configuracion tecnica,
+      sino un trabajo completo de validacion defensiva: despliegue de controles, pruebas reales,
+      generacion de evidencias, automatizacion, dashboard SOC y preparacion de una version publica
+      segura para portfolio.
     </p>
 
     <div class="cards">
       <div class="card">
-        <h3>Capacidad tecnica</h3>
+        <h3>Aplicacion real a Blue Team</h3>
         <p>
-          El proyecto demuestra configuracion y validacion de un entorno real de correo con
-          Postfix, Dovecot, OpenDKIM, OpenDMARC, OpenARC, DNSSEC, SPF, DKIM, DMARC, MTA-STS,
-          TLS-RPT, STARTTLS e IMAPS TLS.
+          El proyecto demuestra una forma de trabajo defensiva: configurar controles,
+          probarlos con escenarios reales, revisar logs, documentar evidencias y transformar
+          resultados tecnicos en informacion util para analisis.
         </p>
       </div>
 
       <div class="card">
-        <h3>Enfoque Blue Team</h3>
+        <h3>Enfoque SOC</h3>
         <p>
-          Las pruebas se plantearon desde una perspectiva defensiva: validar controles,
-          detectar comportamientos no deseados, documentar evidencias y comprobar que el
-          servidor rechazaba abuso SMTP y spoofing.
+          Los eventos del servidor se clasificaron como datos SOC: auth_fail,
+          recipient_unknown, SPF fail, DKIM broken, TLS, open relay test y spoofing_reject.
+          Esto permite explicar el comportamiento defensivo del sistema con metricas.
         </p>
       </div>
 
       <div class="card">
-        <h3>Trabajo SOC</h3>
+        <h3>Proyecto defendible en entrevista</h3>
         <p>
-          Los eventos del servidor se transformaron en datos SOC: clasificacion de pruebas,
-          metricas, evidencias, CSV sanitizado y dashboard con KPIs para explicar el estado
-          defensivo del laboratorio.
+          La pagina permite explicar de forma visual que se configuro, que pruebas se hicieron,
+          que evidencias se obtuvieron y que resultados se visualizaron en el dashboard.
+          No es una demo teorica: esta basada en trabajo real de servidor.
+        </p>
+      </div>
+    </div>
+
+    <div class="cards" style="margin-top:18px;">
+      <div class="card">
+        <h3>Gestion de evidencias</h3>
+        <p>
+          Cada prueba importante se apoyo en evidencias tecnicas: respuestas SMTP,
+          registros syslog, validaciones TLS, consultas DNS, milter-reject o eventos
+          generados por Postfix, OpenDKIM, OpenDMARC y Dovecot.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Comunicacion tecnica</h3>
+        <p>
+          El proyecto convierte una configuracion compleja de correo en una explicacion clara:
+          arquitectura, controles, pruebas, metricas, video demo, documentacion interna y
+          dataset sanitizado.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Madurez del portfolio</h3>
+        <p>
+          Esta pagina funciona como caso de estudio dentro de un futuro portfolio personal:
+          una persona puede entrar desde la seccion de proyectos y entender el trabajo completo
+          sin acceder al servidor original.
+        </p>
+      </div>
+    </div>
+
+    <div class="hero-actions" style="margin-top:28px;">
+      <a class="btn primary" href="#configuracion">Ver configuracion defensiva</a>
+      <a class="btn" href="#dashboard">Ver automatizacion SOC</a>
+      <a class="btn" href="#video">Ver video demo</a>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <h2>9. Skills y competencias adquiridas</h2>
+
+    <p class="section-subtitle">
+      Estas son las competencias tecnicas y metodologicas que se pueden defender a partir
+      del proyecto PhisDefense. La lista combina administracion de sistemas, seguridad de correo,
+      Blue Team, automatizacion, analisis de logs y visualizacion SOC.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Email Security</h3>
+        <p>
+          SPF, DKIM, DMARC p=reject, DKIM rotation, DKIM broken, DKIM absent,
+          spoofing reject, MTA-STS, TLS-RPT y DNSSEC aplicado al dominio.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Administracion Linux y correo</h3>
+        <p>
+          Trabajo con servidor Linux, Postfix, Dovecot, OpenDKIM, OpenDMARC,
+          OpenARC, servicios, syslog, configuracion SMTP e IMAPS TLS.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Blue Team y SOC</h3>
+        <p>
+          Validacion defensiva, clasificacion de eventos, analisis de logs,
+          deteccion de abuso SMTP, evidencias tecnicas y metricas SOC.
         </p>
       </div>
     </div>
@@ -1399,38 +1482,57 @@
       <div class="card">
         <h3>Automatizacion</h3>
         <p>
-          El procesamiento de syslog mediante scripts propios permitio convertir logs tecnicos
-          en eventos estructurados y reutilizables dentro del dashboard.
+          Procesamiento de syslog mediante scripts propios, normalizacion de eventos,
+          generacion de CSV SOC y actualizacion de datos para dashboard.
         </p>
       </div>
 
       <div class="card">
-        <h3>Documentacion de evidencias</h3>
+        <h3>Python, Pandas y Dash</h3>
         <p>
-          Cada prueba incluida en el dataset se apoyo en evidencias verificables: respuestas SMTP,
-          registros syslog, validaciones TLS, consultas DNS, milter-reject o resultados tecnicos.
+          Uso de Python para procesamiento de datos, Pandas para tratamiento del dataset
+          y Dash/Plotly para visualizacion de KPIs, tablas y categorias.
         </p>
       </div>
 
       <div class="card">
-        <h3>Comunicacion tecnica</h3>
+        <h3>Privacidad y publicacion segura</h3>
         <p>
-          La version publica del proyecto convierte un trabajo tecnico complejo en una explicacion
-          visual, sanitizada y entendible para entrevistas, portfolio y revision academica.
+          Sanitizacion de evidencias, eliminacion de credenciales, claves privadas, IPs sensibles,
+          rutas internas, ficheros .env y backups completos antes de publicar el proyecto.
         </p>
       </div>
     </div>
 
-    <div class="hero-actions" style="margin-top:28px;">
-      #videoVer video demo</a>
-      #docsVer documentacion interna</a>
-      #metricasVer metricas</a>
+    <div class="tag-list">
+      <span class="tag">Linux</span>
+      <span class="tag">Postfix</span>
+      <span class="tag">Dovecot</span>
+      <span class="tag">OpenDKIM</span>
+      <span class="tag">OpenDMARC</span>
+      <span class="tag">OpenARC</span>
+      <span class="tag">DNSSEC</span>
+      <span class="tag">SPF</span>
+      <span class="tag">DKIM</span>
+      <span class="tag">DMARC</span>
+      <span class="tag">MTA-STS</span>
+      <span class="tag">TLS-RPT</span>
+      <span class="tag">STARTTLS</span>
+      <span class="tag">IMAPS TLS</span>
+      <span class="tag">Syslog</span>
+      <span class="tag">Python</span>
+      <span class="tag">Pandas</span>
+      <span class="tag">Dash</span>
+      <span class="tag">Plotly</span>
+      <span class="tag">Blue Team</span>
+      <span class="tag">SOC Monitoring</span>
+      <span class="tag">Evidence Handling</span>
     </div>
   </div>
 </section>
 <section id="roadmap">
   <div class="container">
-    <h2>9. Estado del proyecto</h2>
+    <h2>10. Estado del proyecto</h2>
 
     <p class="section-subtitle">
       PhisDefense esta finalizado como proyecto de TFM y adaptado como caso de estudio
@@ -1506,6 +1608,9 @@
   </footer>
 </body>
 </html>
+
+
+
 
 
 
