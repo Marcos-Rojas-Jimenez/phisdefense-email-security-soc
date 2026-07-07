@@ -488,35 +488,72 @@
   </nav>
 
   <header class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="eyebrow">Project Case Study · Blue Team · SOC · Email Security</div>
-        <h1><span class="gradient-text">PhisDefense</span><br />SOC & Email Security Lab</h1>
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Project Case Study · Email Security · Blue Team · SOC</div>
 
-        <p class="hero-text">
-          Pagina de detalle del proyecto PhisDefense, preparada para ser enlazada desde un portfolio profesional.
-          El proyecto demuestra como valide controles reales de seguridad de correo, procese evidencias desde logs
-          y construi un dashboard SOC en Python/Dash para visualizar resultados tecnicos.
-        </p>
+      <h1>
+        <span class="gradient-text">PhisDefense</span><br />
+        SOC & Email Security Lab
+      </h1>
 
-        <div class="hero-actions">
-          <a class="btn primary" href="#video">Ver video demo</a>
-          <a class="btn" href="#docs">Ver documentacion</a>
-          <a class="btn" href="data-samples/bateria_pruebas_soc_sample.csv" target="_blank">Dataset SOC</a>
-          <a class="btn" href="#roadmap">Siguiente fase</a>
-        </div>
-      </div>
+      <p class="hero-text">
+        Caso de estudio de ciberseguridad defensiva centrado en seguridad de correo electronico.
+        El proyecto incluye la configuracion de un servidor real con Postfix, Dovecot, OpenDKIM,
+        OpenDMARC y OpenARC, el endurecimiento del dominio mediante DNSSEC, SPF, DKIM, DMARC,
+        MTA-STS y TLS-RPT, la ejecucion de pruebas controladas y la construccion de un dashboard
+        SOC en Python/Dash para visualizar evidencias, metricas y resultados.
+      </p>
 
-      <div class="hero-card">
-        <h3 class="hero-card-title">Resumen ejecutivo</h3>
-        <div class="status-item"><div class="status-label">Pruebas totales agregadas</div><div class="status-value">270</div></div>
-        <div class="status-item"><div class="status-label">Eventos SOC procesados</div><div class="status-value">190</div></div>
-        <div class="status-item"><div class="status-label">Fallos SMTP AUTH</div><div class="status-value">55</div></div>
-        <div class="status-item"><div class="status-label">Recipient unknown</div><div class="status-value">58</div></div>
-        <div class="status-item"><div class="status-label">Politica DMARC final</div><div class="status-value">p=reject</div></div>
+      <p class="hero-text">
+        El objetivo no fue solo desplegar controles, sino validarlos con pruebas reales:
+        spoofing rechazado por DMARC, fallos SPF, DKIM roto, DKIM ausente, rotacion DKIM,
+        pruebas STARTTLS SMTP, IMAPS TLS, SMTP AUTH fallido, recipient unknown y open relay test.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn primary" href="#configuracion">Ver configuracion defensiva</a>
+        <a class="btn" href="#dashboard">Ver automatizacion SOC</a>
+        <a class="btn" href="#video">Ver video demo</a>
+        <a class="btn" href="#docs">Ver documentacion interna</a>
       </div>
     </div>
-  </header>
+
+    <div class="hero-card">
+      <h3 class="hero-card-title">Resumen del caso de estudio</h3>
+
+      <div class="status-item">
+        <div class="status-label">Pruebas totales agregadas</div>
+        <div class="status-value">270</div>
+      </div>
+
+      <div class="status-item">
+        <div class="status-label">Eventos SOC procesados</div>
+        <div class="status-value">190</div>
+      </div>
+
+      <div class="status-item">
+        <div class="status-label">Politica DMARC final</div>
+        <div class="status-value">p=reject</div>
+      </div>
+
+      <div class="status-item">
+        <div class="status-label">Controles DNS</div>
+        <div class="status-value">DNSSEC · SPF · DKIM · DMARC</div>
+      </div>
+
+      <div class="status-item">
+        <div class="status-label">Transporte seguro</div>
+        <div class="status-value">STARTTLS · IMAPS · MTA-STS</div>
+      </div>
+
+      <div class="status-item">
+        <div class="status-label">Milters defensivos</div>
+        <div class="status-value">OpenDKIM · OpenDMARC · OpenARC</div>
+      </div>
+    </div>
+  </div>
+</header>
 
   <main>
 
@@ -1306,6 +1343,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
