@@ -949,6 +949,64 @@
     </p>
   </div>
 </details>
+<details class="doc-panel">
+  <summary>Postfix, OpenDKIM, OpenDMARC y OpenARC</summary>
+  <div class="doc-panel-content">
+    <p>
+      La capa de servidor de correo se apoyo principalmente en Postfix como MTA. Sobre Postfix
+      se integraron milters defensivos para firmar, validar, rechazar y registrar resultados de
+      autenticacion de correo. Esta integracion fue clave para que las pruebas no se quedasen en
+      teoria, sino que generasen evidencias reales en syslog.
+    </p>
+
+    <p>
+      El objetivo de esta parte fue construir un flujo SMTP defensivo donde cada mensaje pudiera
+      ser evaluado por componentes especializados: DKIM, DMARC y ARC. Los eventos generados por
+      estos componentes sirvieron despues como base para el dataset SOC y el dashboard.
+    </p>
+
+    <ul>
+      <li>
+        <strong>Postfix:</strong> actuo como servidor SMTP principal. Gestiono sesiones SMTP,
+        entregas, rechazos, pruebas de relay, destinatarios inexistentes y eventos de autenticacion.
+      </li>
+
+      <li>
+        <strong>OpenDKIM:</strong> se utilizo para firma y validacion DKIM. Permitio trabajar
+        con escenarios de DKIM correcto, DKIM roto, DKIM ausente y rotacion de selector.
+      </li>
+
+      <li>
+        <strong>OpenDMARC:</strong> se utilizo para evaluar la politica DMARC del dominio y
+        aplicar rechazo cuando los mensajes no cumplian autenticacion y alineacion. Esta pieza fue
+        clave para las pruebas de spoofing rechazado.
+      </li>
+
+      <li>
+        <strong>OpenARC:</strong> se incorporo como parte del ecosistema de autenticacion para
+        contemplar escenarios donde un mensaje pasa por intermediarios, forwarding o servicios que
+        pueden alterar resultados SPF/DKIM.
+      </li>
+
+      <li>
+        <strong>Milters:</strong> Postfix se integro con estos filtros para evaluar mensajes
+        durante el flujo SMTP y registrar resultados tecnicos reutilizables como evidencias SOC.
+      </li>
+
+      <li>
+        <strong>Syslog:</strong> se utilizo como fuente principal de evidencias para capturar
+        rechazos, fallos, validaciones y resultados de las pruebas.
+      </li>
+    </ul>
+
+    <p>
+      Esta capa permitio conectar la configuracion tecnica del servidor con evidencias reales.
+      Por ejemplo, un rechazo DMARC no se documento simplemente como una conclusion, sino como
+      evento observable en logs, clasificado despues dentro del dataset SOC como
+      <strong>spoofing_reject</strong>.
+    </p>
+  </div>
+</details>
 
         <details class="doc-panel">
           <summary>Pruebas SOC</summary>
@@ -1018,6 +1076,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
