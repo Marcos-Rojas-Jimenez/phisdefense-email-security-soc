@@ -1,0 +1,53 @@
+/* =========================================================
+   PhisDefense Dashboard - Fix global donas centradas
+   ========================================================= */
+
+/* Contenedor general de gráficos */
+.dash-graph,
+.js-plotly-plot,
+.plot-container,
+.svg-container {
+  width: 100% !important;
+}
+
+/* Centrado visual dentro de tarjetas */
+.card .dash-graph,
+.card-body .dash-graph,
+.dashboard-card .dash-graph,
+.graph-card .dash-graph {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* Evita que Plotly deje la dona pegada a la izquierda */
+.js-plotly-plot .plot-container {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Ajuste para leyendas horizontales bajo las donas */
+.js-plotly-plot .legend {
+  pointer-events: auto;
+}
+
+/* Cards de gráficas con altura consistente */
+.graph-card,
+.card-graph,
+.dashboard-graph-card {
+  min-height: 360px;
+}
+
+/* Evita overflow raro de SVG */
+.svg-container {
+  overflow: visible !important;
+}
+
+/* Mejor alineación en pantallas pequeñas */
+@media (max-width: 992px) {
+  .graph-card,
+  .card-graph,
+  .dashboard-graph-card {
+    min-height: 420px;
+  }
+}

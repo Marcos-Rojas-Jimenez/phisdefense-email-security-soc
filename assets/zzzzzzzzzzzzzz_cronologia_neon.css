@@ -1,0 +1,158 @@
+/* =========================================================
+   PhisDefense SOC - Cronología Neon Market
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+.cronologia-hero {
+  max-width: 1480px !important;
+  margin: 24px auto 22px auto !important;
+  padding: 24px 28px !important;
+  position: relative !important;
+  overflow: hidden !important;
+
+  border-radius: 30px !important;
+  border: 1px solid rgba(35,215,255,0.34) !important;
+
+  background:
+    radial-gradient(circle at 10% 0%, rgba(35,215,255,0.20), transparent 34%),
+    radial-gradient(circle at 90% 15%, rgba(168,85,247,0.18), transparent 34%),
+    linear-gradient(135deg, rgba(4,16,31,0.99), rgba(8,34,62,0.96)) !important;
+
+  box-shadow:
+    0 0 42px rgba(35,215,255,0.14),
+    0 24px 58px rgba(0,0,0,0.34),
+    inset 0 1px 0 rgba(255,255,255,0.07) !important;
+}
+
+.cronologia-hero::after {
+  content: "LIVE THREAT MARKET";
+  position: absolute;
+  right: 26px;
+  top: 22px;
+  color: rgba(56,189,248,0.25);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+}
+
+.cronologia-eyebrow {
+  color: #38f8ff !important;
+  font-size: 0.74rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 8px !important;
+}
+
+.cronologia-title {
+  color: #eaf6ff !important;
+  font-size: 1.65rem !important;
+  font-weight: 950 !important;
+  line-height: 1.1 !important;
+}
+
+.cronologia-subtitle {
+  color: #aebfd0 !important;
+  font-size: 0.94rem !important;
+  margin-top: 8px !important;
+  max-width: 920px !important;
+}
+
+.cronologia-pills {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 9px !important;
+  margin-top: 16px !important;
+}
+
+.cronologia-pills span {
+  color: #dcecff !important;
+  background: rgba(35,215,255,0.08) !important;
+  border: 1px solid rgba(35,215,255,0.20) !important;
+  border-radius: 999px !important;
+  padding: 7px 11px !important;
+  font-size: 0.78rem !important;
+  font-weight: 850 !important;
+}
+
+.cronologia-tabs-parent {
+  max-width: 1480px !important;
+  margin: 0 auto 58px auto !important;
+}
+
+.cronologia-tabs {
+  border-radius: 28px !important 14px !important;
+  border: 1px solid rgba(35,215,255,0.20) !important;
+
+  background:
+    radial-gradient(circle at 50% 0%, rgba(35,215,255,0.08), transparent 40%),
+    linear-gradient(145deg, rgba(7,20,38,0.96), rgba(4,14,28,0.99)) !important;
+
+  box-shadow:
+    0 0 34px rgba(35,215,255,0.08),
+    0 20px 48px rgba(0,0,0,0.28),
+    inset 0 1px 0 rgba(255,255,255,0.040) !important;
+}
+
+.cronologia-tab {
+  background: rgba(6,22,42,0.94) !important;
+  color: #aebfd0 !important;
+  border: 1px solid rgba(35,215,255,0.14) !important;
+  border-radius: 16px !important;
+  margin: 4px 5px !important;
+  padding: 10px 14px !important;
+  font-weight: 850 !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.02em !important;
+}
+
+.cronologia-tab-selected {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(35,215,255,0.22), transparent 50%),
+    linear-gradient(135deg, rgba(8,44,73,0.98), rgba(22,27,65,0.98)) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(35,215,255,0.46) !important;
+  box-shadow: 0 0 22px rgba(35,215,255,0.16) !important;
+}
+
+.cronologia-chart-shell {
+  margin-top: 16px !important;
+}
+
+.cronologia-chart-shell .chart-frame {
+  border-radius: 30px !important;
+  border: 1px solid rgba(35,215,255,0.24) !important;
+
+  background:
+    radial-gradient(circle at 8% 0%, rgba(35,215,255,0.12), transparent 36%),
+    radial-gradient(circle at 92% 0%, rgba(168,85,247,0.10), transparent 34%),
+    linear-gradient(145deg, rgba(7,24,43,0.98), rgba(3,12,25,0.99)) !important;
+
+  box-shadow:
+    0 0 32px rgba(35,215,255,0.08),
+    0 18px 42px rgba(0,0,0,0.30),
+    inset 0 1px 0 rgba(255,255,255,0.040) !important;
+}
+
+.cronologia-chart-shell .chart-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(35,215,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(35,215,255,0.020) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: .45;
+}
+
+@media (max-width: 760px) {
+  .cronologia-hero,
+  .cronologia-tabs-parent {
+    max-width: 100% !important;
+  }
+
+  .cronologia-title {
+    font-size: 1.35rem !important;
+  }
+}

@@ -1,0 +1,69 @@
+/* =========================================================
+   PhisDefense SOC - Cronología lineal neón
+   Estilo: línea limpia con puntos grandes, sin range slider.
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+.cronologia-chart-shell .chart-frame {
+  min-height: 505px !important;
+  padding: 4px 0 10px 0 !important;
+  overflow: hidden !important;
+  border-radius: 32px !important;
+  border: 1px solid rgba(35,215,255,0.28) !important;
+
+  background:
+    radial-gradient(circle at 8% 0%, rgba(35,215,255,0.12), transparent 36%),
+    radial-gradient(circle at 92% 0%, rgba(168,85,247,0.10), transparent 34%),
+    linear-gradient(145deg, rgba(4,24,35,0.98), rgba(3,12,25,0.99)) !important;
+
+  box-shadow:
+    0 0 34px rgba(35,215,255,0.10),
+    0 18px 42px rgba(0,0,0,0.30),
+    inset 0 1px 0 rgba(255,255,255,0.045) !important;
+}
+
+.cronologia-chart-shell .dash-graph {
+  min-height: 470px !important;
+}
+
+/* Fondo tipo panel gráfico limpio */
+.cronologia-chart-shell .js-plotly-plot {
+  border-radius: 28px !important;
+}
+
+/* Quitar cualquier resto del range slider */
+.cronologia-chart-shell .rangeslider-container,
+.cronologia-chart-shell .range-slider,
+.cronologia-chart-shell .rangeslider {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Tabs siguen compactas y Cronología limpia */
+.cronologia-tabs {
+  margin-bottom: 22px !important;
+}
+
+.cronologia-tabs-content {
+  margin-top: 22px !important;
+}
+
+/* Pulido del título y área superior */
+.cronologia-hero {
+  margin-bottom: 24px !important;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cronologia-chart-shell .chart-frame {
+    min-height: 520px !important;
+  }
+
+  .cronologia-chart-shell .dash-graph {
+    min-height: 485px !important;
+  }
+}

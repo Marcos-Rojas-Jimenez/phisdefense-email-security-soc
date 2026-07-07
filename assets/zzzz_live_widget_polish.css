@@ -1,0 +1,58 @@
+/* =========================================================
+   PhisDefense SOC - Live Widget Polish
+   Reduce y pule el widget inferior derecho SOC LIVE.
+   ========================================================= */
+
+/* Widget flotante genérico inferior derecho */
+div[style*="position: fixed"][style*="bottom"],
+.live-widget,
+.soc-live-widget,
+.telemetry-widget,
+[class*="live"],
+[class*="telemetry"] {
+  max-width: 310px !important;
+}
+
+/* Si el widget está fijo abajo a la derecha, hacerlo menos invasivo */
+div[style*="position: fixed"][style*="bottom"][style*="right"] {
+  transform: scale(0.82) !important;
+  transform-origin: bottom right !important;
+  opacity: 0.78 !important;
+  filter: saturate(0.92) !important;
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease,
+    filter 0.18s ease !important;
+}
+
+/* Hover: se puede leer bien cuando pasas encima */
+div[style*="position: fixed"][style*="bottom"][style*="right"]:hover {
+  opacity: 0.96 !important;
+  transform: scale(0.90) !important;
+  filter: saturate(1.10) !important;
+}
+
+/* Textos internos del widget */
+div[style*="position: fixed"][style*="bottom"][style*="right"] * {
+  font-size: 0.78rem !important;
+  line-height: 1.15 !important;
+}
+
+/* Si tiene badges internos */
+div[style*="position: fixed"][style*="bottom"][style*="right"] span,
+div[style*="position: fixed"][style*="bottom"][style*="right"] div {
+  letter-spacing: 0.025em !important;
+}
+
+/* En pantallas pequeñas, baja aún más la agresividad */
+@media (max-width: 1000px) {
+  div[style*="position: fixed"][style*="bottom"][style*="right"] {
+    transform: scale(0.72) !important;
+    opacity: 0.68 !important;
+  }
+
+  div[style*="position: fixed"][style*="bottom"][style*="right"]:hover {
+    transform: scale(0.82) !important;
+    opacity: 0.95 !important;
+  }
+}

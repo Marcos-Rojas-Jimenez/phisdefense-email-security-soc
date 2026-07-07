@@ -1,0 +1,145 @@
+/* =========================================================
+   PhisDefense SOC - Filas uniformes por estado
+   Colores elegantes, sin bloques por celda.
+   ========================================================= */
+
+/* Base de tabla */
+.dash-table-container td.dash-cell,
+.dash-spreadsheet-container td.dash-cell {
+  color: #ecf6ff !important;
+  border-color: rgba(35, 215, 255, 0.10) !important;
+}
+
+/* Filas por estado */
+tr.pd-row-legit td.dash-cell {
+  background: rgba(34, 197, 94, 0.075) !important;
+  background-color: rgba(34, 197, 94, 0.075) !important;
+}
+
+tr.pd-row-spoof td.dash-cell,
+tr.pd-row-rejected td.dash-cell {
+  background: rgba(239, 68, 68, 0.090) !important;
+  background-color: rgba(239, 68, 68, 0.090) !important;
+}
+
+tr.pd-row-warning td.dash-cell {
+  background: rgba(250, 204, 21, 0.075) !important;
+  background-color: rgba(250, 204, 21, 0.075) !important;
+}
+
+tr.pd-row-lookalike td.dash-cell,
+tr.pd-row-spam td.dash-cell {
+  background: rgba(249, 115, 22, 0.085) !important;
+  background-color: rgba(249, 115, 22, 0.085) !important;
+}
+
+tr.pd-row-soc td.dash-cell {
+  background: rgba(168, 85, 247, 0.080) !important;
+  background-color: rgba(168, 85, 247, 0.080) !important;
+}
+
+tr.pd-row-info td.dash-cell {
+  background: rgba(56, 189, 248, 0.070) !important;
+  background-color: rgba(56, 189, 248, 0.070) !important;
+}
+
+/* Hover: mantiene el color de la fila, solo ilumina un poco */
+tr.pd-row-legit:hover td.dash-cell {
+  background: rgba(34, 197, 94, 0.120) !important;
+}
+
+tr.pd-row-spoof:hover td.dash-cell,
+tr.pd-row-rejected:hover td.dash-cell {
+  background: rgba(239, 68, 68, 0.135) !important;
+}
+
+tr.pd-row-warning:hover td.dash-cell {
+  background: rgba(250, 204, 21, 0.120) !important;
+}
+
+tr.pd-row-lookalike:hover td.dash-cell,
+tr.pd-row-spam:hover td.dash-cell {
+  background: rgba(249, 115, 22, 0.130) !important;
+}
+
+tr.pd-row-soc:hover td.dash-cell {
+  background: rgba(168, 85, 247, 0.125) !important;
+}
+
+tr.pd-row-info:hover td.dash-cell {
+  background: rgba(56, 189, 248, 0.115) !important;
+}
+
+/* Línea lateral de estado en primera celda */
+tr.pd-row-legit td.dash-cell:first-child {
+  box-shadow: inset 4px 0 0 rgba(34, 197, 94, 0.95) !important;
+}
+
+tr.pd-row-spoof td.dash-cell:first-child,
+tr.pd-row-rejected td.dash-cell:first-child {
+  box-shadow: inset 4px 0 0 rgba(239, 68, 68, 0.95) !important;
+}
+
+tr.pd-row-warning td.dash-cell:first-child {
+  box-shadow: inset 4px 0 0 rgba(250, 204, 21, 0.95) !important;
+}
+
+tr.pd-row-lookalike td.dash-cell:first-child,
+tr.pd-row-spam td.dash-cell:first-child {
+  box-shadow: inset 4px 0 0 rgba(249, 115, 22, 0.95) !important;
+}
+
+tr.pd-row-soc td.dash-cell:first-child {
+  box-shadow: inset 4px 0 0 rgba(168, 85, 247, 0.95) !important;
+}
+
+tr.pd-row-info td.dash-cell:first-child {
+  box-shadow: inset 4px 0 0 rgba(56, 189, 248, 0.95) !important;
+}
+
+/* SPF / DKIM / DMARC: solo texto, no bloque de fondo */
+td.pd-text-pass {
+  color: #86efac !important;
+  font-weight: 900 !important;
+}
+
+td.pd-text-fail {
+  color: #fca5a5 !important;
+  font-weight: 900 !important;
+}
+
+td.pd-text-none {
+  color: #cbd5e1 !important;
+  font-weight: 800 !important;
+}
+
+td.pd-text-warning {
+  color: #fde68a !important;
+  font-weight: 900 !important;
+}
+
+td.pd-text-info {
+  color: #bae6fd !important;
+  font-weight: 850 !important;
+}
+
+/* Evitar blanco en selección/focus */
+.dash-cell.focused,
+.dash-cell.cell--selected,
+td.focused,
+td.cell--selected {
+  background-color: #071426 !important;
+  color: #ecf6ff !important;
+  outline: none !important;
+}
+
+/* Tooltips fuera */
+.dash-table-tooltip,
+.dash-tooltip,
+[class*="tooltip"],
+[class*="Tooltip"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

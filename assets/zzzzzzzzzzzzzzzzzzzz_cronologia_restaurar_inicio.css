@@ -1,0 +1,41 @@
+/* =========================================================
+   PhisDefense SOC - Cronología restaurar inicio
+   Recupera range slider y estilo stock original.
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+.cronologia-chart-shell .chart-frame {
+  min-height: 455px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  overflow: hidden !important;
+}
+
+.cronologia-chart-shell .dash-graph {
+  min-height: 430px !important;
+}
+
+/* Rehabilitar range slider si CSS posterior lo había ocultado */
+.cronologia-chart-shell .rangeslider-container,
+.cronologia-chart-shell .range-slider,
+.cronologia-chart-shell .rangeslider {
+  display: block !important;
+  height: auto !important;
+  min-height: initial !important;
+  max-height: initial !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Mantener tabs compactas sin solape */
+.cronologia-tabs {
+  margin-bottom: 18px !important;
+}
+
+.cronologia-tabs-content {
+  margin-top: 18px !important;
+}
+
+.cronologia-chart-shell {
+  margin-top: 18px !important;
+}

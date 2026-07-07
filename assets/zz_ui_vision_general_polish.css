@@ -1,0 +1,194 @@
+/* =========================================================
+   PhisDefense SOC - UI polish Vision General
+   ========================================================= */
+
+/* ---- Layout general ---- */
+.dashboard-row {
+  margin-top: 14px !important;
+  margin-bottom: 18px !important;
+}
+
+.status-alert {
+  padding: 13px 18px !important;
+  margin: 14px 0 18px 0 !important;
+  border-radius: 18px !important;
+  font-size: 0.98rem !important;
+  line-height: 1.45 !important;
+}
+
+/* ---- KPIs superiores ---- */
+.kpi-grid {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  margin-bottom: 18px !important;
+}
+
+.kpi-grid.two-columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.metric-card {
+  min-height: 118px !important;
+  max-height: 132px !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  box-shadow: 0 0 28px rgba(35, 215, 255, 0.08) !important;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease !important;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 34px rgba(35, 215, 255, 0.16) !important;
+}
+
+.metric-card .card-body {
+  padding: 18px 20px !important;
+}
+
+.metric-label {
+  font-size: 0.72rem !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+}
+
+.metric-number {
+  font-size: 2.25rem !important;
+  line-height: 1.05 !important;
+  margin-top: 14px !important;
+  margin-bottom: 8px !important;
+}
+
+.metric-subtitle {
+  font-size: 0.86rem !important;
+  line-height: 1.25 !important;
+  color: #9fb6ca !important;
+}
+
+/* ---- Threat focus compacto ---- */
+.focus-panel-shell {
+  padding: 20px 26px !important;
+  margin: 12px 0 18px 0 !important;
+  min-height: 116px !important;
+  border-radius: 22px !important;
+}
+
+.focus-panel-shell h1,
+.focus-panel-shell h2,
+.focus-panel-shell h3 {
+  margin-bottom: 8px !important;
+}
+
+.focus-panel-shell p {
+  margin-bottom: 0 !important;
+  line-height: 1.35 !important;
+}
+
+/* ---- Cards de gráficas ---- */
+.chart-frame {
+  width: 100% !important;
+  border-radius: 22px !important;
+}
+
+.donut-interactive-frame {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Plotly centrado */
+.js-plotly-plot,
+.plot-container,
+.svg-container {
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ---- Tabla ---- */
+.table-shell {
+  margin-top: 20px !important;
+  border-radius: 22px !important;
+  padding: 20px 22px !important;
+}
+
+.dash-table-container {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+.dash-spreadsheet-container,
+.dash-spreadsheet-inner {
+  border-radius: 14px !important;
+}
+
+.dash-spreadsheet-container .dash-spreadsheet-inner table {
+  font-size: 0.88rem !important;
+}
+
+.dash-header {
+  font-size: 0.78rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: .04em !important;
+}
+
+.dash-filter input {
+  background: #06111f !important;
+  color: #ecf6ff !important;
+  border: 1px solid rgba(35, 215, 255, .28) !important;
+  border-radius: 8px !important;
+  height: 26px !important;
+  font-size: .76rem !important;
+}
+
+/* ---- Scrollbars ---- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #06111f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #23d7ff, #2f8cff);
+  border-radius: 999px;
+}
+
+/* ---- Footer flotante / telemetría ---- */
+[class*="live"],
+[class*="telemetry"],
+[class*="footer"] {
+  max-width: 420px;
+}
+
+/* si hay widget fixed abajo derecha, hacerlo menos intrusivo */
+div[style*="position: fixed"][style*="bottom"] {
+  transform: scale(.88) !important;
+  transform-origin: bottom right !important;
+  opacity: .82 !important;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1400px) {
+  .kpi-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .metric-card {
+    min-height: 120px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .kpi-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

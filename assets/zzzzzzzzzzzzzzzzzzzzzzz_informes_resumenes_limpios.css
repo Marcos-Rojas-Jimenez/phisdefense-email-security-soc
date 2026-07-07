@@ -1,0 +1,56 @@
+/* =========================================================
+   PhisDefense SOC - Informes resúmenes limpios
+   Mejora lectura de bloques DMARC / TLS-RPT.
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+.external-report-card pre,
+.external-report-card code,
+.external-report-card .report-summary,
+.external-report-card .summary-box,
+.external-report-card .card-text,
+.external-report-card .dash-cell,
+.external-report-card textarea,
+.report-summary pre,
+.report-summary code,
+.informes-report-card pre,
+.informes-report-card code {
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  line-height: 1.48 !important;
+  font-size: 0.88rem !important;
+}
+
+/* Contenedores tipo consola en Informes */
+.external-report-card pre,
+.report-summary pre,
+.informes-report-card pre {
+  max-height: 320px !important;
+  overflow-y: auto !important;
+  padding: 20px 22px !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(35,215,255,0.16) !important;
+  background: rgba(2,12,24,0.88) !important;
+  color: #dcecff !important;
+}
+
+/* Títulos/labels con más aire */
+.external-report-card,
+.informes-report-card {
+  overflow: hidden !important;
+}
+
+.external-report-card .metric-subtitle,
+.external-report-card p,
+.informes-report-card p {
+  line-height: 1.35 !important;
+}
+
+/* Rutas largas: no rompen el layout */
+.external-report-card .path-box,
+.external-report-card code {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}

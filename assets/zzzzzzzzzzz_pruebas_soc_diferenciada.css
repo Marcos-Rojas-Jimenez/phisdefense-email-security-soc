@@ -1,0 +1,220 @@
+/* =========================================================
+   PhisDefense SOC - Pruebas SOC diferenciada de SMTP
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+.soc-unique-kpi-grid {
+  max-width: 1240px !important;
+  margin: 22px auto 26px auto !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(240px, 1fr)) !important;
+  gap: 18px 20px !important;
+}
+
+.soc-unique-kpi-grid .metric-card {
+  min-height: 124px !important;
+  border-radius: 22px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  border: 1px solid rgba(35,215,255,0.22) !important;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(35,215,255,0.08), transparent 34%),
+    linear-gradient(145deg, rgba(16,43,71,0.95), rgba(7,20,38,0.98)) !important;
+  transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease !important;
+}
+
+.soc-unique-kpi-grid .metric-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15px;
+  bottom: 15px;
+  width: 4px;
+  border-radius: 999px;
+}
+
+.soc-unique-kpi-grid .metric-card:nth-child(1)::before { background: #38bdf8 !important; }
+.soc-unique-kpi-grid .metric-card:nth-child(1) .metric-number { color: #bae6fd !important; }
+
+.soc-unique-kpi-grid .metric-card:nth-child(2)::before { background: #a855f7 !important; }
+.soc-unique-kpi-grid .metric-card:nth-child(2) .metric-number { color: #e9d5ff !important; }
+
+.soc-unique-kpi-grid .metric-card:nth-child(3)::before { background: #22c55e !important; }
+.soc-unique-kpi-grid .metric-card:nth-child(3) .metric-number { color: #bbf7d0 !important; }
+
+.soc-unique-kpi-grid .metric-card:nth-child(4)::before { background: #ef4444 !important; }
+.soc-unique-kpi-grid .metric-card:nth-child(4) .metric-number { color: #fecaca !important; }
+
+.soc-unique-kpi-grid .metric-card:nth-child(5)::before { background: #facc15 !important; }
+.soc-unique-kpi-grid .metric-card:nth-child(5) .metric-number { color: #fef08a !important; }
+
+.soc-unique-kpi-grid .metric-card:nth-child(6)::before { background: #2f80ed !important; }
+.soc-unique-kpi-grid .metric-card:nth-child(6) .metric-number { color: #bfdbfe !important; }
+
+.soc-unique-kpi-grid .metric-card:hover {
+  transform: translateY(-3px) scale(1.008) !important;
+  border-color: rgba(35,215,255,.45) !important;
+  box-shadow:
+    0 0 32px rgba(35,215,255,.14),
+    inset 0 1px 0 rgba(255,255,255,.055) !important;
+}
+
+.soc-unique-panel {
+  max-width: 1240px !important;
+  margin: 0 auto 26px auto !important;
+  padding: 18px 22px !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(168,85,247,0.28) !important;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(168,85,247,0.15), transparent 32%),
+    linear-gradient(135deg, rgba(6,22,42,0.98), rgba(18,25,60,0.94)) !important;
+  box-shadow:
+    0 0 30px rgba(168,85,247,0.09),
+    inset 0 1px 0 rgba(255,255,255,0.045) !important;
+}
+
+.soc-unique-eyebrow {
+  color: #a78bfa !important;
+  font-size: 0.72rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 6px !important;
+}
+
+.soc-unique-title {
+  color: #eaf6ff !important;
+  font-size: 1.30rem !important;
+  font-weight: 900 !important;
+  line-height: 1.15 !important;
+}
+
+.soc-unique-subtitle {
+  color: #aebfd0 !important;
+  font-size: 0.90rem !important;
+  margin-top: 6px !important;
+}
+
+.soc-unique-pills {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 12px !important;
+}
+
+.soc-unique-pills span {
+  color: #dcecff !important;
+  background: rgba(168,85,247,0.10) !important;
+  border: 1px solid rgba(168,85,247,0.22) !important;
+  border-radius: 999px !important;
+  padding: 6px 10px !important;
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+}
+
+.soc-unique-table-shell {
+  max-width: 1480px !important;
+  margin: 26px auto 50px auto !important;
+  border-radius: 28px !important;
+  border: 1px solid rgba(168,85,247,0.22) !important;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(168,85,247,0.08), transparent 34%),
+    linear-gradient(145deg, rgba(7,20,38,0.96), rgba(4,14,28,0.99)) !important;
+  box-shadow:
+    0 0 30px rgba(168,85,247,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.035) !important;
+  overflow: visible !important;
+}
+
+.soc-unique-table-shell .dash-table-container,
+.soc-unique-table-shell .dash-spreadsheet-container,
+.soc-unique-table-shell .dash-spreadsheet-inner {
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+}
+
+.soc-unique-table-shell .dash-spreadsheet-inner table {
+  min-width: 1780px !important;
+}
+
+.soc-unique-table-shell .dash-header,
+.soc-unique-table-shell th {
+  background: rgba(13,22,52,0.98) !important;
+  color: #c4b5fd !important;
+  font-size: 0.72rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.045em !important;
+  text-transform: uppercase !important;
+  border-color: rgba(168,85,247,0.22) !important;
+}
+
+.soc-unique-table-shell .dash-cell,
+.soc-unique-table-shell td {
+  background: rgba(8,18,38,0.80) !important;
+  color: #dcecff !important;
+  font-size: 0.76rem !important;
+  line-height: 1.25 !important;
+  border-color: rgba(168,85,247,0.095) !important;
+}
+
+.soc-unique-table-shell tr:nth-child(even) .dash-cell,
+.soc-unique-table-shell tr:nth-child(even) td {
+  background: rgba(10,24,48,0.84) !important;
+}
+
+.soc-unique-table-shell tr:hover .dash-cell,
+.soc-unique-table-shell tr:hover td {
+  background: rgba(35,35,82,0.90) !important;
+  color: #ffffff !important;
+}
+
+.soc-unique-table-shell td[data-dash-column="familia_control"],
+.soc-unique-table-shell td[data-dash-column="control_soc"],
+.soc-unique-table-shell td[data-dash-column="severidad"],
+.soc-unique-table-shell td[data-dash-column="resultado_control"] {
+  font-weight: 900 !important;
+}
+
+.soc-unique-table-shell td[data-dash-column="evidencia"],
+.soc-unique-table-shell .dash-cell[data-dash-column="evidencia"] {
+  min-width: 560px !important;
+  max-width: 760px !important;
+  white-space: normal !important;
+  color: #b9cade !important;
+  font-size: 0.74rem !important;
+}
+
+.soc-unique-table-shell *::-webkit-scrollbar {
+  height: 12px !important;
+  width: 10px !important;
+}
+
+.soc-unique-table-shell *::-webkit-scrollbar-track {
+  background: rgba(3, 12, 24, 0.96) !important;
+  border-radius: 999px !important;
+}
+
+.soc-unique-table-shell *::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, rgba(168,85,247,0.55), rgba(35,215,255,0.45)) !important;
+  border-radius: 999px !important;
+  border: 2px solid rgba(3, 12, 24, 0.96) !important;
+}
+
+@media (max-width: 1250px) {
+  .soc-unique-kpi-grid {
+    max-width: 860px !important;
+    grid-template-columns: repeat(2, minmax(260px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .soc-unique-kpi-grid {
+    max-width: 100% !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .soc-unique-panel,
+  .soc-unique-table-shell {
+    max-width: 100% !important;
+  }
+}

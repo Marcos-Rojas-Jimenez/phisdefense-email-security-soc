@@ -1,0 +1,55 @@
+/* =========================================================
+   PhisDefense SOC - SMTP Typography Fix Robusto
+   Mejora tipografía de la fila Seguridad SMTP.
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+.smtp-visual-chart-row,
+.smtp-visual-chart-row * {
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: geometricPrecision !important;
+}
+
+/* Títulos y ejes Plotly */
+.smtp-visual-chart-row .gtitle,
+.smtp-visual-chart-row .xtitle,
+.smtp-visual-chart-row .ytitle {
+  font-weight: 850 !important;
+  letter-spacing: -0.015em !important;
+}
+
+/* Ticks de ejes */
+.smtp-visual-chart-row .ytick text,
+.smtp-visual-chart-row .xtick text {
+  font-weight: 750 !important;
+  fill: #eaf6ff !important;
+}
+
+/* Valores de las barras */
+.smtp-visual-chart-row .bartext,
+.smtp-visual-chart-row .pointtext {
+  font-weight: 900 !important;
+  fill: #eaf6ff !important;
+  text-shadow: 0 0 8px rgba(0,0,0,0.45) !important;
+}
+
+/* Panel Cobertura defensiva */
+.smtp-coverage-title {
+  font-weight: 950 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.smtp-coverage-subtitle {
+  color: #b7c8dc !important;
+  font-weight: 500 !important;
+}
+
+.smtp-coverage-item-title {
+  font-weight: 900 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.smtp-coverage-item-text {
+  color: #c1ccda !important;
+  font-weight: 500 !important;
+}

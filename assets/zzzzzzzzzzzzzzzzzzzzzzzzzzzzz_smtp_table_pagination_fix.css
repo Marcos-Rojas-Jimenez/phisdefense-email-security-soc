@@ -1,0 +1,136 @@
+/* =========================================================
+   PhisDefense SOC - SMTP Table Pagination Fix
+   Recupera paginación visible en tabla Seguridad SMTP.
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+/* Que el panel de la tabla no corte la paginación inferior */
+.smtp-table-shell,
+.smtp-visual-table-shell,
+.soc-tests-table-shell,
+.soc-unique-table-shell {
+  overflow: visible !important;
+  padding-bottom: 34px !important;
+}
+
+/* Contenedor Dash Table */
+.smtp-table-shell .dash-table-container,
+.smtp-visual-table-shell .dash-table-container,
+.soc-tests-table-shell .dash-table-container,
+.soc-unique-table-shell .dash-table-container {
+  overflow: visible !important;
+  padding-bottom: 18px !important;
+}
+
+/* La zona interna puede tener scroll horizontal, pero no debe ocultar controles */
+.smtp-table-shell .dash-spreadsheet-container,
+.smtp-visual-table-shell .dash-spreadsheet-container,
+.soc-tests-table-shell .dash-spreadsheet-container,
+.soc-unique-table-shell .dash-spreadsheet-container {
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+}
+
+/* Botones de paginación Dash */
+.smtp-table-shell .previous-next-container,
+.smtp-visual-table-shell .previous-next-container,
+.soc-tests-table-shell .previous-next-container,
+.soc-unique-table-shell .previous-next-container {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 8px !important;
+  margin-top: 14px !important;
+  padding: 8px 4px 2px 4px !important;
+  color: #dcecff !important;
+}
+
+/* Números de página */
+.smtp-table-shell .page-number,
+.smtp-visual-table-shell .page-number,
+.soc-tests-table-shell .page-number,
+.soc-unique-table-shell .page-number,
+.smtp-table-shell .current-page-container,
+.smtp-visual-table-shell .current-page-container,
+.soc-tests-table-shell .current-page-container,
+.soc-unique-table-shell .current-page-container {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #dcecff !important;
+  font-size: 0.82rem !important;
+  font-weight: 800 !important;
+}
+
+/* Botones primero/anterior/siguiente/último */
+.smtp-table-shell button,
+.smtp-visual-table-shell button,
+.soc-tests-table-shell button,
+.soc-unique-table-shell button {
+  visibility: visible !important;
+}
+
+/* Botones de paginación concretos */
+.smtp-table-shell .first-page,
+.smtp-table-shell .previous-page,
+.smtp-table-shell .next-page,
+.smtp-table-shell .last-page,
+.smtp-visual-table-shell .first-page,
+.smtp-visual-table-shell .previous-page,
+.smtp-visual-table-shell .next-page,
+.smtp-visual-table-shell .last-page,
+.soc-tests-table-shell .first-page,
+.soc-tests-table-shell .previous-page,
+.soc-tests-table-shell .next-page,
+.soc-tests-table-shell .last-page,
+.soc-unique-table-shell .first-page,
+.soc-unique-table-shell .previous-page,
+.soc-unique-table-shell .next-page,
+.soc-unique-table-shell .last-page {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  min-width: 34px !important;
+  min-height: 30px !important;
+
+  border-radius: 10px !important;
+  border: 1px solid rgba(35,215,255,0.22) !important;
+  background: rgba(8,30,54,0.92) !important;
+  color: #eaf6ff !important;
+
+  cursor: pointer !important;
+}
+
+/* Hover de controles */
+.smtp-table-shell .first-page:hover,
+.smtp-table-shell .previous-page:hover,
+.smtp-table-shell .next-page:hover,
+.smtp-table-shell .last-page:hover,
+.smtp-visual-table-shell .first-page:hover,
+.smtp-visual-table-shell .previous-page:hover,
+.smtp-visual-table-shell .next-page:hover,
+.smtp-visual-table-shell .last-page:hover,
+.soc-tests-table-shell .first-page:hover,
+.soc-tests-table-shell .previous-page:hover,
+.soc-tests-table-shell .next-page:hover,
+.soc-tests-table-shell .last-page:hover,
+.soc-unique-table-shell .first-page:hover,
+.soc-unique-table-shell .previous-page:hover,
+.soc-unique-table-shell .next-page:hover,
+.soc-unique-table-shell .last-page:hover {
+  border-color: rgba(35,215,255,0.48) !important;
+  background: rgba(35,215,255,0.12) !important;
+}
+
+/* Filtros y cabeceras legibles */
+.smtp-table-shell .dash-filter input,
+.smtp-visual-table-shell .dash-filter input,
+.soc-tests-table-shell .dash-filter input,
+.soc-unique-table-shell .dash-filter input {
+  display: block !important;
+  min-height: 28px !important;
+  font-size: 0.72rem !important;
+}

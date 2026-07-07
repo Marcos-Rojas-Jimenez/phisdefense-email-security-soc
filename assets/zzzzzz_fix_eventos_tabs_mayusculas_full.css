@@ -1,0 +1,150 @@
+/* =========================================================
+   PhisDefense SOC - Tabs Eventos MAYÚSCULAS sin cortes
+   Corrige texto cortado/solapado en subpestañas de Eventos.
+   ========================================================= */
+
+/* Contenedor principal: scroll horizontal real */
+.events-type-tabs-parent,
+.events-type-tabs {
+  width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  white-space: nowrap !important;
+}
+
+/* Fila interna de tabs */
+.events-type-tabs-parent > div:first-child,
+.events-type-tabs > div:first-child {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  gap: 10px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  white-space: nowrap !important;
+  padding-bottom: 9px !important;
+}
+
+/* Tabs normales y seleccionadas */
+.events-type-tab,
+.events-type-tab-selected,
+.events-type-tabs .tab,
+.events-type-tabs-parent .tab,
+.events-type-tabs .tab--selected,
+.events-type-tabs-parent .tab--selected {
+  flex: 0 0 auto !important;
+
+  /* Clave: ancho variable, pero suficiente para textos largos */
+  width: auto !important;
+  min-width: 150px !important;
+  max-width: none !important;
+
+  height: 56px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  overflow: visible !important;
+  white-space: nowrap !important;
+  text-overflow: clip !important;
+
+  padding: 0 18px !important;
+  margin: 0 !important;
+
+  font-size: 0.80rem !important;
+  line-height: 1 !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.045em !important;
+  text-transform: uppercase !important;
+
+  border-radius: 16px 16px 0 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Texto interno: mayúsculas y sin ellipsis */
+.events-type-tab *,
+.events-type-tab-selected *,
+.events-type-tabs .tab *,
+.events-type-tabs-parent .tab *,
+.events-type-tabs .tab--selected *,
+.events-type-tabs-parent .tab--selected * {
+  max-width: none !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  text-overflow: clip !important;
+  display: inline-block !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.045em !important;
+}
+
+/* Estado normal */
+.events-type-tab,
+.events-type-tabs .tab,
+.events-type-tabs-parent .tab {
+  background:
+    linear-gradient(135deg, rgba(16,43,71,0.88), rgba(7,20,38,0.96)) !important;
+  color: #9fb6ca !important;
+  border: 1px solid rgba(35,215,255,0.18) !important;
+}
+
+/* Hover */
+.events-type-tab:hover,
+.events-type-tabs .tab:hover,
+.events-type-tabs-parent .tab:hover {
+  color: #ecf6ff !important;
+  border-color: rgba(35,215,255,0.42) !important;
+  box-shadow: 0 0 18px rgba(35,215,255,0.12) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Seleccionada */
+.events-type-tab-selected,
+.events-type-tabs .tab--selected,
+.events-type-tabs-parent .tab--selected {
+  background:
+    linear-gradient(135deg, rgba(35,215,255,0.22), rgba(47,140,255,0.11)) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(35,215,255,0.60) !important;
+  box-shadow:
+    0 0 24px rgba(35,215,255,0.20),
+    inset 0 3px 0 #23d7ff !important;
+}
+
+/* Scrollbar de subpestañas */
+.events-type-tabs-parent ::-webkit-scrollbar,
+.events-type-tabs ::-webkit-scrollbar {
+  height: 10px !important;
+}
+
+.events-type-tabs-parent ::-webkit-scrollbar-track,
+.events-type-tabs ::-webkit-scrollbar-track {
+  background: #06111f !important;
+  border-radius: 999px !important;
+}
+
+.events-type-tabs-parent ::-webkit-scrollbar-thumb,
+.events-type-tabs ::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #2f8cff, #23d7ff) !important;
+  border-radius: 999px !important;
+  border: 2px solid #06111f !important;
+}
+
+.events-type-tabs-parent ::-webkit-scrollbar-thumb:hover,
+.events-type-tabs ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #23d7ff, #35d07f) !important;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .events-type-tab,
+  .events-type-tab-selected,
+  .events-type-tabs .tab,
+  .events-type-tabs-parent .tab,
+  .events-type-tabs .tab--selected,
+  .events-type-tabs-parent .tab--selected {
+    min-width: 135px !important;
+    padding: 0 14px !important;
+    font-size: 0.74rem !important;
+  }
+}

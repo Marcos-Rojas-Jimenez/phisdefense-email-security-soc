@@ -1,0 +1,90 @@
+/* =========================================================
+   PhisDefense SOC - Tabla resumen ubicación final en Informes
+   ========================================================= */
+
+.location-summary-shell {
+  margin-top: 22px !important;
+}
+
+.location-summary-wrapper {
+  overflow-x: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(35, 215, 255, 0.22);
+  background: rgba(3, 9, 20, 0.35);
+}
+
+.location-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #ecf6ff;
+  font-family: Inter, Segoe UI, Arial, sans-serif;
+}
+
+.location-summary-table thead th {
+  background: #102b47;
+  color: #23d7ff;
+  text-transform: uppercase;
+  letter-spacing: 0.055em;
+  font-size: 0.78rem;
+  font-weight: 950;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(35, 215, 255, 0.24);
+}
+
+.location-summary-table tbody td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(35, 215, 255, 0.10);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.loc-cell-category {
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+}
+
+.loc-cell-number,
+.loc-cell-percent {
+  text-align: center;
+  font-weight: 950 !important;
+}
+
+.loc-row-spam td {
+  background: rgba(249, 115, 22, 0.12);
+  color: #fed7aa;
+}
+
+.loc-row-rejected td {
+  background: rgba(239, 68, 68, 0.13);
+  color: #fecaca;
+}
+
+.loc-row-delivered td {
+  background: rgba(34, 197, 94, 0.12);
+  color: #bbf7d0;
+}
+
+.loc-row-technical td {
+  background: rgba(168, 85, 247, 0.13);
+  color: #e9d5ff;
+}
+
+.loc-row-other td {
+  background: rgba(56, 189, 248, 0.10);
+  color: #bae6fd;
+}
+
+.loc-row-total td {
+  background: rgba(35, 215, 255, 0.13);
+  color: #ffffff;
+  border-top: 1px solid rgba(35, 215, 255, 0.28);
+}
+
+.loc-total {
+  font-size: 1rem !important;
+  font-weight: 950 !important;
+}
+
+.location-summary-table tbody tr:hover td {
+  filter: brightness(1.12);
+}

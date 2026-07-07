@@ -1,0 +1,42 @@
+/* =========================================================
+   PhisDefense SOC - Cronología Plotly Layout Fix
+   Evita solape título / leyenda / botones / gráfica.
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+.cronologia-chart-shell {
+  margin-top: 24px !important;
+}
+
+/* Permitir que elementos superiores de Plotly respiren dentro del frame */
+.cronologia-chart-shell .chart-frame {
+  min-height: 485px !important;
+  padding-top: 4px !important;
+  overflow: hidden !important;
+}
+
+/* Dar altura real al gráfico tras aumentar margen superior */
+.cronologia-chart-shell .dash-graph {
+  min-height: 455px !important;
+}
+
+/* Ajuste visual de la zona SVG para que no parezca pegada al borde */
+.cronologia-chart-shell .js-plotly-plot {
+  border-radius: 26px !important;
+}
+
+/* El range slider queda fino y separado del eje */
+.cronologia-chart-shell .rangeslider-container {
+  opacity: .92 !important;
+}
+
+/* Menos ruido visual en modo responsive */
+@media (max-width: 900px) {
+  .cronologia-chart-shell .chart-frame {
+    min-height: 500px !important;
+  }
+
+  .cronologia-chart-shell .dash-graph {
+    min-height: 470px !important;
+  }
+}

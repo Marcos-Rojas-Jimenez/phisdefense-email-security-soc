@@ -1,0 +1,124 @@
+/* =========================================================
+   PhisDefense SOC - Eventos por tipo
+   Subpestañas dentro de Eventos.
+   ========================================================= */
+
+.events-type-shell {
+  margin-top: 18px !important;
+}
+
+.events-type-tabs-parent {
+  margin-top: 16px !important;
+}
+
+.events-type-tabs {
+  border-radius: 18px !important;
+}
+
+/* Tabs */
+.events-type-tab {
+  background:
+    linear-gradient(135deg, rgba(16,43,71,0.88), rgba(7,20,38,0.96)) !important;
+  color: #90a8bf !important;
+  border: 1px solid rgba(35,215,255,0.16) !important;
+  border-radius: 14px 14px 0 0 !important;
+  padding: 10px 14px !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.015em !important;
+  margin-right: 6px !important;
+  transition: all 0.16s ease !important;
+}
+
+.events-type-tab:hover {
+  color: #ecf6ff !important;
+  border-color: rgba(35,215,255,0.36) !important;
+  box-shadow: 0 0 18px rgba(35,215,255,0.10) !important;
+}
+
+.events-type-tab-selected {
+  background:
+    linear-gradient(135deg, rgba(35,215,255,0.18), rgba(47,140,255,0.10)) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(35,215,255,0.48) !important;
+  box-shadow:
+    0 0 22px rgba(35,215,255,0.16),
+    inset 0 3px 0 #23d7ff !important;
+}
+
+/* Panel */
+.events-type-panel {
+  padding: 18px 0 0 0 !important;
+}
+
+.events-type-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+  padding: 13px 15px;
+
+  border-radius: 16px;
+  border: 1px solid rgba(35,215,255,0.20);
+
+  background:
+    linear-gradient(90deg, rgba(7,20,38,0.90), rgba(13,34,56,0.82));
+  box-shadow:
+    0 0 18px rgba(35,215,255,0.055),
+    inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+.events-type-title {
+  color: #ecf6ff;
+  font-size: 1.04rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.events-type-count {
+  color: #23d7ff;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(35,215,255,0.32);
+  background: rgba(35,215,255,0.09);
+}
+
+/* Mejor scroll horizontal de tabs si hay muchos tipos */
+.events-type-tabs-parent > div:first-child {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  white-space: nowrap !important;
+  padding-bottom: 4px !important;
+}
+
+/* Scrollbar tabs */
+.events-type-tabs-parent ::-webkit-scrollbar {
+  height: 8px;
+}
+
+.events-type-tabs-parent ::-webkit-scrollbar-track {
+  background: #06111f;
+}
+
+.events-type-tabs-parent ::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #2f8cff, #23d7ff);
+  border-radius: 999px;
+}
+
+/* Evitar tooltips blancos */
+.dash-table-tooltip,
+.dash-tooltip,
+[class*="tooltip"],
+[class*="Tooltip"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

@@ -1,0 +1,114 @@
+/* =========================================================
+   PhisDefense SOC - SMTP Coverage Pills Fix
+   Corrige corte inferior de pills y separación con tabla.
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+/* La fila completa necesita altura real suficiente */
+.smtp-visual-chart-row {
+  align-items: stretch !important;
+  margin-top: 28px !important;
+  margin-bottom: 54px !important;
+  overflow: visible !important;
+}
+
+/* Gráfica izquierda alineada con panel derecho */
+.smtp-visual-chart-row .chart-frame {
+  min-height: 460px !important;
+  max-height: none !important;
+  overflow: hidden !important;
+}
+
+.smtp-visual-chart-row .chart-frame .dash-graph {
+  min-height: 460px !important;
+}
+
+/* Columna derecha sin recortes */
+.smtp-visual-chart-row > .col-lg-5 {
+  display: flex !important;
+  overflow: visible !important;
+}
+
+.smtp-visual-chart-row > .col-lg-5 > .smtp-coverage-panel {
+  width: 100% !important;
+}
+
+/* Panel derecho: más aire inferior para pills */
+.smtp-coverage-panel {
+  min-height: 460px !important;
+  max-height: none !important;
+  height: auto !important;
+  overflow: visible !important;
+  padding: 24px 28px 38px 28px !important;
+  margin-bottom: 0 !important;
+}
+
+/* Compactar ligeramente items para que todo entre con aire */
+.smtp-coverage-list {
+  gap: 9px !important;
+  margin-top: 17px !important;
+}
+
+.smtp-coverage-item {
+  padding: 11px 15px 11px 18px !important;
+}
+
+.smtp-coverage-item-title {
+  font-size: 0.84rem !important;
+  margin-bottom: 3px !important;
+}
+
+.smtp-coverage-item-text {
+  font-size: 0.755rem !important;
+  line-height: 1.26 !important;
+}
+
+/* Pills siempre visibles, sin cortar */
+.smtp-coverage-pills {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 18px !important;
+  padding-bottom: 4px !important;
+  position: relative !important;
+  z-index: 3 !important;
+}
+
+.smtp-coverage-pills span {
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 30px !important;
+  line-height: 1 !important;
+  font-size: 0.70rem !important;
+  padding: 6px 10px !important;
+}
+
+/* La tabla inferior debe empezar bastante más abajo */
+.smtp-visual-table-shell,
+.smtp-table-shell {
+  margin-top: 42px !important;
+  clear: both !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Evitar que el frame/table-shell se monte encima por estilos previos */
+.smtp-visual-chart-row + .table-shell,
+.smtp-visual-chart-row + .smtp-table-shell,
+.smtp-visual-chart-row + .smtp-visual-table-shell {
+  margin-top: 42px !important;
+}
+
+/* En pantallas medianas, dejar que fluya naturalmente */
+@media (max-width: 991px) {
+  .smtp-visual-chart-row {
+    margin-bottom: 34px !important;
+  }
+
+  .smtp-visual-chart-row .chart-frame,
+  .smtp-visual-chart-row .chart-frame .dash-graph,
+  .smtp-coverage-panel {
+    min-height: auto !important;
+    max-height: none !important;
+  }
+}

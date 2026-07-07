@@ -1,0 +1,44 @@
+/* =========================================================
+   PhisDefense SOC - SMTP hide coverage pills
+   Limpia el panel Cobertura defensiva SMTP.
+   Oculta pills inferiores redundantes que salían fuera del panel.
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+/* Los pills eran redundantes y rompían el encuadre visual */
+.smtp-coverage-pills {
+  display: none !important;
+}
+
+/* Panel más limpio y sin exceso de altura */
+.smtp-coverage-panel {
+  min-height: 420px !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: hidden !important;
+  padding: 24px 28px 30px 28px !important;
+}
+
+/* Compactar la lista para que quede proporcionada */
+.smtp-coverage-list {
+  gap: 11px !important;
+  margin-top: 18px !important;
+}
+
+.smtp-coverage-item {
+  padding: 12px 15px 12px 18px !important;
+}
+
+.smtp-coverage-item-text {
+  line-height: 1.30 !important;
+}
+
+/* Separación correcta con la tabla inferior */
+.smtp-visual-chart-row {
+  margin-bottom: 40px !important;
+}
+
+.smtp-visual-table-shell,
+.smtp-table-shell {
+  margin-top: 32px !important;
+}

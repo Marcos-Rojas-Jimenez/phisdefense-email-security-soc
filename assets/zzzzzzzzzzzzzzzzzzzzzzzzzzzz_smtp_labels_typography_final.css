@@ -1,0 +1,101 @@
+/* =========================================================
+   PhisDefense SOC - SMTP Labels Typography Final
+   Corrige letras y legibilidad en Seguridad SMTP.
+   Solo CSS. Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+/* Gráfica + panel SMTP */
+.smtp-visual-chart-row,
+.smtp-visual-chart-row * {
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: geometricPrecision !important;
+}
+
+/* Plotly labels */
+.smtp-visual-chart-row .gtitle {
+  font-weight: 900 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.smtp-visual-chart-row .xtitle,
+.smtp-visual-chart-row .ytitle {
+  font-weight: 850 !important;
+}
+
+.smtp-visual-chart-row .ytick text,
+.smtp-visual-chart-row .xtick text {
+  font-weight: 750 !important;
+  fill: #eaf6ff !important;
+}
+
+.smtp-visual-chart-row .bartext,
+.smtp-visual-chart-row .pointtext {
+  font-weight: 900 !important;
+  fill: #eaf6ff !important;
+  text-shadow: 0 0 8px rgba(0,0,0,0.45) !important;
+}
+
+/* Tabla SMTP */
+.smtp-table-shell .dash-table-container,
+.smtp-visual-table-shell .dash-table-container,
+.soc-tests-table-shell .dash-table-container,
+.soc-unique-table-shell .dash-table-container {
+  font-family: Inter, "Segoe UI", system-ui, sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: geometricPrecision !important;
+}
+
+.smtp-table-shell .dash-header,
+.smtp-visual-table-shell .dash-header,
+.soc-tests-table-shell .dash-header,
+.soc-unique-table-shell .dash-header {
+  font-size: 0.74rem !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.055em !important;
+  color: #38f8ff !important;
+}
+
+.smtp-table-shell .dash-cell,
+.smtp-visual-table-shell .dash-cell,
+.soc-tests-table-shell .dash-cell,
+.soc-unique-table-shell .dash-cell {
+  font-size: 0.78rem !important;
+  line-height: 1.24 !important;
+  font-weight: 700 !important;
+  color: #eaf6ff !important;
+}
+
+/* IDs y rutas técnicas */
+.smtp-table-shell .dash-cell[data-dash-column="id_prueba"],
+.smtp-visual-table-shell .dash-cell[data-dash-column="id_prueba"],
+.soc-tests-table-shell .dash-cell[data-dash-column="id_prueba"],
+.soc-unique-table-shell .dash-cell[data-dash-column="id_prueba"],
+.smtp-table-shell .dash-cell[data-dash-column="evidencia"],
+.smtp-visual-table-shell .dash-cell[data-dash-column="evidencia"],
+.soc-tests-table-shell .dash-cell[data-dash-column="evidencia"],
+.soc-unique-table-shell .dash-cell[data-dash-column="evidencia"] {
+  font-family: "Cascadia Code", "Fira Code", Consolas, monospace !important;
+  font-size: 0.71rem !important;
+  color: #bff7ff !important;
+}
+
+/* Panel derecho SMTP */
+.smtp-coverage-title {
+  font-weight: 950 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.smtp-coverage-subtitle {
+  color: #b7c8dc !important;
+  font-weight: 500 !important;
+}
+
+.smtp-coverage-item-title {
+  font-weight: 900 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.smtp-coverage-item-text {
+  color: #c1ccda !important;
+  font-weight: 500 !important;
+}

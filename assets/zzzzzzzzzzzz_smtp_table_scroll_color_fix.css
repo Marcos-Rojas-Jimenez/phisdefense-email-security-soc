@@ -1,0 +1,114 @@
+/* =========================================================
+   PhisDefense SOC - SMTP table scroll/color fix
+   Restaura scroll horizontal y alinea colores por clasificación.
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+.smtp-table-shell {
+  overflow: visible !important;
+}
+
+/* Restaurar scroll horizontal real */
+.smtp-table-shell .dash-table-container,
+.smtp-table-shell .dash-spreadsheet-container,
+.smtp-table-shell .dash-spreadsheet-inner {
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+}
+
+.smtp-table-shell .dash-spreadsheet-container {
+  padding-bottom: 16px !important;
+}
+
+/* Forzar ancho suficiente para que aparezca scrollbar horizontal */
+.smtp-table-shell .dash-spreadsheet-inner table {
+  min-width: 1680px !important;
+}
+
+/* Evitar cortes agresivos en la columna evidencia */
+.smtp-table-shell td[data-dash-column="evidencia"],
+.smtp-table-shell .dash-cell[data-dash-column="evidencia"] {
+  min-width: 520px !important;
+  max-width: 720px !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: initial !important;
+}
+
+/* Anchos estables por columna */
+.smtp-table-shell td[data-dash-column="id_prueba"],
+.smtp-table-shell th[data-dash-column="id_prueba"] {
+  min-width: 120px !important;
+}
+
+.smtp-table-shell td[data-dash-column="tipo"],
+.smtp-table-shell th[data-dash-column="tipo"] {
+  min-width: 190px !important;
+}
+
+.smtp-table-shell td[data-dash-column="clasificacion_real"],
+.smtp-table-shell th[data-dash-column="clasificacion_real"] {
+  min-width: 180px !important;
+}
+
+.smtp-table-shell td[data-dash-column="origen"],
+.smtp-table-shell th[data-dash-column="origen"] {
+  min-width: 240px !important;
+}
+
+.smtp-table-shell td[data-dash-column="destino"],
+.smtp-table-shell th[data-dash-column="destino"] {
+  min-width: 260px !important;
+}
+
+/* Scrollbar visible y estética SOC */
+.smtp-table-shell *::-webkit-scrollbar {
+  height: 12px !important;
+  width: 10px !important;
+}
+
+.smtp-table-shell *::-webkit-scrollbar-track {
+  background: rgba(3, 12, 24, 0.96) !important;
+  border-radius: 999px !important;
+}
+
+.smtp-table-shell *::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, rgba(35,215,255,0.45), rgba(168,85,247,0.45)) !important;
+  border-radius: 999px !important;
+  border: 2px solid rgba(3, 12, 24, 0.96) !important;
+}
+
+.smtp-table-shell *::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, rgba(35,215,255,0.70), rgba(168,85,247,0.70)) !important;
+}
+
+/* Header fijo visualmente limpio */
+.smtp-table-shell .dash-header,
+.smtp-table-shell th {
+  background: rgba(8,30,54,0.98) !important;
+  color: #4de7ff !important;
+  border-color: rgba(35,215,255,0.22) !important;
+}
+
+/* Menos contraste morado global para que el color de clasificación mande */
+.smtp-table-shell .dash-cell,
+.smtp-table-shell td {
+  border-color: rgba(35,215,255,0.09) !important;
+}
+
+/* ID fuerte, pero sin romper alineación de color */
+.smtp-table-shell td[data-dash-column="id_prueba"] {
+  font-weight: 900 !important;
+  color: #eef8ff !important;
+}
+
+/* Clasificación como campo principal */
+.smtp-table-shell td[data-dash-column="clasificacion_real"] {
+  font-weight: 900 !important;
+}
+
+/* Evitar que el widget SOC LIVE tape el scroll inferior */
+.smtp-table-shell {
+  padding-bottom: 24px !important;
+  margin-bottom: 50px !important;
+}

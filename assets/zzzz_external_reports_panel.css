@@ -1,0 +1,90 @@
+.external-reports-shell {
+  margin-top: 22px !important;
+}
+
+.external-report-card {
+  min-height: 330px;
+  border-radius: 22px !important;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(35, 215, 255, 0.11), transparent 28%),
+    linear-gradient(145deg, rgba(16, 43, 71, 0.94), rgba(7, 20, 38, 0.98)) !important;
+  border: 1px solid rgba(35, 215, 255, 0.24) !important;
+  box-shadow:
+    0 0 26px rgba(35, 215, 255, 0.07),
+    inset 0 1px 0 rgba(255,255,255,0.04) !important;
+  overflow: hidden !important;
+}
+
+.external-report-card-google {
+  box-shadow:
+    0 0 26px rgba(56, 189, 248, 0.08),
+    inset 4px 0 0 rgba(56, 189, 248, 0.85) !important;
+}
+
+.external-report-card-tls {
+  box-shadow:
+    0 0 26px rgba(168, 85, 247, 0.09),
+    inset 4px 0 0 rgba(168, 85, 247, 0.85) !important;
+}
+
+.external-report-title {
+  color: #ecf6ff;
+  font-size: 1.12rem;
+  font-weight: 950;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.external-report-number {
+  color: #ffffff;
+  font-size: 2.35rem;
+  font-weight: 950;
+  line-height: 1;
+  text-shadow: 0 0 18px rgba(35, 215, 255, 0.16);
+}
+
+.external-report-subtitle {
+  color: #90a8bf;
+  font-size: 0.86rem;
+  font-weight: 750;
+  margin-top: 6px;
+  margin-bottom: 18px;
+}
+
+.external-report-label {
+  color: #23d7ff;
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.055em;
+  margin-bottom: 6px;
+}
+
+.external-report-code {
+  display: block;
+  color: #bae6fd !important;
+  background: rgba(3, 9, 20, 0.55) !important;
+  border: 1px solid rgba(35, 215, 255, 0.16);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 14px;
+}
+
+.external-report-pre {
+  color: #d8e8f5;
+  background: rgba(3, 9, 20, 0.48);
+  border: 1px solid rgba(35, 215, 255, 0.14);
+  border-radius: 12px;
+  padding: 12px 13px;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  max-height: 145px;
+  overflow: auto;
+  white-space: pre-wrap;
+}

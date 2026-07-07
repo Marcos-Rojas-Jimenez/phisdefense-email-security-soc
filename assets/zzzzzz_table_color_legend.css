@@ -1,0 +1,103 @@
+/* =========================================================
+   PhisDefense SOC - Leyenda de colores de tabla
+   ========================================================= */
+
+.phis-table-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  margin: 12px 0 14px 0;
+  padding: 11px 13px;
+  border-radius: 16px;
+  border: 1px solid rgba(35, 215, 255, 0.18);
+  background:
+    linear-gradient(90deg, rgba(7, 20, 38, 0.88), rgba(13, 34, 56, 0.72));
+  box-shadow:
+    0 0 18px rgba(35, 215, 255, 0.045),
+    inset 0 1px 0 rgba(255,255,255,0.025);
+}
+
+.phis-table-legend-title {
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.065em;
+  color: #90a8bf;
+  margin-right: 3px;
+  white-space: nowrap;
+}
+
+.phis-table-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 0.73rem;
+  font-weight: 850;
+  letter-spacing: 0.015em;
+  white-space: nowrap;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.phis-table-legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.phis-legend-legit {
+  color: #bbf7d0;
+  background: rgba(34,197,94,0.105);
+}
+
+.phis-legend-legit .phis-table-legend-dot {
+  background: #22c55e;
+}
+
+.phis-legend-spoof {
+  color: #fecaca;
+  background: rgba(239,68,68,0.115);
+}
+
+.phis-legend-spoof .phis-table-legend-dot {
+  background: #ef4444;
+}
+
+.phis-legend-warning {
+  color: #fef08a;
+  background: rgba(250,204,21,0.105);
+}
+
+.phis-legend-warning .phis-table-legend-dot {
+  background: #facc15;
+}
+
+.phis-legend-lookalike {
+  color: #fed7aa;
+  background: rgba(249,115,22,0.115);
+}
+
+.phis-legend-lookalike .phis-table-legend-dot {
+  background: #f97316;
+}
+
+.phis-legend-soc {
+  color: #e9d5ff;
+  background: rgba(168,85,247,0.115);
+}
+
+.phis-legend-soc .phis-table-legend-dot {
+  background: #a855f7;
+}
+
+.phis-legend-info {
+  color: #bae6fd;
+  background: rgba(56,189,248,0.105);
+}
+
+.phis-legend-info .phis-table-legend-dot {
+  background: #38bdf8;
+}

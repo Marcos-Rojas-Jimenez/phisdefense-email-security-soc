@@ -1,0 +1,331 @@
+/* =========================================================
+   PhisDefense SOC - Tables Typography Global
+   Mejora legibilidad de TODAS las tablas Dash.
+   Solo CSS. Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+/* =========================================================
+   BASE GENERAL TABLAS
+   ========================================================= */
+
+.dash-table-container,
+.dash-spreadsheet-container,
+.dash-spreadsheet-inner {
+  font-family:
+    Inter,
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Roboto",
+    "Helvetica Neue",
+    Arial,
+    sans-serif !important;
+
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: geometricPrecision !important;
+}
+
+/* Frame general */
+.table-shell .dash-table-container,
+.smtp-table-shell .dash-table-container,
+.smtp-visual-table-shell .dash-table-container,
+.soc-tests-table-shell .dash-table-container,
+.soc-unique-table-shell .dash-table-container {
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(35, 215, 255, 0.16) !important;
+  background: rgba(2, 10, 22, 0.78) !important;
+}
+
+/* =========================================================
+   CABECERAS
+   ========================================================= */
+
+.dash-table-container .dash-header,
+.dash-table-container th,
+.dash-spreadsheet-container .dash-header,
+.dash-spreadsheet-container th {
+  background:
+    linear-gradient(180deg, rgba(8, 34, 61, 0.98), rgba(4, 18, 36, 0.98)) !important;
+
+  color: #38f8ff !important;
+
+  font-family:
+    Inter,
+    "Segoe UI",
+    system-ui,
+    sans-serif !important;
+
+  font-size: 0.75rem !important;
+  line-height: 1.12 !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.055em !important;
+  text-transform: uppercase !important;
+
+  border-color: rgba(35, 215, 255, 0.22) !important;
+  padding: 9px 10px !important;
+
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+}
+
+/* Iconos de ordenación */
+.dash-table-container .dash-header .column-header--sort,
+.dash-table-container .dash-header span {
+  color: #9eeaff !important;
+}
+
+/* =========================================================
+   CELDAS
+   ========================================================= */
+
+.dash-table-container .dash-cell,
+.dash-spreadsheet-container .dash-cell,
+.dash-table-container td,
+.dash-spreadsheet-container td {
+  background: rgba(2, 10, 22, 0.95) !important;
+  color: #eaf6ff !important;
+
+  font-family:
+    Inter,
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Roboto",
+    "Helvetica Neue",
+    Arial,
+    sans-serif !important;
+
+  font-size: 0.78rem !important;
+  line-height: 1.26 !important;
+  font-weight: 650 !important;
+
+  border-color: rgba(35, 215, 255, 0.095) !important;
+  padding: 9px 10px !important;
+
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+
+  height: auto !important;
+  min-height: 42px !important;
+}
+
+/* Hover de fila */
+.dash-table-container tr:hover .dash-cell,
+.dash-spreadsheet-container tr:hover .dash-cell,
+.dash-table-container tr:hover td,
+.dash-spreadsheet-container tr:hover td {
+  background: rgba(8, 36, 62, 0.96) !important;
+  color: #ffffff !important;
+}
+
+/* Celdas seleccionadas/foco */
+.dash-table-container .dash-cell.focused,
+.dash-table-container .dash-cell.cell--selected,
+.dash-spreadsheet-container .dash-cell.focused,
+.dash-spreadsheet-container .dash-cell.cell--selected {
+  outline: none !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(56, 248, 255, 0.48),
+    0 0 18px rgba(56, 248, 255, 0.12) !important;
+  background: rgba(10, 42, 70, 0.98) !important;
+}
+
+/* =========================================================
+   FILTROS
+   ========================================================= */
+
+.dash-table-container input,
+.dash-spreadsheet-container input,
+.dash-filter input {
+  min-height: 28px !important;
+  height: 28px !important;
+
+  border-radius: 10px !important;
+  border: 1px solid rgba(35, 215, 255, 0.22) !important;
+
+  background: rgba(2, 10, 22, 0.94) !important;
+  color: #eaf6ff !important;
+
+  font-family:
+    Inter,
+    "Segoe UI",
+    system-ui,
+    sans-serif !important;
+
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+
+  padding: 4px 8px !important;
+}
+
+.dash-table-container input:focus,
+.dash-spreadsheet-container input:focus,
+.dash-filter input:focus {
+  border-color: rgba(56, 248, 255, 0.55) !important;
+  box-shadow: 0 0 0 3px rgba(56, 248, 255, 0.10) !important;
+  outline: none !important;
+}
+
+/* Placeholder */
+.dash-table-container input::placeholder,
+.dash-spreadsheet-container input::placeholder,
+.dash-filter input::placeholder {
+  color: rgba(190, 220, 235, 0.58) !important;
+  font-weight: 650 !important;
+}
+
+/* =========================================================
+   COLUMNAS TÉCNICAS / RUTAS / IDS
+   ========================================================= */
+
+/* IDs de pruebas */
+.dash-cell[data-dash-column="id_prueba"],
+.dash-cell[data-dash-column="ID_PRUEBA"],
+.dash-cell[data-dash-column="id"],
+.dash-cell[data-dash-column="ID"] {
+  font-family:
+    "Cascadia Code",
+    "Fira Code",
+    Consolas,
+    "Courier New",
+    monospace !important;
+
+  font-size: 0.72rem !important;
+  font-weight: 750 !important;
+  color: #dffbff !important;
+}
+
+/* Rutas/evidencias/logs */
+.dash-cell[data-dash-column="evidencia"],
+.dash-cell[data-dash-column="Evidencia"],
+.dash-cell[data-dash-column="log"],
+.dash-cell[data-dash-column="ruta"],
+.dash-cell[data-dash-column="archivo"],
+.dash-cell[data-dash-column="queue_id"] {
+  font-family:
+    "Cascadia Code",
+    "Fira Code",
+    Consolas,
+    "Courier New",
+    monospace !important;
+
+  font-size: 0.70rem !important;
+  line-height: 1.22 !important;
+  color: #bff7ff !important;
+
+  overflow-wrap: anywhere !important;
+}
+
+/* Resultados OK/seguridad */
+.dash-cell[data-dash-column="resultado"],
+.dash-cell[data-dash-column="resultado_real"],
+.dash-cell[data-dash-column="resultado_esperado"],
+.dash-cell[data-dash-column="resultado_smtp"],
+.dash-cell[data-dash-column="ubicacion_final"],
+.dash-cell[data-dash-column="clasificacion_real"] {
+  font-weight: 850 !important;
+}
+
+/* MITRE / ATT&CK */
+.dash-cell[data-dash-column="mitre"],
+.dash-cell[data-dash-column="MITRE"],
+.dash-cell[data-dash-column="attck"],
+.dash-cell[data-dash-column="ATT&CK"] {
+  font-family:
+    "Cascadia Code",
+    "Fira Code",
+    Consolas,
+    "Courier New",
+    monospace !important;
+
+  color: #e9d5ff !important;
+  font-weight: 950 !important;
+  text-align: center !important;
+}
+
+/* =========================================================
+   TABLAS SMTP ESPECÍFICAS
+   ========================================================= */
+
+.smtp-table-shell .dash-cell,
+.smtp-visual-table-shell .dash-cell,
+.soc-tests-table-shell .dash-cell,
+.soc-unique-table-shell .dash-cell {
+  font-size: 0.77rem !important;
+  line-height: 1.24 !important;
+  padding: 8px 10px !important;
+}
+
+.smtp-table-shell .dash-header,
+.smtp-visual-table-shell .dash-header,
+.soc-tests-table-shell .dash-header,
+.soc-unique-table-shell .dash-header {
+  font-size: 0.74rem !important;
+  padding: 8px 10px !important;
+}
+
+/* =========================================================
+   TABLAS INFORMES / EXTERNAS
+   ========================================================= */
+
+.external-reports-shell .dash-cell,
+.email-threats-table-shell .dash-cell,
+.report-grid ~ .table-shell .dash-cell {
+  font-size: 0.77rem !important;
+}
+
+/* =========================================================
+   SCROLLBAR TABLAS
+   ========================================================= */
+
+.dash-table-container::-webkit-scrollbar,
+.dash-spreadsheet-container::-webkit-scrollbar,
+.dash-spreadsheet-inner::-webkit-scrollbar {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.dash-table-container::-webkit-scrollbar-track,
+.dash-spreadsheet-container::-webkit-scrollbar-track,
+.dash-spreadsheet-inner::-webkit-scrollbar-track {
+  background: rgba(2, 8, 23, 0.92) !important;
+  border-radius: 999px !important;
+}
+
+.dash-table-container::-webkit-scrollbar-thumb,
+.dash-spreadsheet-container::-webkit-scrollbar-thumb,
+.dash-spreadsheet-inner::-webkit-scrollbar-thumb {
+  background:
+    linear-gradient(180deg, rgba(56, 248, 255, 0.65), rgba(168, 85, 247, 0.58)) !important;
+  border-radius: 999px !important;
+  border: 2px solid rgba(2, 8, 23, 0.92) !important;
+}
+
+.dash-table-container::-webkit-scrollbar-thumb:hover,
+.dash-spreadsheet-container::-webkit-scrollbar-thumb:hover,
+.dash-spreadsheet-inner::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(180deg, rgba(56, 248, 255, 0.82), rgba(168, 85, 247, 0.78)) !important;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .dash-table-container .dash-cell,
+  .dash-spreadsheet-container .dash-cell {
+    font-size: 0.74rem !important;
+    padding: 8px !important;
+  }
+
+  .dash-table-container .dash-header,
+  .dash-spreadsheet-container .dash-header {
+    font-size: 0.70rem !important;
+    padding: 8px !important;
+  }
+}

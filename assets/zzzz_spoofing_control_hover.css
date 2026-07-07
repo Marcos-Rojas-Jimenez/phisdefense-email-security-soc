@@ -1,0 +1,103 @@
+/* =========================================================
+   PhisDefense SOC - Hover tarjetas Resultado anti-spoofing
+   Solo afecta a .spoof-control-stat.
+   ========================================================= */
+
+.spoof-control-stat {
+  position: relative !important;
+  overflow: hidden !important;
+
+  transition:
+    transform 0.16s ease,
+    border-color 0.16s ease,
+    box-shadow 0.16s ease,
+    background 0.16s ease !important;
+}
+
+/* Línea lateral base */
+.spoof-control-stat::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 3px;
+  border-radius: 999px;
+  background: rgba(35, 215, 255, 0.75);
+  opacity: 0.85;
+  transition: opacity 0.16s ease, width 0.16s ease, box-shadow 0.16s ease !important;
+}
+
+/* Hover genérico */
+.spoof-control-stat:hover {
+  transform: translateY(-3px) !important;
+  border-color: rgba(35, 215, 255, 0.42) !important;
+  background:
+    radial-gradient(circle at 14% 8%, rgba(35, 215, 255, 0.10), transparent 32%),
+    linear-gradient(145deg, rgba(16,43,71,0.96), rgba(7,20,38,0.99)) !important;
+  box-shadow:
+    0 0 30px rgba(35, 215, 255, 0.14),
+    inset 0 1px 0 rgba(255,255,255,0.055) !important;
+}
+
+.spoof-control-stat:hover::before {
+  width: 4px;
+  opacity: 1;
+  box-shadow: 0 0 16px rgba(35, 215, 255, 0.42);
+}
+
+/* Efecto específico por tarjeta */
+.spoof-control-grid .spoof-control-stat:nth-child(1)::before {
+  background: #ef4444;
+}
+
+.spoof-control-grid .spoof-control-stat:nth-child(1):hover {
+  border-color: rgba(239, 68, 68, 0.45) !important;
+  box-shadow:
+    0 0 30px rgba(239, 68, 68, 0.16),
+    inset 0 1px 0 rgba(255,255,255,0.055) !important;
+}
+
+.spoof-control-grid .spoof-control-stat:nth-child(2)::before {
+  background: #22c55e;
+}
+
+.spoof-control-grid .spoof-control-stat:nth-child(2):hover {
+  border-color: rgba(34, 197, 94, 0.45) !important;
+  box-shadow:
+    0 0 30px rgba(34, 197, 94, 0.16),
+    inset 0 1px 0 rgba(255,255,255,0.055) !important;
+}
+
+.spoof-control-grid .spoof-control-stat:nth-child(3)::before {
+  background: #f97316;
+}
+
+.spoof-control-grid .spoof-control-stat:nth-child(3):hover {
+  border-color: rgba(249, 115, 22, 0.45) !important;
+  box-shadow:
+    0 0 30px rgba(249, 115, 22, 0.16),
+    inset 0 1px 0 rgba(255,255,255,0.055) !important;
+}
+
+.spoof-control-grid .spoof-control-stat:nth-child(4)::before {
+  background: #a855f7;
+}
+
+.spoof-control-grid .spoof-control-stat:nth-child(4):hover {
+  border-color: rgba(168, 85, 247, 0.48) !important;
+  box-shadow:
+    0 0 30px rgba(168, 85, 247, 0.18),
+    inset 0 1px 0 rgba(255,255,255,0.055) !important;
+}
+
+/* Número un poco más vivo al hover */
+.spoof-control-stat:hover .spoof-control-value {
+  transform: scale(1.035);
+  transition: transform 0.16s ease, text-shadow 0.16s ease !important;
+}
+
+/* Texto secundario más claro en hover */
+.spoof-control-stat:hover .spoof-control-subtitle {
+  color: #d8e8f5 !important;
+}

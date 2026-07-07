@@ -1,0 +1,30 @@
+/* =========================================================
+   PhisDefense SOC - Entregabilidad portfolio refine
+   Compacta el panel explicativo para vista portfolio.
+   ========================================================= */
+
+.spam-explain-shell {
+  margin-top: 18px !important;
+  margin-bottom: 22px !important;
+  padding-bottom: 22px !important;
+}
+
+.spam-explain-card {
+  min-height: 128px !important;
+}
+
+.spam-explain-subtitle {
+  font-size: 0.84rem !important;
+  line-height: 1.28 !important;
+}
+
+/* Por si queda algún bloque largo anterior en caché/layout */
+.spam-explain-body {
+  display: none !important;
+}
+
+.spam-explain-green {
+  color: #bbf7d0;
+  background: rgba(34,197,94,0.14);
+  border: 1px solid rgba(34,197,94,0.30);
+}

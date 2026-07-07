@@ -1,0 +1,62 @@
+/* =========================================================
+   PhisDefense SOC - Anti white overlay table CSS
+   ========================================================= */
+
+.table-shell,
+.table-shell *,
+.dash-table-container,
+.dash-table-container *,
+.dash-spreadsheet-container,
+.dash-spreadsheet-container * {
+  color-scheme: dark !important;
+}
+
+.dash-table-tooltip,
+.dash-tooltip,
+[class*="tooltip"],
+[class*="Tooltip"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.dash-table-container tr:hover td,
+.dash-table-container tr:hover th,
+.dash-table-container tr:hover .dash-cell,
+.dash-spreadsheet-container tr:hover td,
+.dash-spreadsheet-container tr:hover th,
+.dash-spreadsheet-container tr:hover .dash-cell {
+  background: rgba(35, 215, 255, 0.075) !important;
+  background-color: rgba(35, 215, 255, 0.075) !important;
+  color: #ecf6ff !important;
+}
+
+.dash-cell:hover,
+td:hover,
+th:hover,
+.dash-cell.focused,
+.dash-cell.cell--selected,
+td.focused,
+td.cell--selected,
+th.focused,
+th.cell--selected {
+  background: #071426 !important;
+  background-color: #071426 !important;
+  color: #ecf6ff !important;
+  outline: none !important;
+  box-shadow: inset 0 0 0 1px rgba(35,215,255,.25) !important;
+}
+
+.dash-cell div,
+.dash-cell span,
+.dash-cell-value,
+td div,
+td span {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: inherit !important;
+}

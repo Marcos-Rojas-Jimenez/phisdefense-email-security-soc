@@ -1,0 +1,72 @@
+/* =========================================================
+   PhisDefense SOC - SMTP Coverage no cut
+   Corrige corte inferior del panel Cobertura defensiva SMTP.
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+/* La fila puede crecer lo necesario para no cortar contenido */
+.smtp-visual-chart-row {
+  align-items: stretch !important;
+  margin-bottom: 34px !important;
+}
+
+/* El frame izquierdo se mantiene compacto, pero no fuerza corte global */
+.smtp-visual-chart-row .chart-frame {
+  min-height: 420px !important;
+  max-height: none !important;
+  overflow: hidden !important;
+}
+
+/* Gráfica izquierda con altura suficiente */
+.smtp-visual-chart-row .chart-frame .dash-graph {
+  min-height: 420px !important;
+}
+
+/* Panel derecho: eliminar límite de altura que cortaba Trazabilidad SOC */
+.smtp-coverage-panel {
+  min-height: 420px !important;
+  max-height: none !important;
+  height: auto !important;
+  overflow: visible !important;
+  padding: 24px 28px 28px 28px !important;
+}
+
+/* Asegura que la columna derecha no recorte */
+.smtp-visual-chart-row > .col-lg-5 {
+  display: flex !important;
+  overflow: visible !important;
+}
+
+.smtp-visual-chart-row > .col-lg-5 > .smtp-coverage-panel {
+  width: 100% !important;
+}
+
+/* Compacta ligeramente para que todo entre sin sensación de bloque gigante */
+.smtp-coverage-list {
+  gap: 9px !important;
+  margin-top: 17px !important;
+}
+
+.smtp-coverage-item {
+  padding: 11px 15px 11px 18px !important;
+}
+
+.smtp-coverage-item-title {
+  font-size: 0.84rem !important;
+  margin-bottom: 3px !important;
+}
+
+.smtp-coverage-item-text {
+  font-size: 0.755rem !important;
+  line-height: 1.26 !important;
+}
+
+.smtp-coverage-pills {
+  margin-top: 15px !important;
+}
+
+/* La tabla de abajo no debe pegarse a la fila */
+.smtp-visual-table-shell,
+.smtp-table-shell {
+  margin-top: 24px !important;
+}

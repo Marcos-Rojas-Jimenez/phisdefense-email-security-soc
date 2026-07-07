@@ -1,0 +1,135 @@
+/* =========================================================
+   PhisDefense SOC - Fix tabs Eventos sin solapamiento
+   Corrige texto montado en subpestañas de Eventos.
+   ========================================================= */
+
+/* Contenedor de pestañas: scroll horizontal real */
+.events-type-tabs-parent,
+.events-type-tabs,
+.events-type-tabs-parent > div,
+.events-type-tabs > div {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  white-space: nowrap !important;
+}
+
+/* Fila interna de tabs */
+.events-type-tabs-parent > div:first-child,
+.events-type-tabs > div:first-child {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 8px !important;
+  align-items: stretch !important;
+  padding-bottom: 8px !important;
+}
+
+/* Tabs concretas generadas por dcc.Tab */
+.events-type-tab,
+.events-type-tab-selected,
+.events-type-tabs .tab,
+.events-type-tabs-parent .tab,
+.events-type-tabs .tab--selected,
+.events-type-tabs-parent .tab--selected {
+  flex: 0 0 auto !important;
+  min-width: 128px !important;
+  max-width: 170px !important;
+  height: 56px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+
+  padding: 0 14px !important;
+  margin: 0 !important;
+
+  font-size: 0.82rem !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.015em !important;
+
+  border-radius: 15px 15px 0 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Texto interior de cada tab */
+.events-type-tab *,
+.events-type-tab-selected *,
+.events-type-tabs .tab *,
+.events-type-tabs-parent .tab *,
+.events-type-tabs .tab--selected *,
+.events-type-tabs-parent .tab--selected * {
+  max-width: 100% !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+}
+
+/* Tab normal */
+.events-type-tab,
+.events-type-tabs .tab,
+.events-type-tabs-parent .tab {
+  background:
+    linear-gradient(135deg, rgba(16,43,71,0.88), rgba(7,20,38,0.96)) !important;
+  color: #9fb6ca !important;
+  border: 1px solid rgba(35,215,255,0.18) !important;
+}
+
+/* Hover */
+.events-type-tab:hover,
+.events-type-tabs .tab:hover,
+.events-type-tabs-parent .tab:hover {
+  color: #ecf6ff !important;
+  border-color: rgba(35,215,255,0.38) !important;
+  box-shadow: 0 0 16px rgba(35,215,255,0.10) !important;
+}
+
+/* Tab seleccionada */
+.events-type-tab-selected,
+.events-type-tabs .tab--selected,
+.events-type-tabs-parent .tab--selected {
+  background:
+    linear-gradient(135deg, rgba(35,215,255,0.20), rgba(47,140,255,0.10)) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(35,215,255,0.55) !important;
+  box-shadow:
+    0 0 22px rgba(35,215,255,0.18),
+    inset 0 3px 0 #23d7ff !important;
+}
+
+/* Scrollbar de tabs */
+.events-type-tabs-parent ::-webkit-scrollbar,
+.events-type-tabs ::-webkit-scrollbar {
+  height: 9px !important;
+}
+
+.events-type-tabs-parent ::-webkit-scrollbar-track,
+.events-type-tabs ::-webkit-scrollbar-track {
+  background: #06111f !important;
+  border-radius: 999px !important;
+}
+
+.events-type-tabs-parent ::-webkit-scrollbar-thumb,
+.events-type-tabs ::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #2f8cff, #23d7ff) !important;
+  border-radius: 999px !important;
+  border: 2px solid #06111f !important;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .events-type-tab,
+  .events-type-tab-selected,
+  .events-type-tabs .tab,
+  .events-type-tabs-parent .tab,
+  .events-type-tabs .tab--selected,
+  .events-type-tabs-parent .tab--selected {
+    min-width: 116px !important;
+    max-width: 145px !important;
+    font-size: 0.76rem !important;
+  }
+}

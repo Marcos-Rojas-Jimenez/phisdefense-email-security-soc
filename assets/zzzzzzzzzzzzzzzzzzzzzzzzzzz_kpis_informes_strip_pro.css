@@ -1,0 +1,192 @@
+/* =========================================================
+   PhisDefense SOC - KPIs Informes Strip Pro
+   Solo afecta a html.Section(cards, className="kpi-grid report-grid")
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+/* Grid específico de KPIs en pestaña Informes */
+.report-grid {
+  max-width: 1500px !important;
+  margin: 26px auto 34px auto !important;
+
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(185px, 1fr)) !important;
+  gap: 18px !important;
+
+  align-items: stretch !important;
+}
+
+/* Tarjeta KPI Informes */
+.report-grid .metric-card {
+  min-height: 148px !important;
+  border-radius: 24px !important;
+  position: relative !important;
+  overflow: hidden !important;
+
+  border: 1px solid rgba(35,215,255,0.24) !important;
+
+  background:
+    radial-gradient(circle at 12% 8%, rgba(35,215,255,0.10), transparent 36%),
+    radial-gradient(circle at 86% 0%, rgba(168,85,247,0.07), transparent 34%),
+    linear-gradient(145deg, rgba(13,42,70,0.96), rgba(4,15,30,0.99)) !important;
+
+  box-shadow:
+    0 0 26px rgba(35,215,255,0.075),
+    0 12px 26px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.045) !important;
+
+  transition:
+    transform .16s ease,
+    border-color .16s ease,
+    box-shadow .16s ease !important;
+}
+
+/* Línea lateral de color */
+.report-grid .metric-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 16px;
+  bottom: 16px;
+  width: 5px;
+  border-radius: 999px;
+  opacity: .98;
+}
+
+/* Brillo decorativo */
+.report-grid .metric-card::after {
+  content: "";
+  position: absolute;
+  right: -36px;
+  top: -36px;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: rgba(35,215,255,0.055);
+  filter: blur(2px);
+}
+
+.report-grid .card-body {
+  padding: 17px 18px 16px 22px !important;
+}
+
+/* Etiqueta KPI */
+.report-grid .metric-label {
+  color: #6ee7ff !important;
+  font-size: 0.68rem !important;
+  line-height: 1.12 !important;
+  letter-spacing: 0.075em !important;
+  min-height: 28px !important;
+  margin-bottom: 11px !important;
+
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+}
+
+/* Número KPI */
+.report-grid .metric-number {
+  color: #ffffff !important;
+  font-size: 2.25rem !important;
+  line-height: 1 !important;
+  margin-top: 2px !important;
+  margin-bottom: 10px !important;
+  letter-spacing: -0.045em !important;
+}
+
+/* Subtítulo KPI */
+.report-grid .metric-subtitle {
+  color: #aebfd0 !important;
+  font-size: 0.78rem !important;
+  line-height: 1.20 !important;
+  max-width: 100% !important;
+}
+
+/* Colores por tarjeta */
+/* 1 Precisión - verde */
+.report-grid .metric-card:nth-child(1)::before {
+  background: #22c55e !important;
+}
+.report-grid .metric-card:nth-child(1) .metric-number {
+  color: #bbf7d0 !important;
+  text-shadow: 0 0 20px rgba(34,197,94,.34) !important;
+}
+
+/* 2 Recall - cyan */
+.report-grid .metric-card:nth-child(2)::before {
+  background: #38bdf8 !important;
+}
+.report-grid .metric-card:nth-child(2) .metric-number {
+  color: #bae6fd !important;
+  text-shadow: 0 0 20px rgba(56,189,248,.34) !important;
+}
+
+/* 3 FP - naranja */
+.report-grid .metric-card:nth-child(3)::before {
+  background: #f97316 !important;
+}
+.report-grid .metric-card:nth-child(3) .metric-number {
+  color: #fed7aa !important;
+  text-shadow: 0 0 20px rgba(249,115,22,.34) !important;
+}
+
+/* 4 FN - rojo */
+.report-grid .metric-card:nth-child(4)::before {
+  background: #ef4444 !important;
+}
+.report-grid .metric-card:nth-child(4) .metric-number {
+  color: #fecaca !important;
+  text-shadow: 0 0 20px rgba(239,68,68,.34) !important;
+}
+
+/* 5 Entregabilidad - cyan/blue */
+.report-grid .metric-card:nth-child(5)::before {
+  background: #2f80ed !important;
+}
+.report-grid .metric-card:nth-child(5) .metric-number {
+  color: #bfdbfe !important;
+  text-shadow: 0 0 20px rgba(47,128,237,.36) !important;
+}
+
+/* 6 Rechazo - morado */
+.report-grid .metric-card:nth-child(6)::before {
+  background: #a855f7 !important;
+}
+.report-grid .metric-card:nth-child(6) .metric-number {
+  color: #e9d5ff !important;
+  text-shadow: 0 0 20px rgba(168,85,247,.36) !important;
+}
+
+/* Hover */
+.report-grid .metric-card:hover {
+  transform: translateY(-4px) scale(1.01) !important;
+  border-color: rgba(35,215,255,.52) !important;
+  box-shadow:
+    0 0 40px rgba(35,215,255,.15),
+    0 18px 36px rgba(0,0,0,0.32),
+    inset 0 1px 0 rgba(255,255,255,.070) !important;
+}
+
+/* Responsive: si no cabe, 3 + 3 */
+@media (max-width: 1380px) {
+  .report-grid {
+    grid-template-columns: repeat(3, minmax(230px, 1fr)) !important;
+    max-width: 980px !important;
+  }
+}
+
+/* Tablet: 2 columnas */
+@media (max-width: 900px) {
+  .report-grid {
+    grid-template-columns: repeat(2, minmax(230px, 1fr)) !important;
+    max-width: 680px !important;
+  }
+}
+
+/* Móvil: 1 columna */
+@media (max-width: 620px) {
+  .report-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 100% !important;
+  }
+}

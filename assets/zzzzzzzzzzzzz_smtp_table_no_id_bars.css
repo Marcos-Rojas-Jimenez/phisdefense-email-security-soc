@@ -1,0 +1,34 @@
+/* =========================================================
+   PhisDefense SOC - SMTP table no ID bars
+   Quita tiras verticales desalineadas en columna ID.
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+.smtp-table-shell td[data-dash-column="id_prueba"],
+.smtp-table-shell .dash-cell[data-dash-column="id_prueba"] {
+  border-left: 1px solid rgba(35,215,255,0.09) !important;
+  box-shadow: none !important;
+}
+
+/* Mantiene ID fuerte, pero sin barra lateral */
+.smtp-table-shell td[data-dash-column="id_prueba"] {
+  color: #eef8ff !important;
+  font-weight: 900 !important;
+}
+
+/* Refuerza separación limpia entre filas */
+.smtp-table-shell .dash-cell,
+.smtp-table-shell td {
+  border-top: 1px solid rgba(35,215,255,0.07) !important;
+  border-bottom: 1px solid rgba(35,215,255,0.07) !important;
+}
+
+/* La clasificación conserva el peso visual principal */
+.smtp-table-shell td[data-dash-column="clasificacion_real"] {
+  font-weight: 900 !important;
+}
+
+/* Evita cortes raros en el borde izquierdo de la tabla */
+.smtp-table-shell .dash-spreadsheet-inner table {
+  border-left: 1px solid rgba(35,215,255,0.14) !important;
+}

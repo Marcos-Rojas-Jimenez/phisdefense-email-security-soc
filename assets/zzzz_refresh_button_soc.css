@@ -1,0 +1,77 @@
+/* =========================================================
+   PhisDefense SOC - Refresh Button
+   Botón flotante para actualizar datos del dashboard.
+   ========================================================= */
+
+.phis-refresh-widget {
+  position: fixed;
+  top: 18px;
+  right: 24px;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 9px 12px;
+  border-radius: 999px;
+
+  background:
+    linear-gradient(135deg, rgba(16, 43, 71, 0.92), rgba(7, 20, 38, 0.96));
+  border: 1px solid rgba(35, 215, 255, 0.32);
+  box-shadow:
+    0 0 22px rgba(35, 215, 255, 0.10),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+
+  backdrop-filter: blur(10px);
+}
+
+.phis-refresh-button {
+  background: linear-gradient(135deg, #102b47, #071426);
+  color: #23d7ff;
+  border: 1px solid rgba(35, 215, 255, 0.45);
+  border-radius: 999px;
+
+  padding: 7px 12px;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.phis-refresh-button:hover {
+  color: #ecf6ff;
+  border-color: rgba(35, 215, 255, 0.75);
+  box-shadow: 0 0 18px rgba(35, 215, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+.phis-refresh-time {
+  color: #90a8bf;
+  font-size: 0.72rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.phis-refresh-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #35d07f;
+  box-shadow: 0 0 12px rgba(53, 208, 127, 0.95);
+}
+
+@media (max-width: 900px) {
+  .phis-refresh-widget {
+    top: auto;
+    bottom: 18px;
+    right: 18px;
+  }
+
+  .phis-refresh-time {
+    display: none;
+  }
+}

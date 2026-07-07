@@ -1,0 +1,57 @@
+/* =========================================================
+   PhisDefense SOC - Colores KPI Entregabilidad
+   Solo colorea números de tarjetas concretas.
+   ========================================================= */
+
+.metric-card.kpi-deliverability-legit .metric-number {
+  color: #bbf7d0 !important;
+  text-shadow:
+    0 0 14px rgba(34, 197, 94, 0.26),
+    0 0 26px rgba(34, 197, 94, 0.12) !important;
+}
+
+.metric-card.kpi-deliverability-smtp .metric-number {
+  color: #bae6fd !important;
+  text-shadow:
+    0 0 14px rgba(56, 189, 248, 0.26),
+    0 0 26px rgba(56, 189, 248, 0.12) !important;
+}
+
+.metric-card.kpi-deliverability-inbox .metric-number {
+  color: #86efac !important;
+  text-shadow:
+    0 0 14px rgba(34, 197, 94, 0.30),
+    0 0 26px rgba(34, 197, 94, 0.14) !important;
+}
+
+.metric-card.kpi-deliverability-spam .metric-number {
+  color: #fed7aa !important;
+  text-shadow:
+    0 0 14px rgba(249, 115, 22, 0.30),
+    0 0 26px rgba(249, 115, 22, 0.14) !important;
+}
+
+.metric-card.kpi-deliverability-missing .metric-number {
+  color: #cbd5e1 !important;
+  text-shadow:
+    0 0 14px rgba(148, 163, 184, 0.20),
+    0 0 26px rgba(148, 163, 184, 0.10) !important;
+}
+
+/* Línea lateral por tipo */
+.metric-card.kpi-deliverability-legit::before,
+.metric-card.kpi-deliverability-inbox::before {
+  background: #22c55e !important;
+}
+
+.metric-card.kpi-deliverability-smtp::before {
+  background: #38bdf8 !important;
+}
+
+.metric-card.kpi-deliverability-spam::before {
+  background: #f97316 !important;
+}
+
+.metric-card.kpi-deliverability-missing::before {
+  background: #94a3b8 !important;
+}

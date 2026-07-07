@@ -1,0 +1,20 @@
+/* =========================================================
+   PhisDefense SOC - Cronología sin texto Market/Bolsa
+   Mantiene estilo neón. Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+/* Sobrescribe el texto decorativo superior derecho */
+.cronologia-hero::after {
+  content: "SOC TIMELINE" !important;
+  color: rgba(56,189,248,0.26) !important;
+}
+
+/* Mantiene estética SOC sin referencias a market */
+.cronologia-eyebrow {
+  color: #38f8ff !important;
+}
+
+/* Refuerzo visual limpio */
+.cronologia-title {
+  letter-spacing: -0.02em !important;
+}

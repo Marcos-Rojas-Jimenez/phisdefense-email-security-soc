@@ -1,0 +1,106 @@
+/* =========================================================
+   PhisDefense SOC - SMTP SOC Table Refine
+   Sin JS. Sin MutationObserver.
+   Target: .smtp-table-shell y #smtp-soc-table
+   ========================================================= */
+
+.smtp-table-shell {
+  max-width: 1480px !important;
+  margin: 26px auto 0 auto !important;
+  border-radius: 28px !important;
+  border: 1px solid rgba(35,215,255,0.20) !important;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(35,215,255,0.08), transparent 34%),
+    linear-gradient(145deg, rgba(7,20,38,0.96), rgba(4,14,28,0.99)) !important;
+  box-shadow:
+    0 0 30px rgba(35,215,255,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.035) !important;
+  overflow: hidden !important;
+}
+
+.smtp-table-shell .dash-table-container {
+  border-radius: 20px !important;
+  overflow: hidden !important;
+}
+
+.smtp-table-shell .dash-spreadsheet-container,
+.smtp-table-shell .dash-spreadsheet-inner {
+  border-radius: 18px !important;
+  overflow: hidden !important;
+}
+
+.smtp-table-shell .dash-spreadsheet-inner table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+.smtp-table-shell .dash-filter input {
+  background: rgba(4,14,28,0.96) !important;
+  color: #eaf6ff !important;
+  border: 1px solid rgba(35,215,255,0.18) !important;
+  border-radius: 8px !important;
+}
+
+.smtp-table-shell .dash-header,
+.smtp-table-shell th {
+  background: rgba(8,30,54,0.98) !important;
+  color: #9eeaff !important;
+  font-size: 0.72rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.045em !important;
+  text-transform: uppercase !important;
+  border-color: rgba(35,215,255,0.16) !important;
+}
+
+.smtp-table-shell .dash-cell,
+.smtp-table-shell td {
+  background: rgba(5,18,34,0.78) !important;
+  color: #dcecff !important;
+  font-size: 0.76rem !important;
+  line-height: 1.25 !important;
+  border-color: rgba(255,255,255,0.055) !important;
+}
+
+.smtp-table-shell tr:nth-child(even) .dash-cell,
+.smtp-table-shell tr:nth-child(even) td {
+  background: rgba(8,26,47,0.78) !important;
+}
+
+.smtp-table-shell tr:hover .dash-cell,
+.smtp-table-shell tr:hover td {
+  background: rgba(18,56,86,0.88) !important;
+  color: #ffffff !important;
+}
+
+.smtp-table-shell td[data-dash-column="id_prueba"],
+.smtp-table-shell td[data-dash-column="tipo"],
+.smtp-table-shell td[data-dash-column="clasificacion_real"],
+.smtp-table-shell td[data-dash-column="ubicacion_final"] {
+  font-weight: 850 !important;
+}
+
+.smtp-table-shell td[data-dash-column="evidencia"],
+.smtp-table-shell .dash-cell[data-dash-column="evidencia"] {
+  color: #b9cade !important;
+  font-size: 0.74rem !important;
+  white-space: normal !important;
+}
+
+/* Scrollbar discreta */
+.smtp-table-shell *::-webkit-scrollbar {
+  height: 9px !important;
+  width: 9px !important;
+}
+
+.smtp-table-shell *::-webkit-scrollbar-track {
+  background: rgba(5,18,34,0.92) !important;
+}
+
+.smtp-table-shell *::-webkit-scrollbar-thumb {
+  background: rgba(35,215,255,0.30) !important;
+  border-radius: 999px !important;
+}
+
+.smtp-table-shell *::-webkit-scrollbar-thumb:hover {
+  background: rgba(35,215,255,0.48) !important;
+}

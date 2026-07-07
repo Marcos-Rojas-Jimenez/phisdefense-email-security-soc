@@ -1,0 +1,216 @@
+/* =========================================================
+   PhisDefense SOC - Spoofing Control Panel
+   Sustituye gráficas redundantes por panel portfolio.
+   ========================================================= */
+
+.spoof-control-shell {
+  margin-top: 22px !important;
+  margin-bottom: 24px !important;
+  border-radius: 26px !important;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(239, 68, 68, 0.13), transparent 30%),
+    radial-gradient(circle at 92% 18%, rgba(168, 85, 247, 0.10), transparent 28%),
+    linear-gradient(180deg, rgba(13,34,56,0.96), rgba(5,15,29,0.98)) !important;
+  border: 1px solid rgba(239, 68, 68, 0.24) !important;
+  box-shadow:
+    0 0 32px rgba(239, 68, 68, 0.07),
+    inset 0 1px 0 rgba(255,255,255,0.04) !important;
+}
+
+.spoof-control-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+  margin-bottom: 18px;
+}
+
+.spoof-control-stat {
+  min-height: 128px;
+  padding: 17px 18px;
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, rgba(16,43,71,0.92), rgba(7,20,38,0.97));
+  border: 1px solid rgba(35,215,255,0.18);
+  box-shadow:
+    0 0 20px rgba(35,215,255,0.045),
+    inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+.spoof-control-label {
+  color: #90a8bf;
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.065em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.spoof-control-value {
+  font-size: 2.1rem;
+  font-weight: 950;
+  line-height: 1;
+  margin-bottom: 9px;
+}
+
+.spoof-control-red {
+  color: #fecaca;
+  text-shadow: 0 0 18px rgba(239,68,68,0.18);
+}
+
+.spoof-control-green {
+  color: #bbf7d0;
+  text-shadow: 0 0 18px rgba(34,197,94,0.18);
+}
+
+.spoof-control-orange {
+  color: #fed7aa;
+  text-shadow: 0 0 18px rgba(249,115,22,0.18);
+}
+
+.spoof-control-purple {
+  color: #e9d5ff;
+  text-shadow: 0 0 18px rgba(168,85,247,0.18);
+}
+
+.spoof-control-subtitle {
+  color: #b7c9d9;
+  font-size: 0.84rem;
+  font-weight: 720;
+  line-height: 1.25;
+}
+
+.spoof-control-progress-panel {
+  padding: 18px 20px;
+  border-radius: 20px;
+  background: rgba(3,9,20,0.42);
+  border: 1px solid rgba(35,215,255,0.14);
+}
+
+.spoof-control-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.spoof-control-progress-label {
+  color: #90a8bf;
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.spoof-control-status {
+  padding: 6px 11px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.spoof-control-status-ok {
+  color: #bbf7d0;
+  background: rgba(34,197,94,0.14);
+  border: 1px solid rgba(34,197,94,0.32);
+}
+
+.spoof-control-status-warn {
+  color: #fed7aa;
+  background: rgba(249,115,22,0.14);
+  border: 1px solid rgba(249,115,22,0.32);
+}
+
+.spoof-control-status-danger {
+  color: #fecaca;
+  background: rgba(239,68,68,0.14);
+  border: 1px solid rgba(239,68,68,0.32);
+}
+
+.spoof-control-progress-track {
+  width: 100%;
+  height: 18px;
+  border-radius: 999px;
+  background: rgba(7,20,38,0.96);
+  border: 1px solid rgba(35,215,255,0.16);
+  overflow: hidden;
+  box-shadow: inset 0 0 14px rgba(0,0,0,0.24);
+}
+
+.spoof-control-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, #ef4444, #f97316, #22c55e);
+  box-shadow:
+    0 0 18px rgba(34,197,94,0.28),
+    inset 0 1px 0 rgba(255,255,255,0.16);
+}
+
+.spoof-control-mini-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 14px;
+  margin-bottom: 12px;
+}
+
+.spoof-control-mini-pill {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.spoof-control-mini-green {
+  color: #bbf7d0;
+  background: rgba(34,197,94,0.12);
+  border: 1px solid rgba(34,197,94,0.26);
+}
+
+.spoof-control-mini-orange {
+  color: #fed7aa;
+  background: rgba(249,115,22,0.12);
+  border: 1px solid rgba(249,115,22,0.26);
+}
+
+.spoof-control-mini-blue {
+  color: #bae6fd;
+  background: rgba(56,189,248,0.12);
+  border: 1px solid rgba(56,189,248,0.26);
+}
+
+.spoof-control-mini-amber {
+  color: #fef08a;
+  background: rgba(250,204,21,0.12);
+  border: 1px solid rgba(250,204,21,0.26);
+}
+
+.spoof-control-interpretation {
+  color: #d8e8f5;
+  font-size: 0.92rem;
+  font-weight: 720;
+  line-height: 1.38;
+}
+
+@media (max-width: 1250px) {
+  .spoof-control-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .spoof-control-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spoof-control-progress-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,91 @@
+/* =========================================================
+   PhisDefense SOC - Threat Focus PRO
+   Mejora visual del panel Threat Focus sin tocar lógica.
+   ========================================================= */
+
+.focus-panel-shell {
+  position: relative !important;
+  margin: 14px 0 20px 0 !important;
+  padding: 22px 26px !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+
+  background:
+    radial-gradient(circle at 8% 20%, rgba(168, 85, 247, 0.16), transparent 30%),
+    radial-gradient(circle at 90% 30%, rgba(35, 215, 255, 0.10), transparent 28%),
+    linear-gradient(135deg, rgba(13, 34, 56, 0.96), rgba(7, 20, 38, 0.98)) !important;
+
+  border: 1px solid rgba(168, 85, 247, 0.34) !important;
+
+  box-shadow:
+    0 0 32px rgba(168, 85, 247, 0.10),
+    0 0 22px rgba(35, 215, 255, 0.055),
+    inset 0 1px 0 rgba(255,255,255,0.045) !important;
+}
+
+/* Barra lateral morada/cyan */
+.focus-panel-shell::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18px;
+  bottom: 18px;
+  width: 4px;
+  border-radius: 99px;
+  background: linear-gradient(180deg, #a855f7, #23d7ff);
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.40);
+}
+
+/* Brillo superior */
+.focus-panel-shell::after {
+  content: "";
+  position: absolute;
+  left: 26px;
+  right: 26px;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.55), rgba(35, 215, 255, 0.32), transparent);
+  opacity: 0.85;
+}
+
+/* Títulos internos */
+.focus-panel-shell h1,
+.focus-panel-shell h2,
+.focus-panel-shell h3 {
+  color: #ecf6ff !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.015em !important;
+  margin-bottom: 8px !important;
+  text-shadow: 0 0 18px rgba(168, 85, 247, 0.16) !important;
+}
+
+/* Texto descriptivo */
+.focus-panel-shell p {
+  color: #b7c9d9 !important;
+  font-size: 0.96rem !important;
+  line-height: 1.38 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Números o valores dentro del panel */
+.focus-panel-shell strong,
+.focus-panel-shell b {
+  color: #e9d5ff !important;
+  font-weight: 950 !important;
+}
+
+/* Hover sutil */
+.focus-panel-shell:hover {
+  border-color: rgba(168, 85, 247, 0.55) !important;
+  box-shadow:
+    0 0 38px rgba(168, 85, 247, 0.16),
+    0 0 26px rgba(35, 215, 255, 0.08),
+    inset 0 1px 0 rgba(255,255,255,0.055) !important;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .focus-panel-shell {
+    padding: 20px 22px !important;
+  }
+}

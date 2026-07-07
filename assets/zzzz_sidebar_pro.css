@@ -1,0 +1,110 @@
+/* =========================================================
+   PhisDefense SOC - Sidebar PRO
+   Mejora visual del menú lateral sin tocar lógica.
+   ========================================================= */
+
+/* Sidebar completo */
+.sidebar,
+[class*="sidebar"] {
+  background:
+    radial-gradient(circle at 20% 5%, rgba(35,215,255,0.10), transparent 28%),
+    linear-gradient(180deg, rgba(7,20,38,0.98), rgba(3,9,20,0.99)) !important;
+  border-right: 1px solid rgba(35,215,255,0.20) !important;
+  box-shadow:
+    8px 0 28px rgba(0,0,0,0.22),
+    inset -1px 0 0 rgba(255,255,255,0.025) !important;
+}
+
+/* Título o marca del sidebar */
+.sidebar h1,
+.sidebar h2,
+.sidebar h3,
+[class*="sidebar"] h1,
+[class*="sidebar"] h2,
+[class*="sidebar"] h3 {
+  color: #ecf6ff !important;
+  text-shadow: 0 0 18px rgba(35,215,255,0.16) !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Links del menú */
+.nav-link,
+.sidebar a,
+[class*="sidebar"] a,
+[class*="nav"] a {
+  position: relative !important;
+  border-radius: 15px !important;
+  margin: 4px 8px !important;
+  padding: 10px 13px !important;
+  color: #9fb6ca !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.015em !important;
+  transition:
+    background 0.16s ease,
+    color 0.16s ease,
+    transform 0.16s ease,
+    box-shadow 0.16s ease !important;
+}
+
+/* Hover */
+.nav-link:hover,
+.sidebar a:hover,
+[class*="sidebar"] a:hover,
+[class*="nav"] a:hover {
+  color: #ecf6ff !important;
+  background: rgba(35,215,255,0.095) !important;
+  transform: translateX(3px) !important;
+  box-shadow:
+    0 0 18px rgba(35,215,255,0.10),
+    inset 3px 0 0 rgba(35,215,255,0.85) !important;
+}
+
+/* Elemento activo */
+.nav-link.active,
+.sidebar a.active,
+[class*="sidebar"] a.active,
+[class*="nav"] a.active,
+.nav-pills .nav-link.active {
+  color: #ffffff !important;
+  background:
+    linear-gradient(90deg, rgba(35,215,255,0.20), rgba(47,140,255,0.08)) !important;
+  box-shadow:
+    0 0 24px rgba(35,215,255,0.18),
+    inset 4px 0 0 #23d7ff !important;
+  border: 1px solid rgba(35,215,255,0.28) !important;
+}
+
+/* Separación visual de grupos si existen */
+.sidebar hr,
+[class*="sidebar"] hr {
+  border-color: rgba(35,215,255,0.14) !important;
+  margin: 14px 12px !important;
+}
+
+/* Pequeña línea decorativa superior */
+.sidebar::before,
+[class*="sidebar"]::before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin: 0 14px 14px 14px;
+  background: linear-gradient(90deg, transparent, rgba(35,215,255,0.55), transparent);
+}
+
+/* Footer/sidebar version si existe */
+.sidebar small,
+[class*="sidebar"] small {
+  color: #6f879c !important;
+  font-weight: 700 !important;
+}
+
+/* Responsive: no tocar demasiado en pequeño */
+@media (max-width: 900px) {
+  .nav-link,
+  .sidebar a,
+  [class*="sidebar"] a,
+  [class*="nav"] a {
+    padding: 9px 11px !important;
+    margin: 3px 6px !important;
+  }
+}

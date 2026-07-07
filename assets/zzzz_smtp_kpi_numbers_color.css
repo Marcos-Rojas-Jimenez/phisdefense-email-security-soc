@@ -1,0 +1,195 @@
+/* =========================================================
+   PhisDefense SOC - SMTP KPI sin parpadeo
+   Sin JS. Estilos estáticos desde el primer render.
+   ========================================================= */
+
+.smtp-kpi-grid {
+  max-width: 1240px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
+  gap: 18px 20px !important;
+
+  margin-top: 22px !important;
+  margin-bottom: 26px !important;
+}
+
+/* Base tarjetas SMTP */
+.smtp-kpi-grid .metric-card {
+  min-height: 128px !important;
+  max-height: 138px !important;
+  border-radius: 22px !important;
+  overflow: hidden !important;
+  position: relative !important;
+
+  border: 1px solid rgba(35,215,255,0.20) !important;
+  box-shadow:
+    0 0 24px rgba(35,215,255,0.055),
+    inset 0 1px 0 rgba(255,255,255,0.035) !important;
+
+  transition:
+    transform .16s ease,
+    border-color .16s ease,
+    box-shadow .16s ease,
+    background .16s ease !important;
+}
+
+.smtp-kpi-grid .metric-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15px;
+  bottom: 15px;
+  width: 4px;
+  border-radius: 999px;
+  opacity: .95;
+}
+
+.smtp-kpi-grid .card-body {
+  padding: 16px 20px 15px 22px !important;
+}
+
+.smtp-kpi-grid .metric-label {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  color: #23d7ff !important;
+  font-size: 0.70rem !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0.07em !important;
+  min-height: 24px !important;
+  margin-bottom: 10px !important;
+}
+
+.smtp-kpi-grid .metric-number {
+  font-size: 2.22rem !important;
+  line-height: 1 !important;
+  margin-top: 4px !important;
+  margin-bottom: 8px !important;
+}
+
+.smtp-kpi-grid .metric-subtitle {
+  font-size: 0.82rem !important;
+  line-height: 1.18 !important;
+  color: #aebfd0 !important;
+}
+
+/* 1 - Eventos SOC */
+.smtp-kpi-grid .metric-card:nth-child(1) {
+  background:
+    radial-gradient(circle at 14% 12%, rgba(56,189,248,0.13), transparent 34%),
+    linear-gradient(145deg, rgba(16,43,71,0.95), rgba(7,20,38,0.98)) !important;
+}
+.smtp-kpi-grid .metric-card:nth-child(1)::before {
+  background: #38bdf8 !important;
+}
+.smtp-kpi-grid .metric-card:nth-child(1) .metric-number {
+  color: #bae6fd !important;
+  text-shadow: 0 0 18px rgba(56,189,248,.28) !important;
+}
+
+/* 2 - Bloqueados */
+.smtp-kpi-grid .metric-card:nth-child(2) {
+  background:
+    radial-gradient(circle at 14% 12%, rgba(34,197,94,0.13), transparent 34%),
+    linear-gradient(145deg, rgba(16,43,71,0.95), rgba(7,20,38,0.98)) !important;
+}
+.smtp-kpi-grid .metric-card:nth-child(2)::before {
+  background: #22c55e !important;
+}
+.smtp-kpi-grid .metric-card:nth-child(2) .metric-number {
+  color: #bbf7d0 !important;
+  text-shadow: 0 0 18px rgba(34,197,94,.28) !important;
+}
+
+/* 3 - Open Relay */
+.smtp-kpi-grid .metric-card:nth-child(3) {
+  background:
+    radial-gradient(circle at 14% 12%, rgba(249,115,22,0.13), transparent 34%),
+    linear-gradient(145deg, rgba(16,43,71,0.95), rgba(7,20,38,0.98)) !important;
+}
+.smtp-kpi-grid .metric-card:nth-child(3)::before {
+  background: #f97316 !important;
+}
+.smtp-kpi-grid .metric-card:nth-child(3) .metric-number {
+  color: #fed7aa !important;
+  text-shadow: 0 0 18px rgba(249,115,22,.30) !important;
+}
+
+/* 4 - Auth Fail */
+.smtp-kpi-grid .metric-card:nth-child(4) {
+  background:
+    radial-gradient(circle at 14% 12%, rgba(239,68,68,0.13), transparent 34%),
+    linear-gradient(145deg, rgba(16,43,71,0.95), rgba(7,20,38,0.98)) !important;
+}
+.smtp-kpi-grid .metric-card:nth-child(4)::before {
+  background: #ef4444 !important;
+}
+.smtp-kpi-grid .metric-card:nth-child(4) .metric-number {
+  color: #fecaca !important;
+  text-shadow: 0 0 18px rgba(239,68,68,.30) !important;
+}
+
+/* 5 - Usuarios inexistentes */
+.smtp-kpi-grid .metric-card:nth-child(5) {
+  background:
+    radial-gradient(circle at 14% 12%, rgba(250,204,21,0.13), transparent 34%),
+    linear-gradient(145deg, rgba(16,43,71,0.95), rgba(7,20,38,0.98)) !important;
+}
+.smtp-kpi-grid .metric-card:nth-child(5)::before {
+  background: #facc15 !important;
+}
+.smtp-kpi-grid .metric-card:nth-child(5) .metric-number {
+  color: #fef08a !important;
+  text-shadow: 0 0 18px rgba(250,204,21,.28) !important;
+}
+
+/* 6 - TLS OK */
+.smtp-kpi-grid .metric-card:nth-child(6) {
+  background:
+    radial-gradient(circle at 14% 12%, rgba(168,85,247,0.13), transparent 34%),
+    linear-gradient(145deg, rgba(16,43,71,0.95), rgba(7,20,38,0.98)) !important;
+}
+.smtp-kpi-grid .metric-card:nth-child(6)::before {
+  background: #a855f7 !important;
+}
+.smtp-kpi-grid .metric-card:nth-child(6) .metric-number {
+  color: #e9d5ff !important;
+  text-shadow: 0 0 18px rgba(168,85,247,.30) !important;
+}
+
+/* Hover */
+.smtp-kpi-grid .metric-card:hover {
+  transform: translateY(-3px) scale(1.008) !important;
+  border-color: rgba(35,215,255,.42) !important;
+  box-shadow:
+    0 0 32px rgba(35,215,255,.13),
+    inset 0 1px 0 rgba(255,255,255,.055) !important;
+}
+
+.smtp-kpi-grid .metric-card:hover .metric-number {
+  transform: scale(1.04);
+  transition: transform .16s ease !important;
+}
+
+.smtp-kpi-grid .metric-card:hover .metric-subtitle {
+  color: #d8e8f5 !important;
+}
+
+/* Responsive */
+@media (max-width: 1250px) {
+  .smtp-kpi-grid {
+    max-width: 860px !important;
+    grid-template-columns: repeat(2, minmax(260px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .smtp-kpi-grid {
+    max-width: 100% !important;
+    grid-template-columns: 1fr !important;
+  }
+}

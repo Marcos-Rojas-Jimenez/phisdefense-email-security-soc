@@ -1,0 +1,17 @@
+/* =========================================================
+   PhisDefense SOC - Spoofing sin KPIs superiores
+   Ajuste de espaciado para portfolio.
+   ========================================================= */
+
+.spoof-explain-shell {
+  margin-top: 18px !important;
+}
+
+.spoof-control-shell {
+  margin-top: 22px !important;
+}
+
+/* Por si queda CSS anterior de la grid de KPIs */
+.spoofing-kpi-grid {
+  display: none !important;
+}

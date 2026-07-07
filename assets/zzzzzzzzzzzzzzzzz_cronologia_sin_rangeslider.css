@@ -1,0 +1,32 @@
+/* =========================================================
+   PhisDefense SOC - Cronología sin range slider
+   Limpia la parte inferior del gráfico.
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+.cronologia-chart-shell .chart-frame {
+  min-height: 500px !important;
+  padding-bottom: 12px !important;
+  overflow: hidden !important;
+}
+
+.cronologia-chart-shell .dash-graph {
+  min-height: 470px !important;
+}
+
+/* Por si Plotly deja restos del range slider en DOM */
+.cronologia-chart-shell .rangeslider-container,
+.cronologia-chart-shell .range-slider,
+.cronologia-chart-shell .rangeslider {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Separación visual del eje inferior */
+.cronologia-chart-shell .xtitle {
+  transform: translateY(8px);
+}

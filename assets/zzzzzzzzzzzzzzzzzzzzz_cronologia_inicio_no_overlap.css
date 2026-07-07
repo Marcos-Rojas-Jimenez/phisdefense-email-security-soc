@@ -1,0 +1,71 @@
+/* =========================================================
+   PhisDefense SOC - Cronología inicio sin solape
+   Mantiene estilo inicial, arregla título/leyenda/rangeslider.
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+.cronologia-chart-shell {
+  margin-top: 24px !important;
+}
+
+.cronologia-chart-shell .chart-frame {
+  min-height: 555px !important;
+  padding-top: 4px !important;
+  padding-bottom: 18px !important;
+  overflow: hidden !important;
+  border-radius: 30px !important;
+}
+
+.cronologia-chart-shell .dash-graph {
+  min-height: 520px !important;
+}
+
+/* Forzar que el range slider vuelva a verse, pero con altura controlada */
+.cronologia-chart-shell .rangeslider-container,
+.cronologia-chart-shell .range-slider,
+.cronologia-chart-shell .rangeslider {
+  display: block !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Separación extra del eje inferior */
+.cronologia-chart-shell .xtitle {
+  transform: translateY(12px);
+}
+
+/* No permitir que pestañas invadan gráfica */
+.cronologia-tabs {
+  margin-bottom: 24px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+}
+
+.cronologia-tabs-content {
+  display: block !important;
+  clear: both !important;
+  margin-top: 24px !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.cronologia-tab {
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+}
+
+/* Hero separado */
+.cronologia-hero {
+  margin-bottom: 24px !important;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cronologia-chart-shell .chart-frame {
+    min-height: 575px !important;
+  }
+
+  .cronologia-chart-shell .dash-graph {
+    min-height: 540px !important;
+  }
+}

@@ -1,0 +1,95 @@
+/* =========================================================
+   PhisDefense SOC - Fix pestaña TODOS en Eventos
+   Centra TODOS igual que el resto de subpestañas.
+   ========================================================= */
+
+/* Fuerza todas las tabs de Eventos a comportarse igual */
+.events-type-tabs-parent .tab,
+.events-type-tabs .tab,
+.events-type-tab,
+.events-type-tab-selected,
+.events-type-tabs-parent .tab--selected,
+.events-type-tabs .tab--selected {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  height: 56px !important;
+  min-height: 56px !important;
+  max-height: 56px !important;
+
+  padding: 0 18px !important;
+  box-sizing: border-box !important;
+
+  text-align: center !important;
+  vertical-align: middle !important;
+
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+}
+
+/* Corrige el texto interno de TODOS y del resto */
+.events-type-tabs-parent .tab > div,
+.events-type-tabs .tab > div,
+.events-type-tab > div,
+.events-type-tab-selected > div,
+.events-type-tabs-parent .tab span,
+.events-type-tabs .tab span,
+.events-type-tab span,
+.events-type-tab-selected span {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  line-height: 1 !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+
+  white-space: nowrap !important;
+  text-transform: uppercase !important;
+}
+
+/* Primera pestaña específicamente: TODOS */
+.events-type-tabs-parent .tab:first-child,
+.events-type-tabs .tab:first-child,
+.events-type-tabs-parent .events-type-tab:first-child,
+.events-type-tabs .events-type-tab:first-child {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+/* Evita que Dash meta alineación rara en el primer tab */
+.events-type-tabs-parent .tab:first-child *,
+.events-type-tabs .tab:first-child *,
+.events-type-tabs-parent .events-type-tab:first-child *,
+.events-type-tabs .events-type-tab:first-child * {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  text-align: center !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+}
+
+/* Mantener estilo visual de selected */
+.events-type-tab-selected,
+.events-type-tabs .tab--selected,
+.events-type-tabs-parent .tab--selected {
+  color: #ffffff !important;
+  border-color: rgba(35, 215, 255, 0.60) !important;
+}

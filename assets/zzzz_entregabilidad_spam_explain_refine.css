@@ -1,0 +1,15 @@
+/* Refinamiento del panel explicación spam: sin métricas duplicadas */
+
+.spam-explain-orange {
+  color: #fed7aa;
+  background: rgba(249,115,22,0.14);
+  border: 1px solid rgba(249,115,22,0.30);
+}
+
+.spam-explain-card {
+  min-height: 145px !important;
+}
+
+.spam-explain-badge {
+  margin-bottom: 12px !important;
+}

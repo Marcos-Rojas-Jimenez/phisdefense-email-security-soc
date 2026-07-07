@@ -1,0 +1,97 @@
+/* =========================================================
+   PhisDefense SOC - SMTP row polish
+   Pulido visual de fila Tipos de pruebas SOC + Cobertura defensiva.
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+/* Fila de gráfica + cobertura más compacta y alineada */
+.smtp-visual-chart-row {
+  max-width: 1480px !important;
+  margin-top: 26px !important;
+  margin-bottom: 28px !important;
+  align-items: stretch !important;
+}
+
+/* Frame izquierdo: menos altura visual vacía */
+.smtp-visual-chart-row .chart-frame {
+  min-height: 390px !important;
+  max-height: 410px !important;
+  border-radius: 28px !important;
+}
+
+/* Graph interno: evita que se estire dejando hueco inferior */
+.smtp-visual-chart-row .chart-frame .dash-graph {
+  min-height: 390px !important;
+}
+
+/* Columna derecha alineada */
+.smtp-visual-chart-row > .col-lg-5 {
+  display: flex !important;
+}
+
+.smtp-visual-chart-row > .col-lg-5 > .smtp-coverage-panel {
+  width: 100% !important;
+  min-height: 390px !important;
+  max-height: 410px !important;
+}
+
+/* Panel de cobertura un poco más ejecutivo */
+.smtp-coverage-panel {
+  padding: 24px 28px !important;
+}
+
+.smtp-coverage-title {
+  font-size: 1.46rem !important;
+  margin-bottom: 2px !important;
+}
+
+.smtp-coverage-subtitle {
+  font-size: 0.86rem !important;
+  line-height: 1.32 !important;
+  margin-top: 6px !important;
+}
+
+.smtp-coverage-list {
+  gap: 10px !important;
+  margin-top: 18px !important;
+}
+
+.smtp-coverage-item {
+  padding: 12px 15px 12px 18px !important;
+  border-radius: 17px !important;
+}
+
+.smtp-coverage-item-title {
+  font-size: 0.84rem !important;
+  margin-bottom: 3px !important;
+}
+
+.smtp-coverage-item-text {
+  font-size: 0.76rem !important;
+  line-height: 1.28 !important;
+}
+
+.smtp-coverage-pills {
+  margin-top: 16px !important;
+  gap: 7px !important;
+}
+
+.smtp-coverage-pills span {
+  font-size: 0.70rem !important;
+  padding: 5px 9px !important;
+}
+
+/* Evita exceso de aire al final de la fila */
+.smtp-visual-chart-row + .table-shell,
+.smtp-visual-chart-row + .smtp-table-shell {
+  margin-top: 14px !important;
+}
+
+@media (max-width: 991px) {
+  .smtp-visual-chart-row .chart-frame,
+  .smtp-visual-chart-row .chart-frame .dash-graph,
+  .smtp-visual-chart-row > .col-lg-5 > .smtp-coverage-panel {
+    min-height: auto !important;
+    max-height: none !important;
+  }
+}

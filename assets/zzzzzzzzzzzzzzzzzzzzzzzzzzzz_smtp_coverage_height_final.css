@@ -1,0 +1,119 @@
+/* =========================================================
+   PhisDefense SOC - SMTP Coverage Height Final
+   Corrige recorte inferior definitivo del panel Cobertura defensiva SMTP.
+   Sin JS. Sin MutationObserver.
+   ========================================================= */
+
+/* La fila completa debe admitir la altura del panel derecho */
+.smtp-visual-chart-row {
+  align-items: stretch !important;
+  overflow: visible !important;
+  margin-top: 28px !important;
+  margin-bottom: 64px !important;
+}
+
+/* Gráfica izquierda alineada con el panel derecho */
+.smtp-visual-chart-row .chart-frame {
+  min-height: 520px !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: hidden !important;
+}
+
+.smtp-visual-chart-row .chart-frame .dash-graph {
+  min-height: 520px !important;
+}
+
+/* La columna derecha no debe recortar */
+.smtp-visual-chart-row > .col-lg-5 {
+  display: flex !important;
+  align-items: stretch !important;
+  overflow: visible !important;
+}
+
+/* Panel Cobertura: altura suficiente, sin recorte */
+.smtp-visual-chart-row > .col-lg-5 > .smtp-coverage-panel,
+.smtp-coverage-panel {
+  width: 100% !important;
+  min-height: 520px !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  padding: 25px 30px 34px 30px !important;
+}
+
+/* Compactar internamente sin cortar texto */
+.smtp-coverage-title {
+  font-size: 1.42rem !important;
+  line-height: 1.12 !important;
+}
+
+.smtp-coverage-subtitle {
+  font-size: 0.85rem !important;
+  line-height: 1.30 !important;
+  margin-top: 6px !important;
+}
+
+.smtp-coverage-list {
+  gap: 10px !important;
+  margin-top: 18px !important;
+}
+
+.smtp-coverage-item {
+  padding: 12px 15px 12px 18px !important;
+  min-height: auto !important;
+  overflow: visible !important;
+}
+
+.smtp-coverage-item-title {
+  font-size: 0.84rem !important;
+  line-height: 1.18 !important;
+  margin-bottom: 4px !important;
+}
+
+.smtp-coverage-item-text {
+  font-size: 0.755rem !important;
+  line-height: 1.30 !important;
+  overflow: visible !important;
+}
+
+/* Los pills se mantienen ocultos porque eran redundantes y rompían el encuadre */
+.smtp-coverage-pills {
+  display: none !important;
+}
+
+/* Separar con seguridad la tabla inferior */
+.smtp-visual-table-shell,
+.smtp-table-shell {
+  margin-top: 52px !important;
+  clear: both !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.smtp-visual-chart-row + .table-shell,
+.smtp-visual-chart-row + .smtp-table-shell,
+.smtp-visual-chart-row + .smtp-visual-table-shell {
+  margin-top: 52px !important;
+}
+
+/* Evita que CSS viejo vuelva a imponer max-height */
+.smtp-visual-chart-row .chart-frame,
+.smtp-coverage-panel,
+.smtp-visual-chart-row > .col-lg-5 > .smtp-coverage-panel {
+  max-height: none !important;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .smtp-visual-chart-row {
+    margin-bottom: 36px !important;
+  }
+
+  .smtp-visual-chart-row .chart-frame,
+  .smtp-visual-chart-row .chart-frame .dash-graph,
+  .smtp-coverage-panel {
+    min-height: auto !important;
+    max-height: none !important;
+  }
+}

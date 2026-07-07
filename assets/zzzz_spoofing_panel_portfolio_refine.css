@@ -1,0 +1,24 @@
+/* =========================================================
+   PhisDefense SOC - Spoofing portfolio refine
+   Compacta el panel de Spoofing para vista portfolio.
+   ========================================================= */
+
+.spoof-explain-shell {
+  margin-top: 18px !important;
+  margin-bottom: 22px !important;
+  padding-bottom: 22px !important;
+}
+
+.spoof-explain-card {
+  min-height: 118px !important;
+}
+
+.spoof-explain-text {
+  font-size: 0.84rem !important;
+  line-height: 1.28 !important;
+}
+
+/* Por si queda el bloque antiguo en caché/layout */
+.spoof-explain-body {
+  display: none !important;
+}
