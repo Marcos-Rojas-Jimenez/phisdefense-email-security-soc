@@ -2623,10 +2623,10 @@ def collect_external_reports_status():
     
     # Rutas donde deben estar las evidencias reales DMARC.
     dmarc_paths = [
-        "data/external_reports/dmarc_reportes_reales",
-        "data/external_reports/dmarc",
-        "data/external_reports/dmarc_reports",
-        "data/external_reports/dmarc_analyzer_output",
+        "version_publica/dmarc_reportes_reales",
+        "version_publica/dmarc",
+        "version_publica/dmarc_reports",
+        "version_publica/dmarc_analyzer_output",
     ]
 
     dmarc_allowed_ext = {".xml", ".zip", ".gz", ".csv", ".txt"}
@@ -2688,10 +2688,10 @@ def collect_external_reports_status():
 
     # Resumen DMARC: preferir resúmenes reales del analizador.
     dmarc_summary_candidates = [
-        "data/external_reports/dmarc_analyzer_output/resumen.txt",
-        "data/external_reports/dmarc_analyzer_output/resumen_dmarc.txt",
-        "data/external_reports/dmarc_reportes_reales/resumen.txt",
-        "data/external_reports/dmarc_reportes_reales/resumen_dmarc.txt",
+        "version_publica/dmarc_analyzer_output/resumen.txt",
+        "version_publica/dmarc_analyzer_output/resumen_dmarc.txt",
+        "version_publica/dmarc_reportes_reales/resumen.txt",
+        "version_publica/dmarc_reportes_reales/resumen_dmarc.txt",
     ]
 
     dmarc_summary = ""
@@ -2709,12 +2709,12 @@ def collect_external_reports_status():
         else:
             dmarc_summary = (
                 "No se han incluido reportes agregados DMARC externos parseables en la versión pública sanitizada.\\n"
-                "Rutas revisadas:\\n"
+                "Versión pública revisada:\\n"
                 + "\\n".join(dmarc_paths)
             )
 
     # TLS-RPT real: NO contar txt como reportes JSON.
-    tls_base = Path("data/external_reports/tls_rpt")
+    tls_base = Path("version_publica/tls_rpt")
     tls_summary_path = tls_base / "resumen_tls_rpt_real.txt"
     tls_summary = _safe_read_text_file(tls_summary_path)
 
