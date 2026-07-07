@@ -464,10 +464,56 @@
         grid-template-columns: 1fr;
       }
     }
-  </style>
+  .floating-dashboard-link {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(56,248,255,.45);
+  background:
+    linear-gradient(135deg, rgba(56,248,255,.96), rgba(70,226,139,.92));
+  color: #03111f;
+  font-weight: 950;
+  box-shadow: 0 18px 55px rgba(0,0,0,.38), 0 0 28px rgba(56,248,255,.22);
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.floating-dashboard-link:hover {
+  transform: translateY(-3px);
+  text-decoration: none;
+  box-shadow: 0 22px 65px rgba(0,0,0,.45), 0 0 34px rgba(56,248,255,.34);
+}
+
+.floating-dashboard-link .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #03111f;
+  box-shadow: 0 0 0 6px rgba(3,17,31,.14);
+}
+
+@media (max-width: 720px) {
+  .floating-dashboard-link {
+    left: 18px;
+    right: 18px;
+    bottom: 16px;
+    justify-content: center;
+  }
+}
+</style>
 </head>
 
 <body>
+<a class="floating-dashboard-link" href="https://phisdefense-email-security-soc.onrender.com" target="_blank" rel="noopener">
+  <span class="dot"></span>
+  Dashboard interactivo
+</a>
   <nav class="nav">
     <div class="container nav-inner">
       <div class="brand">
@@ -1608,6 +1654,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
