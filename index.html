@@ -636,108 +636,110 @@
   </section>
 
   <section id="configuracion">
-    <div class="container">
-      <h2>3. Configuracion defensiva del servidor</h2>
+  <div class="container">
+    <h2>3. Configuracion defensiva del servidor</h2>
 
-      <p class="section-subtitle">
-        Esta es la parte central del proyecto: toda la configuracion real aplicada sobre
-        el servidor y el dominio para proteger, validar y monitorizar el correo.
-      </p>
+    <p class="section-subtitle">
+      Esta seccion resume la configuracion real aplicada sobre el servidor y el dominio.
+      El objetivo fue construir una infraestructura defensiva de correo electronico que no solo estuviera configurada,
+      sino tambien probada, evidenciada y monitorizada desde una perspectiva SOC.
+    </p>
 
-      <div class="config-grid">
+    <div class="config-grid">
 
-        <div class="config-card">
-          <h3>DNS, dominio y confianza</h3>
-          <p>
-            Se configuraron registros DNS relacionados con autenticacion y seguridad de correo.
-            DNSSEC se incorporo como capa adicional de confianza para proteger la autenticidad
-            e integridad de las respuestas DNS asociadas al dominio.
-          </p>
-          <ul>
-            <li><strong>DNSSEC:</strong> autenticidad e integridad DNS.</li>
-            <li><strong>SPF:</strong> origenes autorizados para enviar correo.</li>
-            <li><strong>DKIM:</strong> selector y clave publica.</li>
-            <li><strong>DMARC:</strong> politica progresiva hasta p=reject.</li>
-            <li><strong>MTA-STS y TLS-RPT:</strong> transporte seguro y reporting TLS.</li>
-          </ul>
-        </div>
-
-        <div class="config-card">
-          <h3>Autenticacion de correo</h3>
-          <p>
-            Se implemento autenticacion basada en SPF, DKIM y DMARC para reducir riesgos
-            de suplantacion del dominio y validar la autenticidad de los mensajes.
-          </p>
-          <ul>
-            <li>SPF fail validado con pruebas controladas.</li>
-            <li>DKIM correcto, DKIM roto y DKIM ausente.</li>
-            <li>Rotacion DKIM mediante selector nuevo.</li>
-            <li>DMARC final en p=reject.</li>
-          </ul>
-        </div>
-
-        <div class="config-card">
-          <h3>Postfix, OpenDKIM, OpenDMARC y OpenARC</h3>
-          <p>
-            Postfix fue la base del flujo SMTP. Los milters defensivos permitieron firmar,
-            validar, rechazar y registrar resultados de autenticacion.
-          </p>
-          <ul>
-            <li><strong>OpenDKIM:</strong> firma y validacion DKIM.</li>
-            <li><strong>OpenDMARC:</strong> evaluacion DMARC y rechazo por politica.</li>
-            <li><strong>OpenARC:</strong> soporte ARC para intermediarios o forwarding.</li>
-            <li><strong>Syslog:</strong> registro de evidencias tecnicas.</li>
-          </ul>
-        </div>
-
-        <div class="config-card">
-          <h3>Transporte seguro</h3>
-          <p>
-            Se validaron conexiones seguras SMTP e IMAPS junto con politicas de transporte
-            para reducir riesgos de downgrade o interceptacion.
-          </p>
-          <ul>
-            <li>STARTTLS SMTP validado con pruebas tecnicas.</li>
-            <li>IMAPS TLS validado sobre Dovecot.</li>
-            <li>MTA-STS en modo enforce.</li>
-            <li>TLS-RPT documentado como mecanismo de reporting.</li>
-          </ul>
-        </div>
-
-        <div class="config-card">
-          <h3>Pruebas de abuso SMTP</h3>
-          <p>
-            El servidor fue probado frente a escenarios de abuso, errores y mala configuracion
-            para demostrar que los controles defensivos actuaban correctamente.
-          </p>
-          <ul>
-            <li>Open relay rechazado.</li>
-            <li>SMTP AUTH fail registrado.</li>
-            <li>Recipient unknown registrado.</li>
-            <li>Lookalike domains analizados.</li>
-            <li>Spoofing externo rechazado por DMARC.</li>
-          </ul>
-        </div>
-
-        <div class="config-card">
-          <h3>Evidencias y SOC</h3>
-          <p>
-            Los eventos se transformaron en evidencias estructuradas para que el proyecto
-            no fuese solo configuracion, sino una demostracion medible y auditable.
-          </p>
-          <ul>
-            <li>Extraccion de eventos desde syslog.</li>
-            <li>Parser SOC con scripts propios.</li>
-            <li>CSV SOC con 190 eventos procesados.</li>
-            <li>Dashboard Python/Dash con metricas y tablas.</li>
-          </ul>
-        </div>
-
+      <div class="config-card">
+        <h3>1. DNS y confianza del dominio</h3>
+        <p>
+          La capa DNS fue la base de confianza del proyecto. Los controles modernos de email security
+          dependen de registros DNS correctamente publicados y verificables.
+        </p>
+        <ul>
+          <li><strong>DNSSEC:</strong> refuerzo de autenticidad e integridad de respuestas DNS.</li>
+          <li><strong>SPF:</strong> declaracion de servidores autorizados para enviar correo.</li>
+          <li><strong>DKIM:</strong> publicacion de clave publica asociada al selector DKIM.</li>
+          <li><strong>DMARC:</strong> politica del dominio hasta llegar a p=reject.</li>
+          <li><strong>MTA-STS y TLS-RPT:</strong> politicas relacionadas con transporte seguro y reporting TLS.</li>
+        </ul>
       </div>
-    </div>
-  </section>
 
-  <section id="dashboard">
+      <div class="config-card">
+        <h3>2. Autenticacion de correo</h3>
+        <p>
+          Se validaron SPF, DKIM y DMARC no solo como registros publicados, sino como controles defensivos
+          sometidos a pruebas positivas y negativas.
+        </p>
+        <ul>
+          <li><strong>SPF fail:</strong> validacion de origenes no autorizados.</li>
+          <li><strong>DKIM correcto:</strong> firma valida con selector publicado.</li>
+          <li><strong>DKIM broken:</strong> deteccion de firma invalida o alterada.</li>
+          <li><strong>DKIM absent:</strong> diferenciacion de mensajes sin firma.</li>
+          <li><strong>Rotacion DKIM:</strong> cambio controlado de selector hacia s2026.</li>
+          <li><strong>DMARC p=reject:</strong> rechazo de mensajes no alineados o no autenticados.</li>
+        </ul>
+      </div>
+
+      <div class="config-card">
+        <h3>3. Postfix y milters defensivos</h3>
+        <p>
+          Postfix fue el nucleo del flujo SMTP. Sobre Postfix se integraron milters defensivos para firmar,
+          validar, rechazar y registrar resultados de autenticacion.
+        </p>
+        <ul>
+          <li><strong>Postfix:</strong> servidor SMTP principal del laboratorio.</li>
+          <li><strong>OpenDKIM:</strong> firma y validacion DKIM.</li>
+          <li><strong>OpenDMARC:</strong> evaluacion DMARC y rechazo por politica.</li>
+          <li><strong>OpenARC:</strong> soporte ARC para escenarios con intermediarios o forwarding.</li>
+          <li><strong>Syslog:</strong> fuente principal para conservar evidencias tecnicas.</li>
+        </ul>
+      </div>
+
+      <div class="config-card">
+        <h3>4. Transporte seguro</h3>
+        <p>
+          El proyecto tambien valido la seguridad del transporte, separando las pruebas de autenticacion
+          de correo de las pruebas de cifrado y negociacion TLS.
+        </p>
+        <ul>
+          <li><strong>STARTTLS SMTP:</strong> validacion de negociacion TLS en SMTP.</li>
+          <li><strong>IMAPS TLS:</strong> validacion de canal seguro sobre Dovecot.</li>
+          <li><strong>MTA-STS enforce:</strong> politica publicada para exigir TLS valido a emisores compatibles.</li>
+          <li><strong>TLS-RPT:</strong> reporting documentado para problemas de entrega TLS.</li>
+        </ul>
+      </div>
+
+      <div class="config-card">
+        <h3>5. Pruebas defensivas controladas</h3>
+        <p>
+          La configuracion se valido mediante pruebas controladas orientadas a detectar abuso,
+          errores de autenticacion, suplantacion y configuraciones inseguras.
+        </p>
+        <ul>
+          <li><strong>Open relay test:</strong> comprobacion de rechazo de relay no autorizado.</li>
+          <li><strong>SMTP AUTH fail:</strong> registro de autenticaciones fallidas.</li>
+          <li><strong>Recipient unknown:</strong> rechazo de destinatarios inexistentes.</li>
+          <li><strong>Lookalike domains:</strong> analisis de dominios visualmente similares.</li>
+          <li><strong>External spoofing:</strong> intentos externos rechazados por DMARC.</li>
+        </ul>
+      </div>
+
+      <div class="config-card">
+        <h3>6. Evidencias SOC y dashboard</h3>
+        <p>
+          Los eventos generados por el servidor se procesaron y transformaron en datos SOC estructurados.
+          Esta capa conecta la configuracion defensiva con el dashboard.
+        </p>
+        <ul>
+          <li><strong>Syslog:</strong> origen de eventos reales.</li>
+          <li><strong>Parser SOC:</strong> scripts propios para clasificar eventos.</li>
+          <li><strong>CSV SOC:</strong> dataset con 190 eventos procesados.</li>
+          <li><strong>Python/Dash:</strong> dashboard con metricas, categorias, tablas y evidencias.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section id="dashboard">
     <div class="container">
       <h2>4. Automatizacion y dashboard SOC</h2>
 
@@ -1390,6 +1392,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
