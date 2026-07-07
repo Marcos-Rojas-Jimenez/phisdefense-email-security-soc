@@ -517,245 +517,371 @@
   </header>
 
   <main>
-    <section id="contexto">
-      <div class="container">
-        <h2>Contexto del proyecto</h2>
-        <p class="section-subtitle">
-          Este proyecto nacio como TFM y fue adaptado como pieza de portfolio profesional.
-          El objetivo fue construir un laboratorio defensivo capaz de demostrar, con evidencias,
-          que los controles de seguridad de correo estaban configurados y validados correctamente.
-        </p>
 
-        <div class="cards">
-          <div class="card">
-            <h3>Problema</h3>
-            <p>Muchas configuraciones de correo incluyen SPF, DKIM o DMARC, pero no siempre existen pruebas practicas ni evidencias claras de que esos controles funcionen ante abuso SMTP, spoofing o errores de autenticacion.</p>
-          </div>
+  <section id="contexto">
+    <div class="container">
+      <h2>1. Problema que resuelve</h2>
 
-          <div class="card">
-            <h3>Objetivo</h3>
-            <p>Convertir controles tecnicos de email security en eventos medibles, documentados y visibles desde una perspectiva SOC, usando logs reales y automatizacion.</p>
-          </div>
+      <p class="section-subtitle">
+        PhisDefense nace para resolver un problema muy concreto: no basta con configurar
+        seguridad de correo, tambien hay que probarla, evidenciarla y monitorizarla.
+        El objetivo fue validar de forma practica controles como SPF, DKIM, DMARC,
+        DNSSEC, MTA-STS, TLS-RPT, OpenDKIM, OpenDMARC, OpenARC, Postfix, Dovecot y TLS,
+        y convertir esas pruebas en evidencias SOC.
+      </p>
 
-          <div class="card">
-            <h3>Resultado</h3>
-            <p>Un dashboard SOC con metricas, categorias, tabla de eventos, evidencias y dataset publico sanitizado, preparado para ser mostrado en entrevistas.</p>
-          </div>
+      <div class="cards">
+        <div class="card">
+          <h3>Problema tecnico</h3>
+          <p>
+            Muchos dominios publican SPF, DKIM o DMARC, pero no siempre se valida si esos
+            controles funcionan ante abuso SMTP, spoofing, errores DKIM, fallos SPF,
+            problemas TLS o autenticaciones fallidas.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Necesidad defensiva</h3>
+          <p>
+            En un entorno Blue Team/SOC, la configuracion debe transformarse en eventos,
+            logs, evidencias y metricas que permitan analizar el comportamiento real
+            del sistema.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Objetivo del proyecto</h3>
+          <p>
+            Desplegar una infraestructura real de correo defensivo, ejecutar pruebas
+            controladas, registrar evidencias y visualizar los resultados en un dashboard SOC.
+          </p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="solucion">
-      <div class="container">
-        <h2>Solucion implementada</h2>
-        <p class="section-subtitle">La solucion combina servicios reales de correo, procesamiento de logs y visualizacion SOC. La idea central fue no registrar pruebas sin evidencia tecnica.</p>
+  <section id="solucion">
+    <div class="container">
+      <h2>2. Solucion implementada</h2>
 
-        <div class="split">
-          <div class="panel">
-            <h3>Arquitectura funcional</h3>
+      <p class="section-subtitle">
+        La solucion combina configuracion de servidor, seguridad DNS, autenticacion de correo,
+        milters defensivos, transporte seguro, pruebas controladas, parsing de logs y un
+        dashboard en Python/Dash.
+      </p>
+
+      <div class="flow-list">
+        <div class="flow-item">
+          <strong>1. Capa DNS y dominio:</strong>
+          SPF, DKIM, DMARC, DNSSEC, MTA-STS y TLS-RPT como base de autenticacion,
+          confianza y transporte seguro.
+        </div>
+
+        <div class="flow-item">
+          <strong>2. Servidor de correo:</strong>
+          Postfix como MTA, Dovecot para IMAPS TLS y syslog como fuente principal
+          de evidencias.
+        </div>
+
+        <div class="flow-item">
+          <strong>3. Milters integrados:</strong>
+          OpenDKIM, OpenDMARC y OpenARC integrados con Postfix para firmar, validar,
+          rechazar y registrar resultados.
+        </div>
+
+        <div class="flow-item">
+          <strong>4. Pruebas defensivas:</strong>
+          Open relay, SMTP AUTH fail, recipient unknown, SPF fail, DKIM roto,
+          DKIM ausente, rotacion DKIM, lookalike domains y spoofing externo rechazado.
+        </div>
+
+        <div class="flow-item">
+          <strong>5. Capa SOC:</strong>
+          Scripts de procesamiento, dataset SOC, metricas y dashboard con visualizacion
+          de evidencias.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="configuracion">
+    <div class="container">
+      <h2>3. Configuracion defensiva del servidor</h2>
+
+      <p class="section-subtitle">
+        Esta es la parte central del proyecto: toda la configuracion real aplicada sobre
+        el servidor y el dominio para proteger, validar y monitorizar el correo.
+      </p>
+
+      <div class="config-grid">
+
+        <div class="config-card">
+          <h3>DNS, dominio y confianza</h3>
+          <p>
+            Se configuraron registros DNS relacionados con autenticacion y seguridad de correo.
+            DNSSEC se incorporo como capa adicional de confianza para proteger la autenticidad
+            e integridad de las respuestas DNS asociadas al dominio.
+          </p>
+          <ul>
+            <li><strong>DNSSEC:</strong> autenticidad e integridad DNS.</li>
+            <li><strong>SPF:</strong> origenes autorizados para enviar correo.</li>
+            <li><strong>DKIM:</strong> selector y clave publica.</li>
+            <li><strong>DMARC:</strong> politica progresiva hasta p=reject.</li>
+            <li><strong>MTA-STS y TLS-RPT:</strong> transporte seguro y reporting TLS.</li>
+          </ul>
+        </div>
+
+        <div class="config-card">
+          <h3>Autenticacion de correo</h3>
+          <p>
+            Se implemento autenticacion basada en SPF, DKIM y DMARC para reducir riesgos
+            de suplantacion del dominio y validar la autenticidad de los mensajes.
+          </p>
+          <ul>
+            <li>SPF fail validado con pruebas controladas.</li>
+            <li>DKIM correcto, DKIM roto y DKIM ausente.</li>
+            <li>Rotacion DKIM mediante selector nuevo.</li>
+            <li>DMARC final en p=reject.</li>
+          </ul>
+        </div>
+
+        <div class="config-card">
+          <h3>Postfix, OpenDKIM, OpenDMARC y OpenARC</h3>
+          <p>
+            Postfix fue la base del flujo SMTP. Los milters defensivos permitieron firmar,
+            validar, rechazar y registrar resultados de autenticacion.
+          </p>
+          <ul>
+            <li><strong>OpenDKIM:</strong> firma y validacion DKIM.</li>
+            <li><strong>OpenDMARC:</strong> evaluacion DMARC y rechazo por politica.</li>
+            <li><strong>OpenARC:</strong> soporte ARC para intermediarios o forwarding.</li>
+            <li><strong>Syslog:</strong> registro de evidencias tecnicas.</li>
+          </ul>
+        </div>
+
+        <div class="config-card">
+          <h3>Transporte seguro</h3>
+          <p>
+            Se validaron conexiones seguras SMTP e IMAPS junto con politicas de transporte
+            para reducir riesgos de downgrade o interceptacion.
+          </p>
+          <ul>
+            <li>STARTTLS SMTP validado con pruebas tecnicas.</li>
+            <li>IMAPS TLS validado sobre Dovecot.</li>
+            <li>MTA-STS en modo enforce.</li>
+            <li>TLS-RPT documentado como mecanismo de reporting.</li>
+          </ul>
+        </div>
+
+        <div class="config-card">
+          <h3>Pruebas de abuso SMTP</h3>
+          <p>
+            El servidor fue probado frente a escenarios de abuso, errores y mala configuracion
+            para demostrar que los controles defensivos actuaban correctamente.
+          </p>
+          <ul>
+            <li>Open relay rechazado.</li>
+            <li>SMTP AUTH fail registrado.</li>
+            <li>Recipient unknown registrado.</li>
+            <li>Lookalike domains analizados.</li>
+            <li>Spoofing externo rechazado por DMARC.</li>
+          </ul>
+        </div>
+
+        <div class="config-card">
+          <h3>Evidencias y SOC</h3>
+          <p>
+            Los eventos se transformaron en evidencias estructuradas para que el proyecto
+            no fuese solo configuracion, sino una demostracion medible y auditable.
+          </p>
+          <ul>
+            <li>Extraccion de eventos desde syslog.</li>
+            <li>Parser SOC con scripts propios.</li>
+            <li>CSV SOC con 190 eventos procesados.</li>
+            <li>Dashboard Python/Dash con metricas y tablas.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="dashboard">
+    <div class="container">
+      <h2>4. Automatizacion y dashboard SOC</h2>
+
+      <p class="section-subtitle">
+        Tras configurar el servidor, se desarrollo una capa de automatizacion para convertir
+        logs y pruebas tecnicas en informacion SOC visual y reutilizable.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Procesamiento de logs</h3>
+          <p>
+            Scripts propios procesan syslog y extraen eventos relacionados con SMTP, DMARC,
+            DKIM, TLS, autenticacion y rechazos.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Dataset SOC</h3>
+          <p>
+            Los eventos se normalizan en CSV con identificador de prueba, tipo, clasificacion,
+            resultado esperado, ubicacion final y observaciones sanitizadas.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Visualizacion</h3>
+          <p>
+            El dashboard en Python/Dash muestra KPIs, tablas, categorias de eventos,
+            evidencias y vision general del estado defensivo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="metricas">
+    <div class="container">
+      <h2>5. Resultados y metricas</h2>
+
+      <p class="section-subtitle">
+        El dashboard final agrega 270 pruebas totales y 190 eventos SOC procesados y categorizados.
+      </p>
+
+      <div class="metrics">
+        <div class="metric-card"><div class="metric-value">270</div><div class="metric-label">Pruebas totales</div><div class="metric-desc">Agregadas en el dashboard.</div></div>
+        <div class="metric-card"><div class="metric-value">190</div><div class="metric-label">Eventos SOC</div><div class="metric-desc">Procesados y categorizados.</div></div>
+        <div class="metric-card"><div class="metric-value">58</div><div class="metric-label">Recipient unknown</div><div class="metric-desc">Rechazos por destinatario inexistente.</div></div>
+        <div class="metric-card"><div class="metric-value">55</div><div class="metric-label">Auth fail</div><div class="metric-desc">Fallos SMTP AUTH detectados.</div></div>
+      </div>
+
+      <div class="metrics" style="margin-top:16px;">
+        <div class="metric-card"><div class="metric-value">19</div><div class="metric-label">STARTTLS SMTP</div><div class="metric-desc">Validaciones de transporte seguro.</div></div>
+        <div class="metric-card"><div class="metric-value">14</div><div class="metric-label">TLS IMAPS</div><div class="metric-desc">Validaciones TLS sobre IMAPS.</div></div>
+        <div class="metric-card"><div class="metric-value">8</div><div class="metric-label">SPF fail</div><div class="metric-desc">Escenarios de origen no autorizado.</div></div>
+        <div class="metric-card"><div class="metric-value">3</div><div class="metric-label">Spoofing reject</div><div class="metric-desc">Rechazos DMARC p=reject.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="video">
+    <div class="container">
+      <h2>6. Video demo del dashboard</h2>
+
+      <p class="section-subtitle">
+        Demo del dashboard SOC mostrando metricas principales, eventos SMTP, pruebas SOC,
+        validaciones TLS, evidencias defensivas y resultados del laboratorio.
+      </p>
+
+      <div class="video-card">
+        <video class="demo-video" controls preload="metadata">
+          <source src="assets/dashboard-demo.mp4" type="video/mp4" />
+          Tu navegador no soporta la reproduccion de video HTML5.
+        </video>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn primary" href="assets/dashboard-demo.mp4" target="_blank">Abrir video en nueva pestana</a>
+        <a class="btn" href="data-samples/bateria_pruebas_soc_sample.csv" target="_blank">Ver dataset SOC</a>
+        <a class="btn" href="#docs">Ver documentacion interna</a>
+        <a class="btn" href="#roadmap">Siguiente fase</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="docs">
+    <div class="container">
+      <h2>7. Documentacion tecnica interna</h2>
+
+      <p class="section-subtitle">
+        Paneles desplegables con la explicacion tecnica del proyecto dentro de la propia interfaz visual.
+        Al clicar, el contenido se abre aqui mismo, sin Bloc de notas ni archivos externos.
+      </p>
+
+      <div class="doc-panels">
+
+        <details class="doc-panel" open>
+          <summary>Resumen tecnico</summary>
+          <div class="doc-panel-content">
+            <p>
+              PhisDefense combina DNS, autenticacion de correo, milters, transporte seguro,
+              pruebas controladas, tratamiento de logs y dashboard SOC.
+            </p>
+          </div>
+        </details>
+
+        <details class="doc-panel">
+          <summary>Arquitectura del servidor</summary>
+          <div class="doc-panel-content">
+            <p>
+              Postfix, OpenDKIM, OpenDMARC, OpenARC, Dovecot y syslog forman la base tecnica
+              del laboratorio.
+            </p>
+          </div>
+        </details>
+
+        <details class="doc-panel">
+          <summary>Pruebas SOC</summary>
+          <div class="doc-panel-content">
             <ul>
-              <li>Postfix como servicio SMTP.</li>
-              <li>OpenDMARC para validacion y rechazo DMARC.</li>
-              <li>OpenDKIM para validacion y gestion DKIM.</li>
-              <li>Dovecot para validaciones IMAPS TLS.</li>
-              <li>Syslog como fuente principal de evidencias.</li>
-              <li>Scripts en Python/Bash para procesar eventos.</li>
-              <li>Dashboard en Python/Dash para KPIs y analisis.</li>
+              <li>auth_fail</li>
+              <li>recipient_unknown</li>
+              <li>open_relay_test</li>
+              <li>tls_starttls_smtp</li>
+              <li>tls_imaps</li>
+              <li>spf_fail</li>
+              <li>dkim_broken</li>
+              <li>dkim_absent</li>
+              <li>spoofing_reject</li>
             </ul>
           </div>
+        </details>
 
-          <div class="panel">
-            <h3>Controles validados</h3>
-            <ul>
-              <li>DMARC progresivo hasta p=reject.</li>
-              <li>SPF y escenarios SPF fail.</li>
-              <li>DKIM correcto, DKIM roto y DKIM ausente.</li>
-              <li>Rotacion DKIM mediante selector nuevo.</li>
-              <li>STARTTLS SMTP e IMAPS TLS.</li>
-              <li>Open relay test y rechazo de abuso SMTP.</li>
-              <li>Spoofing externo rechazado por DMARC.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="notice">
-          Criterio clave: una prueba solo se considero valida si existia evidencia tecnica como respuesta SMTP,
-          transcript TLS, registro syslog, consulta DNS, validacion DKIM/DMARC o milter-reject.
-        </div>
-      </div>
-    </section>
-
-    <section id="metricas">
-      <div class="container">
-        <h2>Resultados y metricas</h2>
-        <p class="section-subtitle">El dashboard final agrega 270 pruebas totales y 190 eventos SOC procesados y categorizados. El dataset publico incluido en este repositorio esta sanitizado.</p>
-
-        <div class="metrics">
-          <div class="metric-card"><div class="metric-value">270</div><div class="metric-label">Pruebas totales</div><div class="metric-desc">Agregadas en el dashboard.</div></div>
-          <div class="metric-card"><div class="metric-value">190</div><div class="metric-label">Eventos SOC</div><div class="metric-desc">Procesados y categorizados.</div></div>
-          <div class="metric-card"><div class="metric-value">58</div><div class="metric-label">Recipient unknown</div><div class="metric-desc">Rechazos por destinatario inexistente.</div></div>
-          <div class="metric-card"><div class="metric-value">55</div><div class="metric-label">Auth fail</div><div class="metric-desc">Fallos SMTP AUTH detectados.</div></div>
-        </div>
-
-        <div class="metrics" style="margin-top:16px;">
-          <div class="metric-card"><div class="metric-value">19</div><div class="metric-label">STARTTLS SMTP</div><div class="metric-desc">Validaciones de transporte seguro.</div></div>
-          <div class="metric-card"><div class="metric-value">14</div><div class="metric-label">TLS IMAPS</div><div class="metric-desc">Validaciones TLS sobre IMAPS.</div></div>
-          <div class="metric-card"><div class="metric-value">8</div><div class="metric-label">SPF fail</div><div class="metric-desc">Escenarios de origen no autorizado.</div></div>
-          <div class="metric-card"><div class="metric-value">3</div><div class="metric-label">Spoofing reject</div><div class="metric-desc">Rechazos DMARC p=reject.</div></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="video">
-      <div class="container">
-        <h2>Video demo del dashboard</h2>
-        <p class="section-subtitle">Demo del dashboard SOC mostrando metricas principales, eventos SMTP, pruebas SOC, validaciones TLS, evidencias defensivas y resultados del laboratorio.</p>
-
-        <div class="video-card">
-          <video class="demo-video" controls preload="metadata">
-            <source src="assets/dashboard-demo.mp4" type="video/mp4" />
-            Tu navegador no soporta la reproduccion de video HTML5.
-          </video>
-        </div>
-
-        <div class="hero-actions">
-          <a class="btn primary" href="assets/dashboard-demo.mp4" target="_blank">Abrir video en nueva pestana</a>
-          <a class="btn" href="data-samples/bateria_pruebas_soc_sample.csv" target="_blank">Ver dataset SOC</a>
-          <a class="btn" href="#docs">Ver documentacion interna</a>
-          <a class="btn" href="#roadmap">Siguiente fase</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="docs">
-      <div class="container">
-        <h2>Documentacion tecnica del proyecto</h2>
-        <p class="section-subtitle">
-          Paneles desplegables con la explicacion tecnica del proyecto dentro de la propia interfaz visual.
-          Al clicar, el contenido se abre aqui mismo, sin Bloc de notas ni archivos externos.
-        </p>
-
-        <div class="doc-panels">
-          <details class="doc-panel" open>
-            <summary>Arquitectura del laboratorio</summary>
-            <div class="doc-panel-content">
-              <p>PhisDefense conecta servicios reales de correo con procesamiento SOC y visualizacion mediante dashboard.</p>
-              <ul>
-                <li>Postfix procesa sesiones SMTP.</li>
-                <li>OpenDMARC valida DMARC y aplica rechazos.</li>
-                <li>OpenDKIM participa en validaciones DKIM.</li>
-                <li>Dovecot permite pruebas IMAPS TLS.</li>
-                <li>Syslog conserva evidencias reales.</li>
-                <li>Scripts SOC generan el dataset.</li>
-                <li>El dashboard Python/Dash visualiza KPIs, tablas y categorias.</li>
-              </ul>
-            </div>
-          </details>
-
-          <details class="doc-panel">
-            <summary>Metodologia de validacion</summary>
-            <div class="doc-panel-content">
-              <p>Una prueba solo se incorporo al dataset SOC si existia evidencia tecnica verificable.</p>
-              <ul>
-                <li>Respuestas SMTP reales.</li>
-                <li>Registros syslog.</li>
-                <li>Validaciones TLS.</li>
-                <li>Consultas DNS.</li>
-                <li>Eventos de Postfix, OpenDMARC y OpenDKIM.</li>
-                <li>Rechazos milter-reject.</li>
-              </ul>
-            </div>
-          </details>
-
-          <details class="doc-panel">
-            <summary>Pruebas SOC realizadas</summary>
-            <div class="doc-panel-content">
-              <ul>
-                <li><strong>auth_fail:</strong> fallos SMTP AUTH.</li>
-                <li><strong>recipient_unknown:</strong> destinatarios inexistentes.</li>
-                <li><strong>open_relay_test:</strong> rechazo de relay abierto.</li>
-                <li><strong>tls_starttls_smtp:</strong> pruebas STARTTLS SMTP.</li>
-                <li><strong>tls_imaps:</strong> validaciones TLS sobre IMAPS.</li>
-                <li><strong>spf_fail:</strong> origen no autorizado.</li>
-                <li><strong>dkim_broken:</strong> firma DKIM rota.</li>
-                <li><strong>dkim_absent:</strong> ausencia de DKIM.</li>
-                <li><strong>spoofing_reject:</strong> intentos externos rechazados por DMARC.</li>
-              </ul>
-            </div>
-          </details>
-
-          <details class="doc-panel">
-            <summary>Spoofing y DMARC p=reject</summary>
-            <div class="doc-panel-content">
-              <p>Se valido una politica DMARC progresiva hasta p=reject. Las evidencias incluyeron:</p>
-              <pre><code>milter-reject: END-OF-MESSAGE
+        <details class="doc-panel">
+          <summary>Spoofing y DMARC</summary>
+          <div class="doc-panel-content">
+            <p>Se valido una politica DMARC progresiva hasta p=reject.</p>
+            <pre><code>milter-reject: END-OF-MESSAGE
 5.7.1 rejected by DMARC policy for phisdefense.com</code></pre>
-              <p>Los eventos se clasificaron como <strong>spoofing_reject</strong>.</p>
-            </div>
-          </details>
+          </div>
+        </details>
 
-          <details class="doc-panel">
-            <summary>Metricas finales</summary>
-            <div class="doc-panel-content">
-              <p>El dashboard agrega <strong>270 pruebas totales</strong> y <strong>190 eventos SOC</strong>.</p>
-              <ul>
-                <li>recipient_unknown: 58</li>
-                <li>auth_fail: 55</li>
-                <li>tls_starttls_smtp: 19</li>
-                <li>tls_imaps: 14</li>
-                <li>dkim_absent: 8</li>
-                <li>dkim_broken: 8</li>
-                <li>spf_fail: 8</li>
-                <li>lookalike_domain: 7</li>
-                <li>dkim_rotation: 6</li>
-                <li>open_relay_test: 3</li>
-                <li>spoofing_reject: 3</li>
-                <li>smtp_auth_success: 1</li>
-              </ul>
-            </div>
-          </details>
+        <details class="doc-panel">
+          <summary>Privacidad</summary>
+          <div class="doc-panel-content">
+            <p>
+              La version publica esta sanitizada: sin claves, credenciales, ficheros .env,
+              IPs sensibles ni backups completos del servidor.
+            </p>
+          </div>
+        </details>
 
-          <details class="doc-panel">
-            <summary>Privacidad y version publica</summary>
-            <div class="doc-panel-content">
-              <p>La version publica esta sanitizada para no exponer informacion sensible.</p>
-              <ul>
-                <li>IPs anonimizadas.</li>
-                <li>Rutas internas eliminadas.</li>
-                <li>Correos externos anonimizados.</li>
-                <li>Sin claves DKIM privadas.</li>
-                <li>Sin credenciales.</li>
-                <li>Sin ficheros .env.</li>
-              </ul>
-            </div>
-          </details>
-        </div>
-
-        <div class="hero-actions">
-          <a class="btn primary" href="data-samples/bateria_pruebas_soc_sample.csv" target="_blank">Descargar dataset SOC</a>
-          <a class="btn" href="#video">Ver video demo</a>
-          <a class="btn" href="#metricas">Ver metricas</a>
-        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="roadmap">
-      <div class="container">
-        <h2>Siguiente fase</h2>
-        <p class="section-subtitle">
-          Esta pagina esta pensada para formar parte de un portfolio personal completo.
-          En el futuro, desde la pestana de proyectos del portfolio principal se enlazara
-          a esta pagina como caso de estudio.
-        </p>
+  <section id="roadmap">
+    <div class="container">
+      <h2>8. Estado del proyecto</h2>
 
-        <div class="timeline">
-          <div class="timeline-item"><div class="timeline-step">Fase 1</div><div class="timeline-text">Publicacion del caso de estudio en GitHub Pages.</div></div>
-          <div class="timeline-item"><div class="timeline-step">Fase 2</div><div class="timeline-text">Incorporacion de capturas, video demo y dataset sanitizado.</div></div>
-          <div class="timeline-item"><div class="timeline-step">Fase 3</div><div class="timeline-text">Despliegue futuro de una demo interactiva del dashboard con datos estaticos y sanitizados.</div></div>
-        </div>
+      <p class="section-subtitle">
+        Proyecto finalizado como TFM y adaptado como caso de estudio para portfolio profesional.
+        El servidor original puede no estar activo en el futuro, por lo que esta pagina conserva
+        una version publica, segura y explicativa del trabajo.
+      </p>
+
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-step">Estado</div><div class="timeline-text">Finalizado como TFM y publicado como caso de estudio.</div></div>
+        <div class="timeline-item"><div class="timeline-step">Version publica</div><div class="timeline-text">Dataset sanitizado, video demo y documentacion interna.</div></div>
+        <div class="timeline-item"><div class="timeline-step">Proxima mejora</div><div class="timeline-text">Demo interactiva del dashboard con datos estaticos y sanitizados.</div></div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+</main>
 
   <footer class="footer">
     <div class="container">
@@ -765,3 +891,5 @@
   </footer>
 </body>
 </html>
+
+
