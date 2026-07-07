@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 Dashboard SOC para el TFM de infraestructura segura de correo.
 
@@ -344,9 +344,9 @@ def create_classification_chart(df):
 
 
 def create_location_chart(df):
-    """GrÃ¡fico de ubicaciÃ³n final agrupado: entregado, rechazado, spam y validaciÃ³n tÃ©cnica."""
+    """Gráfico de ubicación final agrupado: entregado, rechazado, spam y validación técnica."""
     if df is None or df.empty:
-        return empty_figure("UbicaciÃ³n final", height=LARGE_CHART_HEIGHT)
+        return empty_figure("Ubicación final", height=LARGE_CHART_HEIGHT)
 
     temp = df.copy()
 
@@ -410,9 +410,9 @@ def create_location_chart(df):
             "tls" in value or
             "tls_ok" in value or
             "validacion" in value or
-            "validaciÃ³n" in value
+            "validación" in value
         ):
-            return "validaciÃ³n tÃ©cnica"
+            return "validación técnica"
 
         return "otros"
 
@@ -431,7 +431,7 @@ def create_location_chart(df):
         "spam": 1,
         "rechazado": 2,
         "entregado": 3,
-        "validaciÃ³n tÃ©cnica": 4,
+        "validación técnica": 4,
         "otros": 5,
     }
 
@@ -439,7 +439,7 @@ def create_location_chart(df):
     grouped = grouped.sort_values(["orden", "total"], ascending=[False, True])
 
     if grouped.empty:
-        return empty_figure("UbicaciÃ³n final", height=LARGE_CHART_HEIGHT)
+        return empty_figure("Ubicación final", height=LARGE_CHART_HEIGHT)
 
     def location_color(label):
         label = normalize_text(label)
@@ -453,7 +453,7 @@ def create_location_chart(df):
         if label == "entregado":
             return COLORS["green"]
 
-        if "validacion" in label or "validaciÃ³n" in label:
+        if "validacion" in label or "validación" in label:
             return COLORS["purple"]
 
         return COLORS["blue"]
@@ -481,7 +481,7 @@ def create_location_chart(df):
     max_value = int(grouped["total"].max()) if not grouped.empty else 1
 
     fig.update_layout(
-        title="UbicaciÃ³n final",
+        title="Ubicación final",
         xaxis_title="Eventos",
         yaxis_title="",
         showlegend=False,
@@ -621,7 +621,7 @@ def ultra_normalize_donas(figure):
 
 
 def center_global_distribution_donut(figure):
-    """Centra Ãºnicamente la dona de VisiÃ³n general sin romper hover/click."""
+    """Centra únicamente la dona de Visión general sin romper hover/click."""
     if figure is None:
         return figure
 
@@ -635,13 +635,13 @@ def center_global_distribution_donut(figure):
                 )
 
                 # IMPORTANTE:
-                # No tocar trace.pull aquÃ­.
-                # El pull lo usa la interacciÃ³n hover/click para resaltar sectores.
+                # No tocar trace.pull aquí.
+                # El pull lo usa la interacción hover/click para resaltar sectores.
                 trace.automargin = False
 
         figure.update_layout(
             title=dict(
-                text="DistribuciÃ³n global de eventos",
+                text="Distribución global de eventos",
                 x=0.5,
                 xanchor="center",
             ),
@@ -661,7 +661,7 @@ def create_graph(figure, height=DEFAULT_CHART_HEIGHT, graph_id=None, clear_on_un
     height_px = f"{height}px"
     figure = ultra_normalize_donas(figure)
 
-    # Centrado especÃ­fico SOLO para la dona de VisiÃ³n general.
+    # Centrado específico SOLO para la dona de Visión general.
     if graph_id == "global-distribution-chart":
         figure = center_global_distribution_donut(figure)
 
@@ -713,11 +713,11 @@ def create_data_table(df):
         "dkim_result": "DKIM",
         "dmarc": "DMARC",
         "dmarc_result": "DMARC",
-        "ubicacion_final": "UbicaciÃ³n",
-        "final_location": "UbicaciÃ³n",
-        "clasificacion_real": "ClasificaciÃ³n",
-        "classification": "ClasificaciÃ³n",
-        "clasificacion": "ClasificaciÃ³n",
+        "ubicacion_final": "Ubicación",
+        "final_location": "Ubicación",
+        "clasificacion_real": "Clasificación",
+        "classification": "Clasificación",
+        "clasificacion": "Clasificación",
         "observaciones": "Observaciones",
         "fuente": "Fuente",
     }
@@ -810,7 +810,7 @@ def create_data_table(df):
     add_contains(loc_cols, "rechaz", "rgba(255,77,103,.20)", "#ff9aad")
     add_contains(loc_cols, "reject", "rgba(255,77,103,.20)", "#ff9aad")
 
-    # Estilo por filas completas para lectura rÃ¡pida
+    # Estilo por filas completas para lectura rápida
     for col in class_cols:
         if col in visible_df.columns:
             conditional_styles.extend([
@@ -863,8 +863,8 @@ def create_data_table(df):
         },
     ])
     # FIX_COLORES_ESTADO_TABLA
-    # Colores visuales para estados de autenticaciÃ³n, ubicaciÃ³n y clasificaciÃ³n.
-    # No modifica datos; solo aÃ±ade estilos condicionales a la tabla.
+    # Colores visuales para estados de autenticación, ubicación y clasificación.
+    # No modifica datos; solo añade estilos condicionales a la tabla.
     try:
         def _add_state_style(cols, value, bg, fg="#ecf6ff", weight="800"):
             for _col in cols:
@@ -905,7 +905,7 @@ def create_data_table(df):
             "fuente",
         ]
 
-        # AutenticaciÃ³n
+        # Autenticación
         _add_state_style(_auth_cols, "pass", "rgba(34,197,94,0.24)", "#bbf7d0", "900")
         _add_state_style(_auth_cols, "fail", "rgba(239,68,68,0.30)", "#fecaca", "900")
         _add_state_style(_auth_cols, "none", "rgba(148,163,184,0.20)", "#e2e8f0", "800")
@@ -913,7 +913,7 @@ def create_data_table(df):
         _add_state_style(_auth_cols, "temperror", "rgba(168,85,247,0.24)", "#e9d5ff", "900")
         _add_state_style(_auth_cols, "permerror", "rgba(168,85,247,0.24)", "#e9d5ff", "900")
 
-        # UbicaciÃ³n / acciÃ³n final
+        # Ubicación / acción final
         _add_state_style(_loc_cols, "sent", "rgba(34,197,94,0.20)", "#bbf7d0", "850")
         _add_state_style(_loc_cols, "enviado", "rgba(34,197,94,0.20)", "#bbf7d0", "850")
         _add_state_style(_loc_cols, "inbox", "rgba(34,197,94,0.20)", "#bbf7d0", "850")
@@ -923,7 +923,7 @@ def create_data_table(df):
         _add_state_style(_loc_cols, "reject", "rgba(239,68,68,0.28)", "#fecaca", "900")
         _add_state_style(_loc_cols, "blocked", "rgba(239,68,68,0.28)", "#fecaca", "900")
 
-        # ClasificaciÃ³n
+        # Clasificación
         _add_state_style(_class_cols, "legit", "rgba(34,197,94,0.18)", "#bbf7d0", "850")
         _add_state_style(_class_cols, "spoof", "rgba(239,68,68,0.26)", "#fecaca", "900")
         _add_state_style(_class_cols, "reject", "rgba(239,68,68,0.26)", "#fecaca", "900")
@@ -1226,7 +1226,7 @@ def create_distribution_chart_global(df, soc_df, highlight_label=None):
     kpis = calculate_kpis(df)
     soc_kpis = calculate_soc_kpis(soc_df)
 
-    labels = ["legÃ­timos", "spoofing"]
+    labels = ["legítimos", "spoofing"]
     values = [kpis["legitimos"], kpis["spoofing"]]
     colors = [COLORS["green"], COLORS["red"]]
 
@@ -1285,7 +1285,7 @@ def create_distribution_chart_global(df, soc_df, highlight_label=None):
     )
 
     fig.update_layout(
-        title="DistribuciÃ³n global de eventos",
+        title="Distribución global de eventos",
         title_x=0.5,
         title_xanchor="center",
         paper_bgcolor="rgba(0,0,0,0)",
@@ -1300,7 +1300,7 @@ def create_distribution_chart_global(df, soc_df, highlight_label=None):
 
 
     # FIX_TOTAL_CENTRO_DONA_GLOBAL
-    # Total en el centro SOLO de la dona de VisiÃ³n general.
+    # Total en el centro SOLO de la dona de Visión general.
     try:
         fig.add_annotation(
             text=f"<b>{int(total)}</b><br><span style='font-size:12px'>eventos</span>",
@@ -1325,7 +1325,7 @@ def create_distribution_chart_global(df, soc_df, highlight_label=None):
 
 
 def create_classification_chart_global(df, soc_df):
-    """GrÃ¡fica de clasificaciÃ³n global: legÃ­timos, spoofing y Pruebas SOC."""
+    """Gráfica de clasificación global: legítimos, spoofing y Pruebas SOC."""
     kpis = calculate_kpis(df)
     soc_kpis = calculate_soc_kpis(soc_df)
 
@@ -1333,7 +1333,7 @@ def create_classification_chart_global(df, soc_df):
     spoofing = int(kpis.get("spoofing", 0))
     pruebas_soc = int(soc_kpis.get("total", 0))
 
-    labels = ["legÃ­timos", "spoofing", "Pruebas SOC"]
+    labels = ["legítimos", "spoofing", "Pruebas SOC"]
     values = [legitimos, spoofing, pruebas_soc]
     colors = [COLORS["green"], COLORS["red"], COLORS["purple"]]
 
@@ -1362,8 +1362,8 @@ def create_classification_chart_global(df, soc_df):
     )
 
     fig.update_layout(
-        title="ClasificaciÃ³n global",
-        xaxis_title="ClasificaciÃ³n",
+        title="Clasificación global",
+        xaxis_title="Clasificación",
         yaxis_title="Eventos",
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
@@ -1391,7 +1391,7 @@ def create_classification_chart_global(df, soc_df):
 
 
 def normalize_location_for_global_chart(df):
-    """Normaliza ubicaciÃ³n final para que la grÃ¡fica global incluya principal + SOC."""
+    """Normaliza ubicación final para que la gráfica global incluya principal + SOC."""
     if df is None or df.empty:
         return pd.DataFrame()
 
@@ -1429,7 +1429,7 @@ def normalize_location_for_global_chart(df):
 
 
 def build_global_location_df(main_df, soc_df):
-    """Construye dataframe dinÃ¡mico para UbicaciÃ³n final global."""
+    """Construye dataframe dinámico para Ubicación final global."""
     parts = []
 
     main_norm = normalize_location_for_global_chart(main_df)
@@ -1447,10 +1447,10 @@ def build_global_location_df(main_df, soc_df):
 
 
 def pagina_soc(df, metadata, error, search_value=None):
-    """PÃ¡gina portfolio diferenciada para pruebas SOC.
+    """Página portfolio diferenciada para pruebas SOC.
 
     Esta vista no replica Seguridad SMTP. En lugar de enfocarse en SMTP,
-    presenta las pruebas como catÃ¡logo de controles defensivos, familias,
+    presenta las pruebas como catálogo de controles defensivos, familias,
     severidad y evidencias.
     """
     soc_df, soc_error = load_soc_csv()
@@ -1472,11 +1472,11 @@ def pagina_soc(df, metadata, error, search_value=None):
         clasif = _norm(row.get("clasificacion_real", ""))
 
         if "open_relay" in tipo or "relay" in clasif:
-            return "Relay / PerÃ­metro SMTP"
+            return "Relay / Perímetro SMTP"
         if "auth_fail" in tipo or "auth_fail" in clasif:
-            return "AutenticaciÃ³n"
+            return "Autenticación"
         if "recipient_unknown" in tipo or "recipient_unknown" in clasif:
-            return "ValidaciÃ³n de destinatarios"
+            return "Validación de destinatarios"
         if "tls" in tipo or "tls_ok" in clasif:
             return "Transporte seguro"
         if "dkim" in tipo or "dkim" in clasif:
@@ -1486,7 +1486,7 @@ def pagina_soc(df, metadata, error, search_value=None):
         if "spoof" in tipo or "spoof" in clasif or "lookalike" in tipo or "lookalike" in clasif:
             return "Anti-spoofing"
         if "smtp_auth_success" in tipo or "smtp_auth_success" in clasif:
-            return "EnvÃ­o autenticado"
+            return "Envío autenticado"
         return "Otros controles SOC"
 
     def _control_soc(row):
@@ -1496,15 +1496,15 @@ def pagina_soc(df, metadata, error, search_value=None):
         if "open_relay" in tipo or "relay_denied" in clasif:
             return "Relay no autorizado denegado"
         if "auth_fail" in tipo or "auth_fail" in clasif:
-            return "Intento de autenticaciÃ³n fallida"
+            return "Intento de autenticación fallida"
         if "recipient_unknown" in tipo or "recipient_unknown" in clasif:
             return "Destinatario inexistente rechazado"
         if "tls" in tipo or "tls_ok" in clasif:
-            return "ValidaciÃ³n TLS correcta"
+            return "Validación TLS correcta"
         if "smtp_auth_success" in tipo or "smtp_auth_success" in clasif:
-            return "EnvÃ­o autenticado permitido"
+            return "Envío autenticado permitido"
         if "dkim_rotation" in tipo or "dkim_rotation" in clasif:
-            return "RotaciÃ³n DKIM validada"
+            return "Rotación DKIM validada"
         if "dkim" in tipo or "dkim" in clasif:
             return "Control DKIM negativo"
         if "spf" in tipo or "spf" in clasif:
@@ -1604,7 +1604,7 @@ def pagina_soc(df, metadata, error, search_value=None):
         create_metric_card("Familias SOC", familias, "Tipos de control", COLORS["cyan"], "FAM"),
         create_metric_card("Automatizadas", automatizadas, "Eventos detectados", COLORS["purple"], "AUTO"),
         create_metric_card("Mitigadas", mitigadas, f"{cobertura:.1f}% controladas", COLORS["green"], "OK"),
-        create_metric_card("Severidad alta", alta, "Controles crÃ­ticos", COLORS["red"], "HIGH"),
+        create_metric_card("Severidad alta", alta, "Controles críticos", COLORS["red"], "HIGH"),
         create_metric_card("Evidencias log", evidencias_log, "Syslog/queue/log", "#facc15", "LOG"),
         create_metric_card("Total SOC", total_soc, "Pruebas documentadas", COLORS["blue"], "SOC"),
     ]
@@ -1630,7 +1630,7 @@ def pagina_soc(df, metadata, error, search_value=None):
                     "control_soc": "Control SOC",
                     "severidad": "Severidad",
                     "resultado_control": "Resultado",
-                    "clasificacion_real": "ClasificaciÃ³n tÃ©cnica",
+                    "clasificacion_real": "Clasificación técnica",
                     "origen": "Origen",
                     "destino": "Destino",
                     "evidencia": "Evidencia",
@@ -1741,9 +1741,9 @@ def pagina_soc(df, metadata, error, search_value=None):
         html.Div(
             [
                 html.Div("SOC CONTROL CATALOG", className="soc-unique-eyebrow"),
-                html.Div("CatÃ¡logo de pruebas defensivas", className="soc-unique-title"),
+                html.Div("Catálogo de pruebas defensivas", className="soc-unique-title"),
                 html.Div(
-                    "Vista diferenciada de Seguridad SMTP: agrupa las pruebas por familias de control, severidad y evidencias tÃ©cnicas.",
+                    "Vista diferenciada de Seguridad SMTP: agrupa las pruebas por familias de control, severidad y evidencias técnicas.",
                     className="soc-unique-subtitle",
                 ),
                 html.Div(family_pills, className="soc-unique-pills"),
@@ -1760,8 +1760,8 @@ def pagina_soc(df, metadata, error, search_value=None):
                 [
                     page_heading(
                         "Pruebas SOC",
-                        "CatÃ¡logo de controles y evidencias",
-                        "Vista portfolio de pruebas defensivas independientes: familias de control, severidad, resultado y trazabilidad tÃ©cnica.",
+                        "Catálogo de controles y evidencias",
+                        "Vista portfolio de pruebas defensivas independientes: familias de control, severidad, resultado y trazabilidad técnica.",
                     ),
                     soc_table,
                 ],
@@ -1778,22 +1778,22 @@ def create_distribution_focus_panel(df, soc_df, selected_label=None):
     soc_kpis = calculate_soc_kpis(soc_df)
 
     items = {
-        "legÃ­timos": {
+        "legítimos": {
             "valor": kpis["legitimos"],
             "color": COLORS["green"],
-            "descripcion": "Correos legÃ­timos validados en la baterÃ­a principal.",
+            "descripcion": "Correos legítimos validados en la batería principal.",
             "badge": "OK",
         },
         "spoofing": {
             "valor": kpis["spoofing"],
             "color": COLORS["red"],
-            "descripcion": "Intentos de suplantaciÃ³n registrados en la baterÃ­a principal.",
+            "descripcion": "Intentos de suplantación registrados en la batería principal.",
             "badge": "SPF/DKIM/DMARC",
         },
         "Pruebas SOC": {
             "valor": soc_kpis["total"],
             "color": COLORS["purple"],
-            "descripcion": "Eventos defensivos adicionales: open relay, autenticaciÃ³n fallida, TLS, destinatarios inexistentes y otros controles.",
+            "descripcion": "Eventos defensivos adicionales: open relay, autenticación fallida, TLS, destinatarios inexistentes y otros controles.",
             "badge": "SOC",
         },
     }
@@ -1801,7 +1801,7 @@ def create_distribution_focus_panel(df, soc_df, selected_label=None):
     total = sum(item["valor"] for item in items.values()) or 1
 
     if selected_label not in items:
-        selected_label = "Pruebas SOC" if soc_kpis["total"] else "legÃ­timos"
+        selected_label = "Pruebas SOC" if soc_kpis["total"] else "legítimos"
 
     item = items[selected_label]
     percent = item["valor"] / total * 100
@@ -1855,10 +1855,10 @@ def pagina_vision_general(df, metadata, error, search_value=None):
             COLORS["cyan"],
             "01",
         ),
-        create_metric_card("LegÃ­timos", kpis["legitimos"], "Flujo autorizado", COLORS["green"], "OK"),
-        create_metric_card("Spoofing", kpis["spoofing"], "SuplantaciÃ³n detectada", COLORS["red"], "!!"),
+        create_metric_card("Legítimos", kpis["legitimos"], "Flujo autorizado", COLORS["green"], "OK"),
+        create_metric_card("Spoofing", kpis["spoofing"], "Suplantación detectada", COLORS["red"], "!!"),
         create_metric_card("Pruebas SOC", soc_kpis["total"], f"Bloqueadas: {soc_kpis['bloqueados']}", COLORS["purple"], "SOC"),
-        create_metric_card("Otros", kpis["otros"], "Sospechosos o no clasificados en baterÃ­a principal", COLORS["orange"], "??"),
+        create_metric_card("Otros", kpis["otros"], "Sospechosos o no clasificados en batería principal", COLORS["orange"], "??"),
     ]
 
     # Tabla global: bateria principal + SOC
@@ -1881,7 +1881,7 @@ def pagina_vision_general(df, metadata, error, search_value=None):
         status_alert(filtered_df, metadata, error, search_value),
         html.Section(cards, className="kpi-grid"),
         dbc.Alert(
-            "El total global y la tabla interactiva incluyen la baterÃ­a principal y las pruebas SOC. Las grÃ¡ficas de clasificaciÃ³n y ubicaciÃ³n representan la baterÃ­a principal; el detalle SOC estÃ¡ disponible en la pestaÃ±a Pruebas SOC.",
+            "El total global y la tabla interactiva incluyen la batería principal y las pruebas SOC. Las gráficas de clasificación y ubicación representan la batería principal; el detalle SOC está disponible en la pestaña Pruebas SOC.",
             color="info",
             className="status-alert",
         ),
@@ -1925,7 +1925,7 @@ def pagina_vision_general(df, metadata, error, search_value=None):
 
 
 def create_events_by_type_tabs(df):
-    """Crea subpestaÃ±as en Eventos agrupando por tipo de evento."""
+    """Crea subpestañas en Eventos agrupando por tipo de evento."""
     if df is None or df.empty:
         return dbc.Alert(
             "No hay eventos disponibles con los filtros actuales.",
@@ -1948,14 +1948,14 @@ def create_events_by_type_tabs(df):
                 page_heading(
                     "Eventos",
                     "Tabla global de eventos",
-                    "No se detectÃ³ una columna de tipo de evento; se muestra la tabla completa.",
+                    "No se detectó una columna de tipo de evento; se muestra la tabla completa.",
                 ),
                 create_data_table(visible_df),
             ],
             className="table-shell",
         )
 
-    # Normalizar valores vacÃ­os.
+    # Normalizar valores vacíos.
     visible_df[type_column] = (
         visible_df[type_column]
         .astype(str)
@@ -1971,12 +1971,12 @@ def create_events_by_type_tabs(df):
 
     counts.columns = ["tipo", "eventos"]
 
-    # Orden: mayor nÃºmero de eventos primero.
+    # Orden: mayor número de eventos primero.
     counts = counts.sort_values("eventos", ascending=False)
 
     tabs = []
 
-    # PestaÃ±a Todos.
+    # Pestaña Todos.
     tabs.append(
         dcc.Tab(
             label=f"Todos ({len(visible_df)})",
@@ -2001,7 +2001,7 @@ def create_events_by_type_tabs(df):
         )
     )
 
-    # Una pestaÃ±a por tipo.
+    # Una pestaña por tipo.
     for _, row in counts.iterrows():
         tipo = str(row["tipo"])
         total = int(row["eventos"])
@@ -2039,7 +2039,7 @@ def create_events_by_type_tabs(df):
             page_heading(
                 "Eventos",
                 "Eventos agrupados por tipo",
-                "Cada subpestaÃ±a muestra Ãºnicamente los eventos del tipo seleccionado. La pestaÃ±a Todos mantiene la vista completa.",
+                "Cada subpestaña muestra únicamente los eventos del tipo seleccionado. La pestaña Todos mantiene la vista completa.",
             ),
             dcc.Tabs(
                 tabs,
@@ -2053,10 +2053,10 @@ def create_events_by_type_tabs(df):
 
 
 def pagina_eventos(df, metadata, error, search_value=None):
-    """PÃ¡gina de eventos con subpestaÃ±as por tipo de evento."""
+    """Página de eventos con subpestañas por tipo de evento."""
     filtered_df = filter_dataframe(df, search_value)
 
-    # AÃ±adir pruebas SOC a la vista de eventos si estÃ¡n disponibles.
+    # Añadir pruebas SOC a la vista de eventos si están disponibles.
     try:
         soc_df, soc_error = load_soc_csv()
     except Exception:
@@ -2128,12 +2128,12 @@ def pagina_autenticacion(df, metadata, error, search_value=None):
 
 
 def spoofing_explanation_panel():
-    """Panel compacto exclusivo para la pestaÃ±a Spoofing, estilo portfolio."""
+    """Panel compacto exclusivo para la pestaña Spoofing, estilo portfolio."""
     return html.Section(
         [
             page_heading(
-                "AnÃ¡lisis de suplantaciÃ³n",
-                "ValidaciÃ³n defensiva frente a intentos spoofing",
+                "Análisis de suplantación",
+                "Validación defensiva frente a intentos spoofing",
                 "Resumen ejecutivo de controles aplicados y resultado esperado.",
             ),
 
@@ -2159,10 +2159,10 @@ def spoofing_explanation_panel():
                         dbc.Card(
                             dbc.CardBody(
                                 [
-                                    html.Div("PolÃ­tica aplicada", className="spoof-explain-title"),
+                                    html.Div("Política aplicada", className="spoof-explain-title"),
                                     html.Div("DMARC p=reject", className="spoof-explain-badge spoof-explain-green"),
                                     html.Div(
-                                        "La polÃ­tica final impide aceptar mensajes no alineados.",
+                                        "La política final impide aceptar mensajes no alineados.",
                                         className="spoof-explain-text",
                                     ),
                                 ]
@@ -2175,10 +2175,10 @@ def spoofing_explanation_panel():
                         dbc.Card(
                             dbc.CardBody(
                                 [
-                                    html.Div("SeÃ±al tÃ©cnica", className="spoof-explain-title"),
+                                    html.Div("Señal técnica", className="spoof-explain-title"),
                                     html.Div("SPF/DKIM fail", className="spoof-explain-badge spoof-explain-cyan"),
                                     html.Div(
-                                        "Los fallos de autenticaciÃ³n identifican la suplantaciÃ³n.",
+                                        "Los fallos de autenticación identifican la suplantación.",
                                         className="spoof-explain-text",
                                     ),
                                 ]
@@ -2194,7 +2194,7 @@ def spoofing_explanation_panel():
                                     html.Div("Valor portfolio", className="spoof-explain-title"),
                                     html.Div("Evidencia SOC", className="spoof-explain-badge spoof-explain-purple"),
                                     html.Div(
-                                        "Demuestra detecciÃ³n y respuesta ante abuso de identidad.",
+                                        "Demuestra detección y respuesta ante abuso de identidad.",
                                         className="spoof-explain-text",
                                     ),
                                 ]
@@ -2213,7 +2213,7 @@ def spoofing_explanation_panel():
 
 
 def _spoofing_location_series(df):
-    """Devuelve serie normalizada de ubicaciÃ³n final para eventos spoofing."""
+    """Devuelve serie normalizada de ubicación final para eventos spoofing."""
     if df is None or df.empty:
         return pd.Series([], dtype=str)
 
@@ -2428,22 +2428,22 @@ def spoofing_control_summary_panel(df):
     if block_rate >= 95:
         status_label = "Control efectivo"
         status_class = "spoof-control-status-ok"
-        interpretation = "La polÃ­tica defensiva bloqueÃ³ prÃ¡cticamente todos los intentos de suplantaciÃ³n detectados."
+        interpretation = "La política defensiva bloqueó prácticamente todos los intentos de suplantación detectados."
     elif block_rate >= 70:
         status_label = "Control parcial"
         status_class = "spoof-control-status-warn"
-        interpretation = "La defensa bloqueÃ³ la mayorÃ­a de intentos, pero existen eventos no rechazados que revisar."
+        interpretation = "La defensa bloqueó la mayoría de intentos, pero existen eventos no rechazados que revisar."
     else:
-        status_label = "RevisiÃ³n requerida"
+        status_label = "Revisión requerida"
         status_class = "spoof-control-status-danger"
-        interpretation = "La tasa de bloqueo es baja para un escenario anti-spoofing y requiere anÃ¡lisis."
+        interpretation = "La tasa de bloqueo es baja para un escenario anti-spoofing y requiere análisis."
 
     return html.Section(
         [
             page_heading(
                 "Resultado anti-spoofing",
                 "Resumen ejecutivo de la defensa aplicada",
-                "Vista orientada a portfolio: detecciÃ³n, rechazo y efectividad del control.",
+                "Vista orientada a portfolio: detección, rechazo y efectividad del control.",
             ),
 
             html.Div(
@@ -2461,7 +2461,7 @@ def spoofing_control_summary_panel(df):
                         [
                             html.Div("Rechazados", className="spoof-control-label"),
                             html.Div(str(rejected), className="spoof-control-value spoof-control-green"),
-                            html.Div("Bloqueados por polÃ­tica defensiva", className="spoof-control-subtitle"),
+                            html.Div("Bloqueados por política defensiva", className="spoof-control-subtitle"),
                         ],
                         className="spoof-control-stat",
                     ),
@@ -2528,7 +2528,7 @@ def spoofing_control_summary_panel(df):
 
 
 def pagina_spoofing(df, metadata, error, search_value=None):
-    """PÃ¡gina portfolio centrada en eventos de spoofing."""
+    """Página portfolio centrada en eventos de spoofing."""
     filtered_df = filter_spoofing_events(filter_dataframe(df, search_value))
     kpis = calculate_kpis(filtered_df)
 
@@ -2572,7 +2572,7 @@ def pagina_spoofing(df, metadata, error, search_value=None):
                 page_heading(
                     "Spoofing",
                     "Evidencias de defensa anti-spoofing",
-                    "Eventos filtrados por clasificaciÃ³n spoofing o tÃ©rminos equivalentes.",
+                    "Eventos filtrados por clasificación spoofing o términos equivalentes.",
                 ),
                 create_data_table(filtered_df),
             ],
@@ -2686,7 +2686,7 @@ def collect_external_reports_status():
     dmarc_files_all.sort(reverse=True, key=lambda x: x[0])
     dmarc_files = [item for _, item in dmarc_files_all[:10]]
 
-    # Resumen DMARC: preferir resÃºmenes reales del analizador.
+    # Resumen DMARC: preferir resúmenes reales del analizador.
     dmarc_summary_candidates = [
         "data/external_reports/dmarc_analyzer_output/resumen.txt",
         "data/external_reports/dmarc_analyzer_output/resumen_dmarc.txt",
@@ -2708,8 +2708,8 @@ def collect_external_reports_status():
             )
         else:
             dmarc_summary = (
-                "No se han incluido reportes agregados DMARC externos parseables en la version publica sanitizada.\\n"
-                "Origen publico revisado:\\n"
+                "No se han incluido reportes agregados DMARC externos parseables en la versión pública sanitizada.\\n"
+                "Rutas revisadas:\\n"
                 + "\\n".join(dmarc_paths)
             )
 
@@ -2751,8 +2751,8 @@ def collect_external_reports_status():
 
     if not tls_summary:
         tls_summary = (
-            "TLS-RPT estÃ¡ publicado y revisado. "
-            "Durante la ventana de observaciÃ³n no se localizaron reportes JSON parseables."
+            "TLS-RPT está publicado y revisado. "
+            "Durante la ventana de observación no se localizaron reportes JSON parseables."
         )
 
     return {
@@ -2765,16 +2765,16 @@ def collect_external_reports_status():
 
 
 def external_reports_panel():
-    """Panel visual para pestaÃ±a Informes: Google DMARC y TLS-RPT reales."""
+    """Panel visual para pestaña Informes: Google DMARC y TLS-RPT reales."""
     status = collect_external_reports_status()
 
     dmarc_count = len(status["dmarc_files"])
-    dmarc_last = str(status["dmarc_files"][0]) if status["dmarc_files"] else "Sin reportes DMARC externos parseables en la version publica"
+    dmarc_last = str(status["dmarc_files"][0]) if status["dmarc_files"] else "Sin reportes DMARC externos parseables en la versión pública"
 
     dmarc_summary_display = status["dmarc_summary"] or ""
 
     # Aclarar que el resumen DMARC procede de reportes agregados RUA,
-    # no de la baterÃ­a total de pruebas del dashboard.
+    # no de la batería total de pruebas del dashboard.
     dmarc_summary_display = dmarc_summary_display.replace(
         "Total de registros analizados:",
         "Registros RUA procesados:"
@@ -2788,18 +2788,18 @@ def external_reports_panel():
     dmarc_summary_display = (
         dmarc_summary_display.rstrip()
         + "\n\nNota: estos valores proceden de reportes agregados DMARC externos "
-        + "y no equivalen al nÃºmero total de pruebas/eventos del dashboard."
+        + "y no equivalen al número total de pruebas/eventos del dashboard."
     )
 
     tls_json_count = len(status["tls_json_files"])
-    tls_last = str(status["tls_json_files"][0]) if status["tls_json_files"] else "Sin reportes TLS-RPT JSON parseables en la version publica"
+    tls_last = str(status["tls_json_files"][0]) if status["tls_json_files"] else "Sin reportes TLS-RPT JSON parseables en la versión pública"
 
     return html.Section(
         [
             page_heading(
                 "Informes externos",
-                "Reportes reales DMARC de Google y revisiÃ³n TLS-RPT",
-                "Este bloque resume el estado del reporting externo en la version publica. No mezcla estos reportes con eventos SOC internos, pruebas DMARC ni evidencias de spoofing.",
+                "Estado de reporting externo DMARC y TLS-RPT",
+                "Este bloque resume el estado del reporting externo en la versión pública. No mezcla estos reportes con eventos SOC internos, pruebas DMARC ni evidencias de spoofing.",
             ),
             dbc.Row(
                 [
@@ -2809,8 +2809,8 @@ def external_reports_panel():
                                 [
                                     html.Div("Google DMARC", className="external-report-title"),
                                     html.Div(str(dmarc_count), className="external-report-number"),
-                                    html.Div("reportes DMARC externos parseables en version publica", className="external-report-subtitle"),
-                                    html.Div("Ãšltima evidencia DMARC:", className="external-report-label"),
+                                    html.Div("reportes DMARC externos parseables en versión pública", className="external-report-subtitle"),
+                                    html.Div("Última evidencia DMARC:", className="external-report-label"),
                                     html.Code(dmarc_last, className="external-report-code"),
                                     html.Pre(
                                         dmarc_summary_display,
@@ -2828,8 +2828,8 @@ def external_reports_panel():
                                 [
                                     html.Div("TLS-RPT", className="external-report-title"),
                                     html.Div(str(tls_json_count), className="external-report-number"),
-                                    html.Div("reportes TLS-RPT JSON parseables en version publica", className="external-report-subtitle"),
-                                    html.Div("Ãšltimo reporte JSON:", className="external-report-label"),
+                                    html.Div("reportes TLS-RPT JSON parseables en versión pública", className="external-report-subtitle"),
+                                    html.Div("Último reporte JSON:", className="external-report-label"),
                                     html.Code(tls_last, className="external-report-code"),
                                     html.Pre(
                                         status["tls_summary"],
@@ -2851,7 +2851,7 @@ def external_reports_panel():
 
 
 def canonical_report_location(value):
-    """Agrupa ubicaciones finales para informes: entregado, rechazado, spam, validaciÃ³n tÃ©cnica."""
+    """Agrupa ubicaciones finales para informes: entregado, rechazado, spam, validación técnica."""
     value = normalize_text(value)
 
     if "spam" in value or "promoc" in value:
@@ -2878,15 +2878,15 @@ def canonical_report_location(value):
         "tls" in value or
         "tls_ok" in value or
         "validacion" in value or
-        "validaciÃ³n" in value
+        "validación" in value
     ):
-        return "validaciÃ³n tÃ©cnica"
+        return "validación técnica"
 
     return "otros"
 
 
 def build_report_location_summary(main_df):
-    """Construye resumen dinÃ¡mico de ubicaciÃ³n final para la pestaÃ±a Informes."""
+    """Construye resumen dinámico de ubicación final para la pestaña Informes."""
     parts = []
 
     if main_df is not None and not main_df.empty:
@@ -2933,7 +2933,7 @@ def build_report_location_summary(main_df):
         "spam": 1,
         "rechazado": 2,
         "entregado": 3,
-        "validaciÃ³n tÃ©cnica": 4,
+        "validación técnica": 4,
         "otros": 5,
     }
 
@@ -2944,7 +2944,7 @@ def build_report_location_summary(main_df):
 
 
 def informes_location_summary_panel(main_df):
-    """Panel de tabla para Informes con ubicaciÃ³n final agrupada."""
+    """Panel de tabla para Informes con ubicación final agrupada."""
     summary_df = build_report_location_summary(main_df)
 
     total = int(summary_df["eventos"].sum()) if not summary_df.empty else 0
@@ -2960,7 +2960,7 @@ def informes_location_summary_panel(main_df):
             "spam": "loc-row-spam",
             "rechazado": "loc-row-rejected",
             "entregado": "loc-row-delivered",
-            "validaciÃ³n tÃ©cnica": "loc-row-technical",
+            "validación técnica": "loc-row-technical",
             "otros": "loc-row-other",
         }
 
@@ -2989,9 +2989,9 @@ def informes_location_summary_panel(main_df):
     return html.Section(
         [
             page_heading(
-                "Resumen de ubicaciÃ³n final",
-                "AgrupaciÃ³n global de eventos principales y pruebas SOC",
-                "Los valores se calculan dinÃ¡micamente desde los CSV actuales del dashboard.",
+                "Resumen de ubicación final",
+                "Agrupación global de eventos principales y pruebas SOC",
+                "Los valores se calculan dinámicamente desde los CSV actuales del dashboard.",
             ),
             html.Div(
                 html.Table(
@@ -2999,7 +2999,7 @@ def informes_location_summary_panel(main_df):
                         html.Thead(
                             html.Tr(
                                 [
-                                    html.Th("CategorÃ­a"),
+                                    html.Th("Categoría"),
                                     html.Th("Eventos"),
                                     html.Th("%"),
                                 ]
@@ -3033,7 +3033,7 @@ def load_email_threats_csv():
 
 
 def create_email_threats_type_chart(threat_df):
-    """GrÃ¡fico por tipo de amenaza email."""
+    """Gráfico por tipo de amenaza email."""
     if threat_df is None or threat_df.empty or "tipo" not in threat_df.columns:
         fig = go.Figure()
         fig.add_annotation(
@@ -3107,7 +3107,7 @@ def create_email_threats_type_chart(threat_df):
 
 
 def create_email_threats_mitre_chart(threat_df):
-    """GrÃ¡fico por tÃ©cnica MITRE."""
+    """Gráfico por técnica MITRE."""
     if threat_df is None or threat_df.empty or "mitre" not in threat_df.columns:
         fig = go.Figure()
         fig.add_annotation(
@@ -3178,7 +3178,7 @@ def email_threats_summary_panel(threat_df):
             html.Div("EMAIL THREAT SIMULATION", className="email-threats-eyebrow"),
             html.Div("Amenazas de contenido de correo", className="email-threats-title"),
             html.Div(
-                "Pruebas reales enviadas por SMTP local para validar transporte, trazabilidad y clasificaciÃ³n defensiva de contenido sospechoso benigno.",
+                "Pruebas reales enviadas por SMTP local para validar transporte, trazabilidad y clasificación defensiva de contenido sospechoso benigno.",
                 className="email-threats-subtitle",
             ),
 
@@ -3194,7 +3194,7 @@ def email_threats_summary_panel(threat_df):
                     html.Div(
                         [
                             html.Div("Adjuntos benignos", className="email-threats-item-title"),
-                            html.Div("EICAR y doble extensiÃ³n como simulaciÃ³n defensiva controlada.", className="email-threats-item-text"),
+                            html.Div("EICAR y doble extensión como simulación defensiva controlada.", className="email-threats-item-text"),
                         ],
                         className="email-threats-item email-threats-orange",
                     ),
@@ -3221,7 +3221,7 @@ def email_threats_summary_panel(threat_df):
 
 
 def pagina_amenazas_email(df, metadata, error, search_value=None):
-    """PÃ¡gina de amenazas de contenido de correo."""
+    """Página de amenazas de contenido de correo."""
     threat_df, threat_error = load_email_threats_csv()
 
     if search_value and not threat_df.empty:
@@ -3240,15 +3240,15 @@ def pagina_amenazas_email(df, metadata, error, search_value=None):
     cards = [
         create_metric_card("Pruebas reales", total, "Aceptadas por SMTP", COLORS["cyan"], "MAIL"),
         create_metric_card("Tipos", tipos, "Familias de contenido", COLORS["purple"], "TYPE"),
-        create_metric_card("MITRE", mitre, "TÃ©cnicas cubiertas", COLORS["orange"], "ATT&CK"),
+        create_metric_card("MITRE", mitre, "Técnicas cubiertas", COLORS["orange"], "ATT&CK"),
         create_metric_card("Validadas", validadas, "Respuesta 250 tras DATA", COLORS["green"], "250"),
         create_metric_card("URLs", urls, "Links simulados", COLORS["cyan"], "URL"),
-        create_metric_card("Adjuntos", adjuntos, "EICAR/doble extensiÃ³n", COLORS["red"], "FILE"),
+        create_metric_card("Adjuntos", adjuntos, "EICAR/doble extensión", COLORS["red"], "FILE"),
     ]
 
-    # Tabla ejecutiva estilo SMTP: columnas Ãºtiles, compactas y no redundantes.
+    # Tabla ejecutiva estilo SMTP: columnas útiles, compactas y no redundantes.
     # El CSV conserva todos los campos completos; la tabla muestra lo necesario para defensa.
-    # Tabla ejecutiva: se crean columnas de visualizaciÃ³n para no romper el layout.
+    # Tabla ejecutiva: se crean columnas de visualización para no romper el layout.
     # El CSV original conserva resultado_smtp y evidencia completos.
     table_view = threat_df.copy()
 
@@ -3398,7 +3398,7 @@ def pagina_informes(df, metadata, error, search_value=None):
     location_report_df = build_global_location_df(filtered_df, soc_location_df)
     metrics = calculate_report_metrics(filtered_df, metadata)
     cards = [
-        create_metric_card("PrecisiÃ³n", f"{metrics['precision']:.1%}", "TP / (TP + FP)", COLORS["green"], "P"),
+        create_metric_card("Precisión", f"{metrics['precision']:.1%}", "TP / (TP + FP)", COLORS["green"], "P"),
         create_metric_card("Recall", f"{metrics['recall']:.1%}", "TP / (TP + FN)", COLORS["cyan"], "R"),
         create_metric_card("Falsos positivos", metrics["false_positives"], "Legitimos marcados como spoofing", COLORS["orange"], "FP"),
         create_metric_card("Falsos negativos", metrics["false_negatives"], "Spoofing no detectado", COLORS["red"], "FN"),
@@ -3436,7 +3436,7 @@ def _count_value(df, column, value):
 
 
 def create_simple_donut(labels, values, colors, title):
-    """Dona genÃ©rica interactiva."""
+    """Dona genérica interactiva."""
     fig = go.Figure(
         data=[
             go.Pie(
@@ -3462,7 +3462,7 @@ def create_simple_donut(labels, values, colors, title):
     return fig
 
 
-def create_simple_bar(labels, values, colors, title, x_title="CategorÃ­a", y_title="Eventos"):
+def create_simple_bar(labels, values, colors, title, x_title="Categoría", y_title="Eventos"):
     """Barras interactivas con porcentajes."""
     total = sum(values) or 1
     text_labels = [f"{v}<br>{(v / total * 100):.1f}%" for v in values]
@@ -3505,9 +3505,9 @@ def deliverability_spam_explanation_panel(inbox, spam, promociones, no_aparece, 
     return html.Section(
         [
             page_heading(
-                "AnÃ¡lisis de spam en Gmail",
-                "AutenticaciÃ³n correcta no implica entrega directa a inbox",
-                "Resumen ejecutivo de factores que explican la clasificaciÃ³n en spam.",
+                "Análisis de spam en Gmail",
+                "Autenticación correcta no implica entrega directa a inbox",
+                "Resumen ejecutivo de factores que explican la clasificación en spam.",
             ),
 
             dbc.Row(
@@ -3517,9 +3517,9 @@ def deliverability_spam_explanation_panel(inbox, spam, promociones, no_aparece, 
                             dbc.CardBody(
                                 [
                                     html.Div("SMTP aceptado", className="spam-explain-title"),
-                                    html.Div("250 OK â‰  Inbox", className="spam-explain-badge spam-explain-blue"),
+                                    html.Div("250 OK ≠ Inbox", className="spam-explain-badge spam-explain-blue"),
                                     html.Div(
-                                        "El servidor receptor acepta el mensaje, pero Gmail decide la carpeta final despuÃ©s.",
+                                        "El servidor receptor acepta el mensaje, pero Gmail decide la carpeta final después.",
                                         className="spam-explain-subtitle",
                                     ),
                                 ]
@@ -3532,8 +3532,8 @@ def deliverability_spam_explanation_panel(inbox, spam, promociones, no_aparece, 
                         dbc.Card(
                             dbc.CardBody(
                                 [
-                                    html.Div("AutenticaciÃ³n", className="spam-explain-title"),
-                                    html.Div("PASS â‰  Entrega", className="spam-explain-badge spam-explain-purple"),
+                                    html.Div("Autenticación", className="spam-explain-title"),
+                                    html.Div("PASS ≠ Entrega", className="spam-explain-badge spam-explain-purple"),
                                     html.Div(
                                         "SPF, DKIM y DMARC validan identidad, pero no garantizan bandeja de entrada.",
                                         className="spam-explain-subtitle",
@@ -3549,9 +3549,9 @@ def deliverability_spam_explanation_panel(inbox, spam, promociones, no_aparece, 
                             dbc.CardBody(
                                 [
                                     html.Div("Factor principal", className="spam-explain-title"),
-                                    html.Div("ReputaciÃ³n", className="spam-explain-badge spam-explain-orange"),
+                                    html.Div("Reputación", className="spam-explain-badge spam-explain-orange"),
                                     html.Div(
-                                        "Gmail pondera reputaciÃ³n del dominio/IP, historial, volumen y seÃ±ales de usuario.",
+                                        "Gmail pondera reputación del dominio/IP, historial, volumen y señales de usuario.",
                                         className="spam-explain-subtitle",
                                     ),
                                 ]
@@ -3567,7 +3567,7 @@ def deliverability_spam_explanation_panel(inbox, spam, promociones, no_aparece, 
                                     html.Div("Contexto portfolio", className="spam-explain-title"),
                                     html.Div("Laboratorio", className="spam-explain-badge spam-explain-green"),
                                     html.Div(
-                                        "Pruebas repetitivas y bajo volumen pueden elevar la sospecha aunque la seguridad estÃ© bien.",
+                                        "Pruebas repetitivas y bajo volumen pueden elevar la sospecha aunque la seguridad esté bien.",
                                         className="spam-explain-subtitle",
                                     ),
                                 ]
@@ -3585,7 +3585,7 @@ def deliverability_spam_explanation_panel(inbox, spam, promociones, no_aparece, 
 
 
 def pagina_entregabilidad(df, metadata, error, search_value=None):
-    """PÃ¡gina dedicada a entregabilidad Gmail: inbox, spam y aceptaciÃ³n SMTP."""
+    """Página dedicada a entregabilidad Gmail: inbox, spam y aceptación SMTP."""
     filtered_df = filter_dataframe(df, search_value).copy()
 
     # Resolver columnas de forma robusta, sin depender solo de metadata.
@@ -3600,7 +3600,7 @@ def pagina_entregabilidad(df, metadata, error, search_value=None):
             dbc.Alert("No hay datos cargados para calcular entregabilidad.", color="warning", className="status-alert"),
         ]
 
-    # SelecciÃ³n robusta de correos legÃ­timos hacia Gmail.
+    # Selección robusta de correos legítimos hacia Gmail.
     legit_mask = pd.Series(False, index=filtered_df.index)
 
     if tipo_col and tipo_col in filtered_df.columns:
@@ -3611,13 +3611,13 @@ def pagina_entregabilidad(df, metadata, error, search_value=None):
 
     if destino_col and destino_col in filtered_df.columns:
         gmail_mask = filtered_df[destino_col].astype(str).str.lower().str.contains("gmail.com", na=False)
-        # Si hay destino Gmail, priorizamos legÃ­timos Gmail.
+        # Si hay destino Gmail, priorizamos legítimos Gmail.
         if gmail_mask.any():
             legit_mask = legit_mask & gmail_mask
 
     legit_df = filtered_df[legit_mask].copy()
 
-    # Fallback: si por cualquier motivo no detecta legÃ­timos, usar eventos con ubicaciÃ³n de entregabilidad.
+    # Fallback: si por cualquier motivo no detecta legítimos, usar eventos con ubicación de entregabilidad.
     if legit_df.empty and ubicacion_col and ubicacion_col in filtered_df.columns:
         ubicaciones_entrega = ["inbox", "spam", "promociones", "no_aparece"]
         legit_df = filtered_df[
@@ -3641,7 +3641,7 @@ def pagina_entregabilidad(df, metadata, error, search_value=None):
     smtp_rate = smtp_aceptados / total_legit if total_legit else 0
 
     cards = [
-        create_metric_card("LegÃ­timos Gmail", total_legit, "Base analizada", COLORS["cyan"], "LG"),
+        create_metric_card("Legítimos Gmail", total_legit, "Base analizada", COLORS["cyan"], "LG"),
         create_metric_card("SMTP aceptados", f"{smtp_rate:.1%}", f"{smtp_aceptados} mensajes", COLORS["green"], "250"),
         create_metric_card("Inbox", f"{inbox_rate:.1%}", f"{inbox} mensajes", COLORS["green"], "IN"),
         create_metric_card("Spam", f"{spam_rate:.1%}", f"{spam} mensajes", COLORS["orange"], "SP"),
@@ -3684,7 +3684,7 @@ def pagina_entregabilidad(df, metadata, error, search_value=None):
     )
 
     donut.update_layout(
-        title="DistribuciÃ³n inbox / spam",
+        title="Distribución inbox / spam",
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         font=dict(color=COLORS["text"]),
@@ -3716,8 +3716,8 @@ def pagina_entregabilidad(df, metadata, error, search_value=None):
     y_max = max(y_max, 5)
 
     bar.update_layout(
-        title="UbicaciÃ³n final de correos legÃ­timos",
-        xaxis_title="UbicaciÃ³n final",
+        title="Ubicación final de correos legítimos",
+        xaxis_title="Ubicación final",
         yaxis_title="Mensajes",
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
@@ -3732,14 +3732,14 @@ def pagina_entregabilidad(df, metadata, error, search_value=None):
     if legit_df.empty:
         tabla_df = filtered_df.head(0).copy()
         aviso = dbc.Alert(
-            "No se han detectado correos legÃ­timos Gmail con los criterios actuales. Revisa columnas tipo, destino e id_prueba.",
+            "No se han detectado correos legítimos Gmail con los criterios actuales. Revisa columnas tipo, destino e id_prueba.",
             color="warning",
             className="status-alert",
         )
     else:
         tabla_df = legit_df
         aviso = dbc.Alert(
-            "Esta vista analiza la ubicaciÃ³n final de correos legÃ­timos aceptados por Gmail. Distingue aceptaciÃ³n SMTP de llegada real a bandeja de entrada.",
+            "Esta vista analiza la ubicación final de correos legítimos aceptados por Gmail. Distingue aceptación SMTP de llegada real a bandeja de entrada.",
             color="info",
             className="status-alert",
         )
@@ -3760,8 +3760,8 @@ def pagina_entregabilidad(df, metadata, error, search_value=None):
             [
                 page_heading(
                     "Entregabilidad Gmail",
-                    "Inbox, spam y aceptaciÃ³n SMTP",
-                    "Tabla filtrable de correos legÃ­timos usados para medir ubicaciÃ³n final y entregabilidad.",
+                    "Inbox, spam y aceptación SMTP",
+                    "Tabla filtrable de correos legítimos usados para medir ubicación final y entregabilidad.",
                 ),
                 create_data_table(tabla_df),
             ],
@@ -3771,7 +3771,7 @@ def pagina_entregabilidad(df, metadata, error, search_value=None):
 
 
 def create_soc_type_chart(df_soc):
-    """GrÃ¡fico horizontal de tipos de pruebas SOC con nombres legibles."""
+    """Gráfico horizontal de tipos de pruebas SOC con nombres legibles."""
     if df_soc is None or df_soc.empty:
         fig = go.Figure()
         fig.add_annotation(
@@ -3826,12 +3826,12 @@ def create_soc_type_chart(df_soc):
         "spf_fail": "SPF fail",
         "dkim_broken": "DKIM roto",
         "dkim_absent": "DKIM ausente",
-        "dkim_rotation": "RotaciÃ³n DKIM",
+        "dkim_rotation": "Rotación DKIM",
         "spoofing_reject": "DMARC reject",
         "lookalike_domain": "Dominio lookalike",
         "relay_denied": "Relay denegado",
         "tls_ok": "TLS OK",
-        "legitimo": "LegÃ­timo",
+        "legitimo": "Legítimo",
         "sospechoso": "Sospechoso",
     }
 
@@ -3876,7 +3876,7 @@ def create_soc_type_chart(df_soc):
             textposition="outside",
             cliponaxis=False,
             customdata=grouped["tipo"],
-            hovertemplate="<b>%{y}</b><br>Tipo tÃ©cnico: %{customdata}<br>Eventos: %{x}<extra></extra>",
+            hovertemplate="<b>%{y}</b><br>Tipo técnico: %{customdata}<br>Eventos: %{x}<extra></extra>",
         )
     )
 
@@ -3976,7 +3976,7 @@ def create_soc_result_chart(df_soc):
         {
             "label": "Auth Fail",
             "value": auth_fail,
-            "sub": "login invÃ¡lido",
+            "sub": "login inválido",
             "color": COLORS["red"],
             "domain": {"x": [0.00, 0.47], "y": [0.00, 0.44]},
         },
@@ -4071,7 +4071,7 @@ def create_soc_result_chart(df_soc):
         ],
         annotations=[
             dict(
-                text=f"Open Relay: {open_relay} Â· Usuarios inexistentes: {recipient_unknown}",
+                text=f"Open Relay: {open_relay} · Usuarios inexistentes: {recipient_unknown}",
                 x=0.5,
                 y=-0.13,
                 xref="paper",
@@ -4086,7 +4086,7 @@ def create_soc_result_chart(df_soc):
 
 
 def pagina_seguridad_smtp(df, metadata, error, search_value=None):
-    """PÃ¡gina ejecutiva de seguridad SMTP/SOC."""
+    """Página ejecutiva de seguridad SMTP/SOC."""
     filtered_df = filter_dataframe(df, search_value)
     soc_df, soc_error = load_soc_csv()
 
@@ -4165,12 +4165,12 @@ def pagina_seguridad_smtp(df, metadata, error, search_value=None):
         create_metric_card("Permitidas", permitidas_controladas, "Casos controlados", "#facc15", "OK"),
     ]
 
-    # Tabla especÃ­fica para Seguridad SMTP.
-    # Bloque Ãºnico y limpio:
+    # Tabla específica para Seguridad SMTP.
+    # Bloque único y limpio:
     # - usa TODO soc_df;
     # - no filtra por TLS;
     # - humaniza etiquetas;
-    # - muestra las filas mÃ¡s recientes del CSV arriba.
+    # - muestra las filas más recientes del CSV arriba.
     smtp_table_columns = [
         "id_prueba",
         "tipo",
@@ -4192,7 +4192,7 @@ def pagina_seguridad_smtp(df, metadata, error, search_value=None):
         "spf_fail": "SPF fail",
         "dkim_broken": "DKIM roto",
         "dkim_absent": "DKIM ausente",
-        "dkim_rotation": "RotaciÃ³n DKIM",
+        "dkim_rotation": "Rotación DKIM",
         "spoofing_reject": "DMARC reject",
         "spoofing": "DMARC reject",
         "lookalike_domain": "Dominio lookalike",
@@ -4203,7 +4203,7 @@ def pagina_seguridad_smtp(df, metadata, error, search_value=None):
         "permitido": "Permitido",
         "rechazado": "Rechazado",
         "enviado": "Enviado",
-        "validacion_tecnica": "ValidaciÃ³n tÃ©cnica",
+        "validacion_tecnica": "Validación técnica",
         "fallo_dkim": "Fallo DKIM",
         "sospechoso": "Sospechoso",
     }
@@ -4255,7 +4255,7 @@ def pagina_seguridad_smtp(df, metadata, error, search_value=None):
             [col for col in smtp_table_columns if col in smtp_table_df.columns]
         ].copy()
 
-        # Mostrar primero las Ãºltimas filas del CSV, sin filtrar nada.
+        # Mostrar primero las últimas filas del CSV, sin filtrar nada.
         smtp_table_df = smtp_table_df.iloc[::-1].reset_index(drop=True)
 
     smtp_table = dash_table.DataTable(
@@ -4266,8 +4266,8 @@ def pagina_seguridad_smtp(df, metadata, error, search_value=None):
                     "id_prueba": "ID",
                     "tipo": "Tipo",
                     "resultado_esperado": "Esperado",
-                    "ubicacion_final": "UbicaciÃ³n",
-                    "clasificacion_real": "ClasificaciÃ³n",
+                    "ubicacion_final": "Ubicación",
+                    "clasificacion_real": "Clasificación",
                     "origen": "Origen",
                     "destino": "Destino",
                     "evidencia": "Evidencia",
@@ -4389,7 +4389,7 @@ def pagina_seguridad_smtp(df, metadata, error, search_value=None):
                 "borderLeft": "1px solid rgba(35,215,255,0.09)",
             },
 
-            # lookalike/spoofing/dkim/spf: naranja/morado/rojo segÃºn riesgo
+            # lookalike/spoofing/dkim/spf: naranja/morado/rojo según riesgo
             {
                 "if": {"filter_query": "{clasificacion_real} contains 'lookalike'"},
                 "backgroundColor": "rgba(249,115,22,0.085)",
@@ -4458,7 +4458,7 @@ def pagina_seguridad_smtp(df, metadata, error, search_value=None):
                     },
                 ),
                 html.Div(
-                    "Panel verificado en Python: eventos, bloqueos, open relay, autenticaciÃ³n fallida, usuarios inexistentes y TLS.",
+                    "Panel verificado en Python: eventos, bloqueos, open relay, autenticación fallida, usuarios inexistentes y TLS.",
                     style={
                         "color": "#aebfd0",
                         "fontSize": "14px",
@@ -4495,7 +4495,7 @@ def pagina_seguridad_smtp(df, metadata, error, search_value=None):
                                 html.Div("COBERTURA DEFENSIVA", className="smtp-coverage-eyebrow"),
                                 html.Div("Cobertura defensiva SMTP", className="smtp-coverage-title"),
                                 html.Div(
-                                    "Lectura ejecutiva de las familias de control cubiertas por la baterÃ­a SOC.",
+                                    "Lectura ejecutiva de las familias de control cubiertas por la batería SOC.",
                                     className="smtp-coverage-subtitle",
                                 ),
 
@@ -4504,14 +4504,14 @@ def pagina_seguridad_smtp(df, metadata, error, search_value=None):
                                         html.Div(
                                             [
                                                 html.Div("Abuso SMTP", className="smtp-coverage-item-title"),
-                                                html.Div("Open relay denegado, autenticaciÃ³n fallida y destinatarios inexistentes.", className="smtp-coverage-item-text"),
+                                                html.Div("Open relay denegado, autenticación fallida y destinatarios inexistentes.", className="smtp-coverage-item-text"),
                                             ],
                                             className="smtp-coverage-item smtp-coverage-orange",
                                         ),
                                         html.Div(
                                             [
                                                 html.Div("Identidad y anti-spoofing", className="smtp-coverage-item-title"),
-                                                html.Div("SPF, DKIM, rotaciÃ³n DKIM, spoofing rechazado y dominio lookalike.", className="smtp-coverage-item-text"),
+                                                html.Div("SPF, DKIM, rotación DKIM, spoofing rechazado y dominio lookalike.", className="smtp-coverage-item-text"),
                                             ],
                                             className="smtp-coverage-item smtp-coverage-purple",
                                         ),
@@ -4554,7 +4554,7 @@ def pagina_seguridad_smtp(df, metadata, error, search_value=None):
                     page_heading(
                         "Seguridad SMTP",
                         "Eventos defensivos automatizados",
-                        "Vista SOC de relay denegado, autenticaciÃ³n fallida, destinatarios inexistentes, TLS y otros controles.",
+                        "Vista SOC de relay denegado, autenticación fallida, destinatarios inexistentes, TLS y otros controles.",
                     ),
                     smtp_table,
                 ],
@@ -4566,10 +4566,10 @@ def pagina_seguridad_smtp(df, metadata, error, search_value=None):
     return content
 
 def build_cronologia_dataset(search_value=None):
-    """Construye dataset cronolÃ³gico combinado: baterÃ­a principal + pruebas SOC.
+    """Construye dataset cronológico combinado: batería principal + pruebas SOC.
 
-    Si no existe una fecha explÃ­cita por registro, se usa la fecha de modificaciÃ³n
-    del CSV como fecha tÃ©cnica de referencia. No se inventan fechas.
+    Si no existe una fecha explícita por registro, se usa la fecha de modificación
+    del CSV como fecha técnica de referencia. No se inventan fechas.
     """
     from datetime import datetime
     import re
@@ -4672,21 +4672,21 @@ def build_cronologia_dataset(search_value=None):
 
 
 def create_cronologia_stock_chart(cron_df, tipo_label="General"):
-    """GrÃ¡fica cronolÃ³gica neÃ³n para el nÃºmero de pruebas por dÃ­a.
+    """Gráfica cronológica neón para el número de pruebas por día.
 
     Mantiene el estilo inicial:
     - Actividad diaria en barras.
-    - Tendencia neÃ³n.
-    - Media mÃ³vil 3D.
+    - Tendencia neón.
+    - Media móvil 3D.
     - Range slider inferior.
 
     Fix:
-    - TÃ­tulo, leyenda, botones y eje inferior no se solapan.
+    - Título, leyenda, botones y eje inferior no se solapan.
     """
     if cron_df is None or cron_df.empty:
         fig = go.Figure()
         fig.add_annotation(
-            text="Sin datos de cronologÃ­a",
+            text="Sin datos de cronología",
             x=0.5,
             y=0.5,
             xref="paper",
@@ -4695,7 +4695,7 @@ def create_cronologia_stock_chart(cron_df, tipo_label="General"):
             font=dict(size=18, color="#eaf6ff"),
         )
         fig.update_layout(
-            title="CronologÃ­a de ataques / pruebas",
+            title="Cronología de ataques / pruebas",
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
             font=dict(color="#eaf6ff"),
@@ -4783,7 +4783,7 @@ def create_cronologia_stock_chart(cron_df, tipo_label="General"):
 
     fig.update_layout(
         title=dict(
-            text=f"CronologÃ­a Â· {tipo_label} Â· {total} pruebas",
+            text=f"Cronología · {tipo_label} · {total} pruebas",
             x=0.035,
             y=0.985,
             xanchor="left",
@@ -4845,7 +4845,7 @@ def create_cronologia_stock_chart(cron_df, tipo_label="General"):
         ),
         annotations=[
             dict(
-                text=f"MÃ¡ximo diario: {max_value} Â· Fuente fecha dominante: {fecha_origen}",
+                text=f"Máximo diario: {max_value} · Fuente fecha dominante: {fecha_origen}",
                 x=0.99,
                 y=1.135,
                 xref="paper",
@@ -4861,7 +4861,7 @@ def create_cronologia_stock_chart(cron_df, tipo_label="General"):
 
 
 def pagina_cronologia(df, metadata, error, search_value=None):
-    """PÃ¡gina de cronologÃ­a de pruebas/ataques con minipestaÃ±as por tipo."""
+    """Página de cronología de pruebas/ataques con minipestañas por tipo."""
     cron_df = build_cronologia_dataset(search_value)
 
     total_pruebas = int(len(cron_df)) if cron_df is not None and not cron_df.empty else 0
@@ -4914,19 +4914,19 @@ def pagina_cronologia(df, metadata, error, search_value=None):
         status_alert(df, metadata, error, search_value),
         html.Div(
             [
-                html.Div("CRONOLOGÃA DE PRUEBAS SOC", className="cronologia-eyebrow"),
-                html.Div("CronologÃ­a de ataques y pruebas", className="cronologia-title"),
+                html.Div("CRONOLOGÍA DE PRUEBAS SOC", className="cronologia-eyebrow"),
+                html.Div("Cronología de ataques y pruebas", className="cronologia-title"),
                 html.Div(
-                    "Serie temporal de pruebas, ataques simulados y controles SOC registrados cronolÃ³gicamente.",
+                    "Serie temporal de pruebas, ataques simulados y controles SOC registrados cronológicamente.",
                     className="cronologia-subtitle",
                 ),
                 html.Div(
                     [
                         html.Span(f"{total_pruebas} pruebas totales"),
                         html.Span(f"{tipos_total} tipos"),
-                        html.Span(f"{dias} dÃ­as detectados"),
-                        html.Span(f"{origen_texto} con fecha extraÃ­da"),
-                        html.Span(f"{origen_mtime} con fecha tÃ©cnica"),
+                        html.Span(f"{dias} días detectados"),
+                        html.Span(f"{origen_texto} con fecha extraída"),
+                        html.Span(f"{origen_mtime} con fecha técnica"),
                     ],
                     className="cronologia-pills",
                 ),
@@ -4947,17 +4947,17 @@ def pagina_cronologia(df, metadata, error, search_value=None):
 
 
 def build_sidebar():
-    """Construye la barra lateral izquierda de navegaciÃ³n."""
+    """Construye la barra lateral izquierda de navegación."""
     return html.Aside(
         [
             dbc.Nav(
                 [
-                    dbc.NavLink("VisiÃ³n general", href="/", active="exact", className="nav-item"),
+                    dbc.NavLink("Visión general", href="/", active="exact", className="nav-item"),
                     dbc.NavLink("Eventos", href="/eventos", active="exact", className="nav-item"),
                     dbc.NavLink("Entregabilidad", href="/entregabilidad", active="exact", className="nav-item"),
                     dbc.NavLink("Spoofing", href="/spoofing", active="exact", className="nav-item"),
                     dbc.NavLink("Seguridad SMTP", href="/seguridad-smtp", active="exact", className="nav-item"),
-                    dbc.NavLink("Informes", href="/informes", active="exact", className="nav-item"),                    dbc.NavLink("CronologÃ­a", href="/cronologia", active="exact", className="nav-item"),
+                    dbc.NavLink("Informes", href="/informes", active="exact", className="nav-item"),                    dbc.NavLink("Cronología", href="/cronologia", active="exact", className="nav-item"),
                 ],
                 className="side-nav",
                 vertical=True,
@@ -5723,7 +5723,6 @@ app.index_string = """
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8052, debug=False)
-
 
 
 
