@@ -839,14 +839,56 @@
 </details>
 
         <details class="doc-panel">
-          <summary>Arquitectura del servidor</summary>
-          <div class="doc-panel-content">
-            <p>
-              Postfix, OpenDKIM, OpenDMARC, OpenARC, Dovecot y syslog forman la base tecnica
-              del laboratorio.
-            </p>
-          </div>
-        </details>
+  <summary>DNS, DNSSEC y registros del dominio</summary>
+  <div class="doc-panel-content">
+    <p>
+      La configuracion DNS fue una parte fundamental del proyecto, porque muchos controles
+      modernos de seguridad de correo dependen directamente de registros DNS publicados
+      correctamente. En PhisDefense se trabajaron registros relacionados con autenticacion
+      de correo, politicas de transporte seguro y reporting.
+    </p>
+
+    <p>
+      DNSSEC se incorporo como una capa adicional de confianza para reforzar la autenticidad
+      e integridad de las respuestas DNS asociadas al dominio. Esto es especialmente relevante
+      porque SPF, DKIM, DMARC, MTA-STS y TLS-RPT se apoyan en DNS para publicar sus politicas
+      o claves.
+    </p>
+
+    <ul>
+      <li>
+        <strong>DNSSEC:</strong> capa de seguridad para proteger la autenticidad e integridad
+        de las respuestas DNS del dominio.
+      </li>
+      <li>
+        <strong>SPF:</strong> registro TXT utilizado para declarar que servidores estan
+        autorizados a enviar correo en nombre del dominio.
+      </li>
+      <li>
+        <strong>DKIM:</strong> publicacion de clave publica asociada a un selector para validar
+        firmas criptograficas de mensajes.
+      </li>
+      <li>
+        <strong>DMARC:</strong> politica de dominio para indicar que hacer cuando SPF/DKIM no
+        superan las comprobaciones o no estan alineados.
+      </li>
+      <li>
+        <strong>MTA-STS:</strong> politica para indicar a emisores compatibles que deben entregar
+        correo mediante TLS valido.
+      </li>
+      <li>
+        <strong>TLS-RPT:</strong> mecanismo de reporting para recibir informacion sobre problemas
+        de transporte TLS.
+      </li>
+    </ul>
+
+    <p>
+      Esta capa DNS permite que la seguridad de correo no dependa unicamente de la configuracion
+      local del servidor, sino tambien de politicas publicadas y verificables desde el exterior.
+      Por eso el proyecto documento tanto la configuracion como la validacion de estos registros.
+    </p>
+  </div>
+</details>
 
         <details class="doc-panel">
           <summary>Pruebas SOC</summary>
@@ -916,6 +958,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
