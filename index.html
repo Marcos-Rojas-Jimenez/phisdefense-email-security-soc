@@ -506,6 +506,15 @@
     justify-content: center;
   }
 }
+.render-note {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,179,71,.24);
+  background: rgba(255,179,71,.08);
+  color: #ffe0b0;
+  font-size: .95rem;
+}
 </style>
 </head>
 
@@ -979,7 +988,10 @@
         validaciones TLS, evidencias defensivas y resultados del laboratorio.
       </p>
 
-      <div class="video-card">
+      <div class="render-note">
+  Nota: el dashboard interactivo esta alojado en Render. Si el servicio esta en reposo, puede tardar unos segundos en arrancar.
+</div>
+<div class="video-card">
         <video class="demo-video" controls preload="metadata">
           <source src="assets/dashboard-demo.mp4" type="video/mp4" />
           Tu navegador no soporta la reproduccion de video HTML5.
@@ -1654,6 +1666,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
