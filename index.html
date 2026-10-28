@@ -548,6 +548,31 @@
     transition: none;
   }
 }
+
+/* Resumen en lenguaje sencillo al inicio de la página */
+.in-short {
+  max-width: 880px;
+  margin: 0 0 22px;
+  padding: 18px 20px;
+  background: rgba(56,248,255,.06);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--cyan);
+  border-radius: 16px;
+}
+.in-short-tag {
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin: 0 0 6px;
+}
+.in-short-text {
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0;
+}
 </style>
 </head>
 
@@ -586,6 +611,18 @@
         <span class="gradient-text">PhisDefense</span><br />
         SOC & Email Security Lab
       </h1>
+
+      <div class="in-short">
+        <p class="in-short-tag">En pocas palabras</p>
+        <p class="in-short-text">
+          PhisDefense es un <strong>servidor de correo real</strong> configurado y protegido para
+          que nadie pueda enviar correos <strong>haciéndose pasar por su dominio</strong>, que es
+          la base de muchos ataques de phishing. Se activaron los controles estándar que comprueban
+          quién envía cada correo (SPF, DKIM y DMARC) y los que cifran la conexión (TLS y MTA-STS),
+          se pusieron a prueba con ataques controlados y los resultados se muestran en un
+          <strong>dashboard tipo SOC</strong> que enseña qué se bloqueó y por qué.
+        </p>
+      </div>
 
       <p class="hero-text">
         Caso de estudio de ciberseguridad defensiva centrado en seguridad de correo electronico.
